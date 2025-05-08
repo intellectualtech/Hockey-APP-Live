@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.example.hockeyapplive.app-mergeDebugResources-44:/values-ro/values-ro.xml",
+            "outputFile": "com.example.hockeyapplive.app-mergeDebugResources-42:/values-ro/values-ro.xml",
             "map": [
                 {
                     "source": "C:\\Users\\cotad\\.gradle\\caches\\transforms-4\\cf1631de215640afa4727413ac22e779\\transformed\\foundation-release\\res\\values-ro\\values-ro.xml",
@@ -18,23 +18,6 @@
                         "startOffsets": "8645,8740",
                         "endColumns": "94,99",
                         "endOffsets": "8735,8835"
-                    }
-                },
-                {
-                    "source": "C:\\Users\\cotad\\.gradle\\caches\\transforms-4\\29559e8702febf28c8e06da8f0ff564f\\transformed\\core-1.16.0\\res\\values-ro\\values-ro.xml",
-                    "from": {
-                        "startLines": "2,3,4,5,6,7,8,9",
-                        "startColumns": "4,4,4,4,4,4,4,4",
-                        "startOffsets": "55,153,255,355,454,556,665,782",
-                        "endColumns": "97,101,99,98,101,108,116,100",
-                        "endOffsets": "148,250,350,449,551,660,777,878"
-                    },
-                    "to": {
-                        "startLines": "2,3,4,5,6,7,8,79",
-                        "startColumns": "4,4,4,4,4,4,4,4",
-                        "startOffsets": "105,203,305,405,504,606,715,8285",
-                        "endColumns": "97,101,99,98,101,108,116,100",
-                        "endOffsets": "198,300,400,499,601,710,827,8381"
                     }
                 },
                 {
@@ -69,6 +52,23 @@
                         "startOffsets": "832,929,1013,1110,1212,1300,1378,7720,7811,7893,7965,8034,8122,8212,8386,8463,8530",
                         "endColumns": "96,83,96,101,87,77,86,90,81,71,68,87,89,72,76,66,114",
                         "endOffsets": "924,1008,1105,1207,1295,1373,1460,7806,7888,7960,8029,8117,8207,8280,8458,8525,8640"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\cotad\\.gradle\\caches\\transforms-4\\60b03e8bf55e595ba52d0e1abb27d5b4\\transformed\\core-1.13.1\\res\\values-ro\\values-ro.xml",
+                    "from": {
+                        "startLines": "2,3,4,5,6,7,8,9",
+                        "startColumns": "4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,153,255,355,454,556,665,782",
+                        "endColumns": "97,101,99,98,101,108,116,100",
+                        "endOffsets": "148,250,350,449,551,660,777,878"
+                    },
+                    "to": {
+                        "startLines": "2,3,4,5,6,7,8,79",
+                        "startColumns": "4,4,4,4,4,4,4,4",
+                        "startOffsets": "105,203,305,405,504,606,715,8285",
+                        "endColumns": "97,101,99,98,101,108,116,100",
+                        "endOffsets": "198,300,400,499,601,710,827,8381"
                     }
                 }
             ]

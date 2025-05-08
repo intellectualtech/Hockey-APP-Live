@@ -1,25 +1,8 @@
 {
     "logs": [
         {
-            "outputFile": "com.example.hockeyapplive.app-mergeDebugResources-44:/values-vi/values-vi.xml",
+            "outputFile": "com.example.hockeyapplive.app-mergeDebugResources-42:/values-vi/values-vi.xml",
             "map": [
-                {
-                    "source": "C:\\Users\\cotad\\.gradle\\caches\\transforms-4\\29559e8702febf28c8e06da8f0ff564f\\transformed\\core-1.16.0\\res\\values-vi\\values-vi.xml",
-                    "from": {
-                        "startLines": "2,3,4,5,6,7,8,9",
-                        "startColumns": "4,4,4,4,4,4,4,4",
-                        "startOffsets": "55,152,254,353,453,556,669,785",
-                        "endColumns": "96,101,98,99,102,112,115,100",
-                        "endOffsets": "147,249,348,448,551,664,780,881"
-                    },
-                    "to": {
-                        "startLines": "2,3,4,5,6,7,8,79",
-                        "startColumns": "4,4,4,4,4,4,4,4",
-                        "startOffsets": "105,202,304,403,503,606,719,8080",
-                        "endColumns": "96,101,98,99,102,112,115,100",
-                        "endOffsets": "197,299,398,498,601,714,830,8176"
-                    }
-                },
                 {
                     "source": "C:\\Users\\cotad\\.gradle\\caches\\transforms-4\\4a8b694fc783753273dfab209808fa73\\transformed\\material3-release\\res\\values-vi\\values-vi.xml",
                     "from": {
@@ -52,6 +35,23 @@
                         "startOffsets": "835,931,1017,1123,1223,1315,1400,7512,7606,7687,7757,7827,7917,8008,8181,8258,8324",
                         "endColumns": "95,85,105,99,91,84,92,93,80,69,69,89,90,71,76,65,113",
                         "endOffsets": "926,1012,1118,1218,1310,1395,1488,7601,7682,7752,7822,7912,8003,8075,8253,8319,8433"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\cotad\\.gradle\\caches\\transforms-4\\60b03e8bf55e595ba52d0e1abb27d5b4\\transformed\\core-1.13.1\\res\\values-vi\\values-vi.xml",
+                    "from": {
+                        "startLines": "2,3,4,5,6,7,8,9",
+                        "startColumns": "4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,152,254,353,453,556,669,785",
+                        "endColumns": "96,101,98,99,102,112,115,100",
+                        "endOffsets": "147,249,348,448,551,664,780,881"
+                    },
+                    "to": {
+                        "startLines": "2,3,4,5,6,7,8,79",
+                        "startColumns": "4,4,4,4,4,4,4,4",
+                        "startOffsets": "105,202,304,403,503,606,719,8080",
+                        "endColumns": "96,101,98,99,102,112,115,100",
+                        "endOffsets": "197,299,398,498,601,714,830,8176"
                     }
                 },
                 {

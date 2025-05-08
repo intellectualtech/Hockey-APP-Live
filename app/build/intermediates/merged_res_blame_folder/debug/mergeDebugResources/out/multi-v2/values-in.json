@@ -1,8 +1,25 @@
 {
     "logs": [
         {
-            "outputFile": "com.example.hockeyapplive.app-mergeDebugResources-44:/values-in/values-in.xml",
+            "outputFile": "com.example.hockeyapplive.app-mergeDebugResources-42:/values-in/values-in.xml",
             "map": [
+                {
+                    "source": "C:\\Users\\cotad\\.gradle\\caches\\transforms-4\\60b03e8bf55e595ba52d0e1abb27d5b4\\transformed\\core-1.13.1\\res\\values-in\\values-in.xml",
+                    "from": {
+                        "startLines": "2,3,4,5,6,7,8,9",
+                        "startColumns": "4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,150,252,349,446,552,670,785",
+                        "endColumns": "94,101,96,96,105,117,114,100",
+                        "endOffsets": "145,247,344,441,547,665,780,881"
+                    },
+                    "to": {
+                        "startLines": "2,3,4,5,6,7,8,79",
+                        "startColumns": "4,4,4,4,4,4,4,4",
+                        "startOffsets": "105,200,302,399,496,602,720,8178",
+                        "endColumns": "94,101,96,96,105,117,114,100",
+                        "endOffsets": "195,297,394,491,597,715,830,8274"
+                    }
+                },
                 {
                     "source": "C:\\Users\\cotad\\.gradle\\caches\\transforms-4\\cf1631de215640afa4727413ac22e779\\transformed\\foundation-release\\res\\values-in\\values-in.xml",
                     "from": {
@@ -35,23 +52,6 @@
                         "startOffsets": "835,925,1007,1105,1205,1291,1374,7632,7719,7804,7874,7941,8023,8106,8279,8357,8423",
                         "endColumns": "89,81,97,99,85,82,90,86,84,69,66,81,82,71,77,65,118",
                         "endOffsets": "920,1002,1100,1200,1286,1369,1460,7714,7799,7869,7936,8018,8101,8173,8352,8418,8537"
-                    }
-                },
-                {
-                    "source": "C:\\Users\\cotad\\.gradle\\caches\\transforms-4\\29559e8702febf28c8e06da8f0ff564f\\transformed\\core-1.16.0\\res\\values-in\\values-in.xml",
-                    "from": {
-                        "startLines": "2,3,4,5,6,7,8,9",
-                        "startColumns": "4,4,4,4,4,4,4,4",
-                        "startOffsets": "55,150,252,349,446,552,670,785",
-                        "endColumns": "94,101,96,96,105,117,114,100",
-                        "endOffsets": "145,247,344,441,547,665,780,881"
-                    },
-                    "to": {
-                        "startLines": "2,3,4,5,6,7,8,79",
-                        "startColumns": "4,4,4,4,4,4,4,4",
-                        "startOffsets": "105,200,302,399,496,602,720,8178",
-                        "endColumns": "94,101,96,96,105,117,114,100",
-                        "endOffsets": "195,297,394,491,597,715,830,8274"
                     }
                 },
                 {

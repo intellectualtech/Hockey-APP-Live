@@ -1,8 +1,25 @@
 {
     "logs": [
         {
-            "outputFile": "com.example.hockeyapplive.app-mergeDebugResources-44:/values-sr/values-sr.xml",
+            "outputFile": "com.example.hockeyapplive.app-mergeDebugResources-42:/values-sr/values-sr.xml",
             "map": [
+                {
+                    "source": "C:\\Users\\cotad\\.gradle\\caches\\transforms-4\\60b03e8bf55e595ba52d0e1abb27d5b4\\transformed\\core-1.13.1\\res\\values-sr\\values-sr.xml",
+                    "from": {
+                        "startLines": "2,3,4,5,6,7,8,9",
+                        "startColumns": "4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,153,255,352,456,560,665,781",
+                        "endColumns": "97,101,96,103,103,104,115,100",
+                        "endOffsets": "148,250,347,451,555,660,776,877"
+                    },
+                    "to": {
+                        "startLines": "2,3,4,5,6,7,8,79",
+                        "startColumns": "4,4,4,4,4,4,4,4",
+                        "startOffsets": "105,203,305,402,506,610,715,8183",
+                        "endColumns": "97,101,96,103,103,104,115,100",
+                        "endOffsets": "198,300,397,501,605,710,826,8279"
+                    }
+                },
                 {
                     "source": "C:\\Users\\cotad\\.gradle\\caches\\transforms-4\\eb0bd7bd4f47393ac156942e324846ec\\transformed\\ui-release\\res\\values-sr\\values-sr.xml",
                     "from": {
@@ -18,23 +35,6 @@
                         "startOffsets": "831,928,1015,1112,1213,1299,1376,7627,7719,7804,7875,7945,8025,8110,8284,8363,8433",
                         "endColumns": "96,86,96,100,85,76,90,91,84,70,69,79,84,72,78,69,117",
                         "endOffsets": "923,1010,1107,1208,1294,1371,1462,7714,7799,7870,7940,8020,8105,8178,8358,8428,8546"
-                    }
-                },
-                {
-                    "source": "C:\\Users\\cotad\\.gradle\\caches\\transforms-4\\29559e8702febf28c8e06da8f0ff564f\\transformed\\core-1.16.0\\res\\values-sr\\values-sr.xml",
-                    "from": {
-                        "startLines": "2,3,4,5,6,7,8,9",
-                        "startColumns": "4,4,4,4,4,4,4,4",
-                        "startOffsets": "55,153,255,352,456,560,665,781",
-                        "endColumns": "97,101,96,103,103,104,115,100",
-                        "endOffsets": "148,250,347,451,555,660,776,877"
-                    },
-                    "to": {
-                        "startLines": "2,3,4,5,6,7,8,79",
-                        "startColumns": "4,4,4,4,4,4,4,4",
-                        "startOffsets": "105,203,305,402,506,610,715,8183",
-                        "endColumns": "97,101,96,103,103,104,115,100",
-                        "endOffsets": "198,300,397,501,605,710,826,8279"
                     }
                 },
                 {
