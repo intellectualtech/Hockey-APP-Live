@@ -16,6 +16,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
@@ -32,7 +33,6 @@ import com.example.hockeyapplive.screens.admin.ManageFeedbackScreen
 import com.example.hockeyapplive.screens.admin.ManageTeamsScreen
 import com.example.hockeyapplive.ui.theme.HockeyAPPLiveTheme
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.navigation.NavController
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -51,7 +51,6 @@ class MainActivity : ComponentActivity() {
                         composable("login") { LoginScreen(navController) }
                         composable("settings") { SettingsScreen(navController) }
                         composable("chat") { ChatScreen(navController) }
-
                         composable("search_filter") { SearchFilterScreen(navController) }
                         composable("events") { EventsScreen(navController) }
                         composable("admin_dashboard") { AdminDashboardScreen(navController) }
@@ -81,7 +80,25 @@ class MainActivity : ComponentActivity() {
                 onClick = { navController.navigate("onboarding") },
                 modifier = Modifier.padding(top = 16.dp)
             ) {
-                Text(buttonText)
+                Text("Go to Onboarding")
+            }
+            Button(
+                onClick = { navController.navigate("login") },
+                modifier = Modifier.padding(top = 8.dp)
+            ) {
+                Text("Go to Login")
+            }
+            Button(
+                onClick = { navController.navigate("settings") },
+                modifier = Modifier.padding(top = 8.dp)
+            ) {
+                Text("Go to Settings")
+            }
+            Button(
+                onClick = { navController.navigate("chat") },
+                modifier = Modifier.padding(top = 8.dp)
+            ) {
+                Text("Go to Chat")
             }
         }
     }
