@@ -84,14 +84,6 @@ fun OnboardingScreen(navController: NavController) {
                         }
                     )
                     NavigationDrawerItem(
-                        label = { Text("Admin") },
-                        selected = false,
-                        onClick = {
-                            scope.launch { drawerState.close() }
-                            navController.navigate("admin_dashboard")
-                        }
-                    )
-                    NavigationDrawerItem(
                         label = { Text("Settings") },
                         selected = false,
                         onClick = {
@@ -116,6 +108,40 @@ fun OnboardingScreen(navController: NavController) {
                         }
                     }
                 )
+            },
+            bottomBar = {
+                NavigationBar {
+                    NavigationBarItem(
+                        icon = { Icon(painter = androidx.compose.ui.res.painterResource(id = android.R.drawable.ic_menu_today), contentDescription = "Home") },
+                        label = { Text("Home") },
+                        selected = true,
+                        onClick = { navController.navigate("home") }
+                    )
+                    NavigationBarItem(
+                        icon = { Icon(painter = androidx.compose.ui.res.painterResource(id = android.R.drawable.ic_menu_preferences), contentDescription = "Teams") },
+                        label = { Text("Teams") },
+                        selected = false,
+                        onClick = { navController.navigate("team_registration_screen") }
+                    )
+                    NavigationBarItem(
+                        icon = { Icon(painter = androidx.compose.ui.res.painterResource(id = android.R.drawable.ic_menu_myplaces), contentDescription = "Players") },
+                        label = { Text("Players") },
+                        selected = false,
+                        onClick = { navController.navigate("player_registration_screen") }
+                    )
+                    NavigationBarItem(
+                        icon = { Icon(painter = androidx.compose.ui.res.painterResource(id = android.R.drawable.ic_menu_agenda), contentDescription = "Events") },
+                        label = { Text("Events") },
+                        selected = false,
+                        onClick = { navController.navigate("events_screen") }
+                    )
+                    NavigationBarItem(
+                        icon = { Icon(painter = androidx.compose.ui.res.painterResource(id = android.R.drawable.ic_menu_manage), contentDescription = "Profile") },
+                        label = { Text("Profile") },
+                        selected = false,
+                        onClick = { navController.navigate("profile_screen") }
+                    )
+                }
             }
         ) { paddingValues ->
             Column(

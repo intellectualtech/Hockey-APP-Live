@@ -34,7 +34,6 @@ import com.example.hockeyapplive.screens.PlayerRegistrationScreen
 import com.example.hockeyapplive.screens.RegisterScreen
 import com.example.hockeyapplive.screens.SearchFilterScreen
 import com.example.hockeyapplive.screens.SettingsScreen
-
 import com.example.hockeyapplive.screens.TeamRegistrationScreen
 import com.example.hockeyapplive.screens.admin.AdminDashboardScreen
 import com.example.hockeyapplive.screens.admin.ManageEventsScreen
@@ -42,10 +41,6 @@ import com.example.hockeyapplive.screens.admin.ManageFeedbackScreen
 import com.example.hockeyapplive.screens.admin.ManageTeamsScreen
 import com.example.hockeyapplive.ui.theme.HockeyAPPLiveTheme
 
-/**
- * Main entry point for the Hockey App Live application.
- * Defines the navigation structure and initial UI components.
- */
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -62,28 +57,20 @@ class MainActivity : ComponentActivity() {
         }
     }
 
-    /**
-     * Defines the application's navigation structure and routes.
-     */
     @Composable
     private fun AppNavigation() {
         val navController = rememberNavController()
 
         NavHost(navController = navController, startDestination = "welcome") {
-            // Authentication & Onboarding
             composable("welcome") { WelcomeScreen(navController) }
             composable("onboarding") { OnboardingScreen(navController) }
             composable("login") { LoginScreen(navController) }
             composable("register") { RegisterScreen(navController) }
-
-            // Main App Features
             composable("settings") { SettingsScreen(navController) }
             composable("chat") { ChatScreen(navController) }
             composable("search_filter") { SearchFilterScreen(navController) }
             composable("events") { EventsScreen(navController) }
-
-            // Team Management
-           // composable("team_registration") { TeamRegistrationScreen(navController) }
+            composable("team_registration") { TeamRegistrationScreen(navController) }
             composable(
                 "playerRegistration/{teamName}",
                 arguments = listOf(navArgument("teamName") { type = NavType.StringType })
@@ -93,26 +80,13 @@ class MainActivity : ComponentActivity() {
                     teamName = backStackEntry.arguments?.getString("teamName") ?: ""
                 )
             }
-
-            // Admin Features
             composable("admin_dashboard") { AdminDashboardScreen(navController) }
             composable("manage_teams") { ManageTeamsScreen(navController) }
             composable("manage_events") { ManageEventsScreen(navController) }
             composable("manage_feedback") { ManageFeedbackScreen(navController) }
-
-            // NOTE: Commented out pending implementation
-            // composable("event_entry") { EventEntryScreen(navController) }
-            // composable("feedback") { FeedbackScreen(navController) }
         }
     }
 
-    /**
-     * The welcome screen shown when the app is first launched.
-     * Provides navigation options to key app features.
-     *
-     * @param navController Navigation controller for routing between screens
-     * @param welcomeMessage Custom welcome message to display
-     */
     @Composable
     private fun WelcomeScreen(
         navController: NavController,
@@ -134,15 +108,9 @@ class MainActivity : ComponentActivity() {
 
             Spacer(modifier = Modifier.height(32.dp))
 
-            // Authentication buttons
-            NavigationButton(
-                text = "Go to Onboarding",
-                onClick = { navController.navigate("onboarding") }
-            )
-
             NavigationButton(
                 text = "Login",
-                onClick = { navController.navigate("login") }
+                onClick = { navController.navigate("onboarding") }
             )
 
             NavigationButton(
@@ -152,40 +120,13 @@ class MainActivity : ComponentActivity() {
 
             Spacer(modifier = Modifier.height(16.dp))
 
-            // Feature navigation buttons
-            NavigationButton(
-                text = "Team Registration",
-                onClick = { navController.navigate("team_registration") }
-            )
-
-            NavigationButton(
-                text = "Event Entry",
-                onClick = { navController.navigate("event_entry") }
-            )
-
-            NavigationButton(
-                text = "Settings",
-                onClick = { navController.navigate("settings") }
-            )
-
             NavigationButton(
                 text = "Admin Dashboard",
                 onClick = { navController.navigate("admin_dashboard") }
             )
-
-            NavigationButton(
-                text = "Dashboard",
-                onClick = { navController.navigate("dashboard") }
-            )
         }
     }
 
-    /**
-     * Reusable button component for navigation options.
-     *
-     * @param text Button text to display
-     * @param onClick Action to perform when clicked
-     */
     @Composable
     private fun NavigationButton(text: String, onClick: () -> Unit) {
         Button(
