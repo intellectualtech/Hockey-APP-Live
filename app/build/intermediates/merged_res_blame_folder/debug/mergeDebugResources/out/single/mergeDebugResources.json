@@ -32,6 +32,10 @@
         "source": "com.example.hockeyapplive.app-main-52:/mipmap-anydpi-v26/ic_launcher_round.xml"
     },
     {
+        "merged": "com.example.hockeyapplive.app-debug-50:/drawable_ic_image_placeholder.xml.flat",
+        "source": "com.example.hockeyapplive.app-main-52:/drawable/ic_image_placeholder.xml"
+    },
+    {
         "merged": "com.example.hockeyapplive.app-debug-50:/mipmap-xhdpi_ic_launcher_round.webp.flat",
         "source": "com.example.hockeyapplive.app-main-52:/mipmap-xhdpi/ic_launcher_round.webp"
     },
