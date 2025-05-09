@@ -1,7 +1,6 @@
 package com.example.hockeyapplive.screens
 
 
-
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
