@@ -1,8 +1,2 @@
-.gradle/
-app/build/
-build/
-*.apk
-*.ap_
-.idea/
-*.iml
+
 local.properties
