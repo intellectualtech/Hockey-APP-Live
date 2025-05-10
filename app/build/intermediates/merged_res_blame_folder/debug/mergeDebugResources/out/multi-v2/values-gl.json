@@ -1,27 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "com.example.hockeyapplive.app-mergeDebugResources-48:/values-gl/values-gl.xml",
+            "outputFile": "com.example.hockeyapplive.app-mergeDebugResources-49:/values-gl/values-gl.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\techverse\\.gradle\\caches\\transforms-4\\c4c725f2fef13335d07a07fc6a716a2e\\transformed\\core-1.12.0\\res\\values-gl\\values-gl.xml",
-                    "from": {
-                        "startLines": "2,3,4,5,6,7,8,9",
-                        "startColumns": "4,4,4,4,4,4,4,4",
-                        "startOffsets": "55,154,256,356,454,561,667,783",
-                        "endColumns": "98,101,99,97,106,105,115,100",
-                        "endOffsets": "149,251,351,449,556,662,778,879"
-                    },
-                    "to": {
-                        "startLines": "6,7,8,9,10,11,12,63",
-                        "startColumns": "4,4,4,4,4,4,4,4",
-                        "startOffsets": "568,667,769,869,967,1074,1180,6537",
-                        "endColumns": "98,101,99,97,106,105,115,100",
-                        "endOffsets": "662,764,864,962,1069,1175,1291,6633"
-                    }
-                },
-                {
-                    "source": "C:\\Users\\techverse\\.gradle\\caches\\transforms-4\\59a35b1e2bdb33d824c3e317de9479b6\\transformed\\material3-1.1.2\\res\\values-gl\\values-gl.xml",
+                    "source": "C:\\Users\\techverse\\.gradle\\wrapper\\caches\\8.10.2\\transforms\\23dc08a8ea9817fd0b625b6df475b8c0\\transformed\\material3-1.1.2\\res\\values-gl\\values-gl.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
@@ -38,7 +21,24 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\techverse\\.gradle\\caches\\transforms-4\\f9e679e8aaf76fea6fedb793397e137d\\transformed\\ui-release\\res\\values-gl\\values-gl.xml",
+                    "source": "C:\\Users\\techverse\\.gradle\\wrapper\\caches\\8.10.2\\transforms\\c00bb47dbb393aeeca7c8619547ab4d4\\transformed\\core-1.12.0\\res\\values-gl\\values-gl.xml",
+                    "from": {
+                        "startLines": "2,3,4,5,6,7,8,9",
+                        "startColumns": "4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,154,256,356,454,561,667,783",
+                        "endColumns": "98,101,99,97,106,105,115,100",
+                        "endOffsets": "149,251,351,449,556,662,778,879"
+                    },
+                    "to": {
+                        "startLines": "6,7,8,9,10,11,12,63",
+                        "startColumns": "4,4,4,4,4,4,4,4",
+                        "startOffsets": "568,667,769,869,967,1074,1180,6537",
+                        "endColumns": "98,101,99,97,106,105,115,100",
+                        "endOffsets": "662,764,864,962,1069,1175,1291,6633"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\techverse\\.gradle\\wrapper\\caches\\8.10.2\\transforms\\908a14606ad524a9b3decad2702d39f3\\transformed\\ui-release\\res\\values-gl\\values-gl.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",

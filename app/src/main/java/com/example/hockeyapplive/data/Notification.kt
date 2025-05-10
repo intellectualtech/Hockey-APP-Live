@@ -1,4 +1,4 @@
-package com.example.hockeyapp.data
+package com.example.hockeyapplive.data
 
 data class Notification(
     val notificationId: Int,

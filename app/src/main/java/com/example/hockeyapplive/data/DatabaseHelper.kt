@@ -1,4 +1,4 @@
-package com.example.hockeyapp.data
+package com.example.hockeyapplive.data
 
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
