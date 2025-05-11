@@ -1,8 +1,10 @@
 package com.example.hockeyapplive.data.db
 
+import android.content.ContentValues
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
+import com.example.hockeyapplive.data.TeamRegistration
 
 class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, null, DATABASE_VERSION) {
 
@@ -127,6 +129,20 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME
             INSERT INTO Users (fullName, email, userPassword, user_type, isVerified)
             VALUES ('Demo User', 'demo@example.com', 'password123', 'Coach', 1)
         """)
+        db.execSQL("""
+            INSERT INTO Users (fullName, email, userPassword, user_type, isVerified)
+            VALUES ('John Player', 'player@example.com', 'player123', 'Player', 1)
+        """)
+        db.execSQL("""
+            INSERT INTO Users (fullName, email, userPassword, user_type, isVerified)
+            VALUES ('Admin User', 'admin@example.com', 'admin123', 'Admin', 1)
+        """)
+
+        // Insert demo data into TeamRegistrations table
+        db.execSQL("""
+            INSERT INTO TeamRegistrations (team_name, coachName, contact_email, status, coach_userID)
+            VALUES ('Demo Team', 'Demo User', 'demo@example.com', 'Pending', 1)
+        """)
     }
 
     override fun onUpgrade(db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
@@ -139,5 +155,56 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME
         db.execSQL("DROP TABLE IF EXISTS TeamRegistrations")
         db.execSQL("DROP TABLE IF EXISTS Users")
         onCreate(db)
+    }
+
+    // Helper method to insert a TeamRegistration
+    fun insertTeamRegistration(
+        teamName: String,
+        coachName: String,
+        contactEmail: String,
+        status: String,
+        coachUserId: Int? = null
+    ): Long {
+        val db = writableDatabase
+        val values = ContentValues().apply {
+            put("team_name", teamName)
+            put("coachName", coachName)
+            put("contact_email", contactEmail)
+            put("status", status)
+            if (coachUserId != null) {
+                put("coach_userID", coachUserId)
+            }
+        }
+        return db.insert("TeamRegistrations", null, values)
+    }
+
+    // Helper method to get all TeamRegistrations
+    fun getAllTeamRegistrations(): List<TeamRegistration> {
+        val registrations = mutableListOf<TeamRegistration>()
+        val db = readableDatabase
+        val cursor = db.rawQuery("SELECT * FROM TeamRegistrations", null)
+        if (cursor.moveToFirst()) {
+            do {
+                val registration = TeamRegistration(
+                    registrationID = cursor.getInt(cursor.getColumnIndexOrThrow("registrationID")),
+                    teamName = cursor.getString(cursor.getColumnIndexOrThrow("team_name")),
+                    coachName = cursor.getString(cursor.getColumnIndexOrThrow("coachName")),
+                    contactEmail = cursor.getString(cursor.getColumnIndexOrThrow("contact_email")),
+                    createdAt = cursor.getString(cursor.getColumnIndexOrThrow("created_at")),
+                    status = cursor.getString(cursor.getColumnIndexOrThrow("status")),
+                    coachUserID = if (cursor.isNull(cursor.getColumnIndexOrThrow("coach_userID"))) null
+                    else cursor.getInt(cursor.getColumnIndexOrThrow("coach_userID"))
+                )
+                registrations.add(registration)
+            } while (cursor.moveToNext())
+        }
+        cursor.close()
+        return registrations
+    }
+
+    // Helper method to delete a TeamRegistration
+    fun deleteTeamRegistration(registrationId: Int): Int {
+        val db = writableDatabase
+        return db.delete("TeamRegistrations", "registrationID = ?", arrayOf(registrationId.toString()))
     }
 }

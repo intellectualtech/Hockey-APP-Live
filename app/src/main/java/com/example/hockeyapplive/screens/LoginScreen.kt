@@ -44,7 +44,10 @@ fun LoginScreen(navController: NavController, context: android.content.Context) 
             )
 
             Text(
-                text = "Demo credentials: demo@example.com / password123",
+                text = "Demo credentials:\n" +
+                        "Coach: demo@example.com / password123\n" +
+                        "Player: player@example.com / player123\n" +
+                        "Admin: admin@example.com / admin123",
                 style = MaterialTheme.typography.bodySmall,
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
                 modifier = Modifier.padding(bottom = 16.dp)
@@ -89,10 +92,21 @@ fun LoginScreen(navController: NavController, context: android.content.Context) 
                             val user = dataSource.authenticateUser(username, password)
                             if (user != null) {
                                 if (user.isVerified) {
-                                    // Successful login, navigate to settings
-                                    navController.navigate("settings") {
-                                        popUpTo(navController.graph.startDestinationId)
-                                        launchSingleTop = true
+                                    // Successful login, navigate based on user type
+                                    when (user.userType) {
+                                        "Admin" -> navController.navigate("admin_dashboard") {
+                                            popUpTo(navController.graph.startDestinationId)
+                                            launchSingleTop = true
+                                        }
+                                        "Coach" -> navController.navigate("onboarding") {
+                                            popUpTo(navController.graph.startDestinationId)
+                                            launchSingleTop = true
+                                        }
+                                        "Player" -> navController.navigate("settings") {
+                                            popUpTo(navController.graph.startDestinationId)
+                                            launchSingleTop = true
+                                        }
+                                        else -> setErrorMessage("Unknown user type")
                                     }
                                 } else {
                                     setErrorMessage("Account not verified. Please check your email.")
@@ -102,7 +116,7 @@ fun LoginScreen(navController: NavController, context: android.content.Context) 
                                 setErrorMessage("Invalid username/email or password")
                             }
                         } catch (e: Exception) {
-                            setErrorMessage("An error occurred during login")
+                            setErrorMessage("An error occurred during login: ${e.message}")
                         } finally {
                             setIsLoading(false)
                             dataSource.close()
@@ -193,6 +207,7 @@ fun LoginScreen(navController: NavController, context: android.content.Context) 
         val (regPassword, setRegPassword) = remember { mutableStateOf("") }
         val (regUserType, setRegUserType) = remember { mutableStateOf("Player") }
         val (regError, setRegError) = remember { mutableStateOf<String?>(null) }
+        var expanded by remember { mutableStateOf(false) }
 
         AlertDialog(
             onDismissRequest = { setShowRegisterDialog(false) },
@@ -227,8 +242,8 @@ fun LoginScreen(navController: NavController, context: android.content.Context) 
                         keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password)
                     )
                     ExposedDropdownMenuBox(
-                        expanded = false,
-                        onExpandedChange = {},
+                        expanded = expanded,
+                        onExpandedChange = { expanded = !expanded },
                         modifier = Modifier.padding(bottom = 8.dp)
                     ) {
                         OutlinedTextField(
@@ -238,19 +253,35 @@ fun LoginScreen(navController: NavController, context: android.content.Context) 
                             modifier = Modifier
                                 .fillMaxWidth()
                                 .menuAnchor(),
-                            readOnly = true
+                            readOnly = true,
+                            trailingIcon = {
+                                ExposedDropdownMenuDefaults.TrailingIcon(expanded = expanded)
+                            }
                         )
                         ExposedDropdownMenu(
-                            expanded = false,
-                            onDismissRequest = {}
+                            expanded = expanded,
+                            onDismissRequest = { expanded = false }
                         ) {
                             DropdownMenuItem(
                                 text = { Text("Player") },
-                                onClick = { setRegUserType("Player") }
+                                onClick = {
+                                    setRegUserType("Player")
+                                    expanded = false
+                                }
                             )
                             DropdownMenuItem(
                                 text = { Text("Coach") },
-                                onClick = { setRegUserType("Coach") }
+                                onClick = {
+                                    setRegUserType("Coach")
+                                    expanded = false
+                                }
+                            )
+                            DropdownMenuItem(
+                                text = { Text("Admin") },
+                                onClick = {
+                                    setRegUserType("Admin")
+                                    expanded = false
+                                }
                             )
                         }
                     }

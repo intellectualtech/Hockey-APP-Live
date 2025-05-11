@@ -7,5 +7,5 @@ data class TeamRegistration(
     val contactEmail: String,
     val createdAt: String,
     val status: String,
-    val coachUserID: Int
+    val coachUserID: Int? = null
 )

@@ -1,6 +1,5 @@
 package com.example.hockeyapplive.screens
 
-import android.content.ContentValues
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.text.KeyboardOptions
@@ -13,7 +12,6 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.example.hockeyapplive.data.datasource.DataSource
-import com.example.hockeyapplive.data.model.TeamRegistration
 import com.example.hockeyapplive.data.model.User
 import kotlinx.coroutines.launch
 
@@ -122,31 +120,35 @@ fun RegisterScreen(navController: NavController, context: android.content.Contex
 
     fun registerCoachAndTeam() {
         val defaultPassword = "default123" // Temporary default password
-        val user = User(
-            userID = 0, // Will be auto-incremented by database
-            fullName = fullName,
-            email = email,
-            userPassword = defaultPassword,
-            createdAt = "", // Database will set this
-            lastLogin = null,
-            userType = "Coach",
-            isVerified = false
-        )
-        dataSource.insertUser(fullName, email, defaultPassword, "Coach", false)
-
-        val teamRegistration = TeamRegistration(
-            registrationID = 0, // Will be auto-incremented by database
-            teamName = teamName,
-            coachName = fullName,
-            contactEmail = email,
-            createdAt = "", // Database will set this
-            status = "Pending",
-            coachUserID = 0 // Will be set after user is inserted if needed
-        )
-        dataSource.insertTeamRegistration(teamName, fullName, email, "Pending")
-
         scope.launch {
-            snackbarHostState.showSnackbar("Registration submitted. Awaiting approval.")
+            try {
+                // Register the user (Coach)
+                val userResult = dataSource.registerUser(fullName, email, defaultPassword, "Coach")
+                when {
+                    userResult.isSuccess -> {
+                        val userId = userResult.getOrThrow()
+                        // After user is registered, insert the team registration
+                        val teamResult = dataSource.insertTeamRegistration(
+                            teamName = teamName,
+                            coachName = fullName,
+                            contactEmail = email,
+                            status = "Pending",
+                            coachUserId = userId
+                        )
+                        if (teamResult.isSuccess) {
+                            snackbarHostState.showSnackbar("Registration submitted. Awaiting approval.")
+                        } else {
+                            snackbarHostState.showSnackbar("Failed to register team: ${teamResult.exceptionOrNull()?.message}")
+                        }
+                    }
+                    userResult.isFailure -> {
+                        val errorMessage = userResult.exceptionOrNull()?.message ?: "Unknown error"
+                        snackbarHostState.showSnackbar("Failed to register coach: $errorMessage")
+                    }
+                }
+            } catch (e: Exception) {
+                snackbarHostState.showSnackbar("An unexpected error occurred: ${e.message}")
+            }
         }
     }
 
@@ -370,20 +372,4 @@ fun RegisterScreen(navController: NavController, context: android.content.Contex
             }
         )
     }
-}
-
-// Extension function to insert TeamRegistration
-fun DataSource.insertTeamRegistration(
-    teamName: String,
-    coachName: String,
-    contactEmail: String,
-    status: String
-) {
-    val values = ContentValues().apply {
-        put("team_name", teamName)
-        put("coachName", coachName)
-        put("contact_email", contactEmail)
-        put("status", status)
-    }
-    db.insert("TeamRegistrations", null, values)
 }
