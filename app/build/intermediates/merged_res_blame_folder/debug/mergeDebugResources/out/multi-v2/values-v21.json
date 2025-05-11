@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "com.example.hockeyapplive.app-mergeDebugResources-52:/values-v21/values-v21.xml",
+            "outputFile": "com.example.hockeyapplive.app-mergeDebugResources-53:/values-v21/values-v21.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\cotad\\.gradle\\caches\\transforms-4\\36971aad04f2ab5c80a07f369c8321b4\\transformed\\core-1.13.1\\res\\values-v21\\values-v21.xml",
+                    "source": "C:\\Users\\cotad\\.gradle\\caches\\8.10.2\\transforms\\f0c8721f46a74e9bd9ea1e1d45a50263\\transformed\\core-1.13.1\\res\\values-v21\\values-v21.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10,13",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4",
