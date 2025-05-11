@@ -7,9 +7,17 @@ color purple_700
 color teal_200
 color teal_700
 color white
+drawable hockey
 drawable ic_image_placeholder
 drawable ic_launcher_background
 drawable ic_launcher_foreground
+drawable image
+drawable image1
+drawable image2
+drawable image3
+drawable image4
+drawable logo11
+drawable profile
 mipmap ic_launcher
 mipmap ic_launcher_round
 string app_name

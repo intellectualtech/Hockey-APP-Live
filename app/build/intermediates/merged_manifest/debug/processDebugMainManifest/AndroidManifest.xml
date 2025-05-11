@@ -8,6 +8,8 @@
         android:minSdkVersion="24"
         android:targetSdkVersion="34" />
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <permission
         android:name="com.example.hockeyapplive.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
         android:protectionLevel="signature" />
@@ -39,7 +41,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="androidx.compose.ui.tooling.PreviewActivity"
+            android:name="androidx.activity.ComponentActivity"
             android:exported="true" />
 
         <provider
@@ -58,7 +60,7 @@
         </provider>
 
         <activity
-            android:name="androidx.activity.ComponentActivity"
+            android:name="androidx.compose.ui.tooling.PreviewActivity"
             android:exported="true" />
 
         <receiver

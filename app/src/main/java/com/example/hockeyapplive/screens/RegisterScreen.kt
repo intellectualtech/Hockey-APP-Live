@@ -1,5 +1,6 @@
 package com.example.hockeyapplive.screens
 
+import android.content.ContentValues
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.text.KeyboardOptions
@@ -11,23 +12,32 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import com.example.hockeyapplive.data.datasource.DataSource
+import com.example.hockeyapplive.data.model.TeamRegistration
+import com.example.hockeyapplive.data.model.User
 import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun RegisterScreen(navController: NavController) {
-    var fullname by remember { mutableStateOf("") }
+fun RegisterScreen(navController: NavController, context: android.content.Context) {
+    // State for coach details
+    var fullName by remember { mutableStateOf("") }
     var idNo by remember { mutableStateOf("") }
     var yearOfExperience by remember { mutableStateOf("") }
+    var email by remember { mutableStateOf("") }
+
+    // State for team details
     var teamName by remember { mutableStateOf("") }
     var teamYearsOfExistin by remember { mutableStateOf("") }
     var addressOfFieldOrCort by remember { mutableStateOf("") }
     var numberOfGamesYouPlayed by remember { mutableStateOf("") }
     var referenceOfCoachGameYouPlayedWithPast by remember { mutableStateOf("") }
 
-    var fullnameError by remember { mutableStateOf<String?>(null) }
+    // Error states
+    var fullNameError by remember { mutableStateOf<String?>(null) }
     var idNoError by remember { mutableStateOf<String?>(null) }
     var yearOfExperienceError by remember { mutableStateOf<String?>(null) }
+    var emailError by remember { mutableStateOf<String?>(null) }
     var teamNameError by remember { mutableStateOf<String?>(null) }
     var teamYearsOfExistinError by remember { mutableStateOf<String?>(null) }
     var addressOfFieldOrCortError by remember { mutableStateOf<String?>(null) }
@@ -35,15 +45,16 @@ fun RegisterScreen(navController: NavController) {
     var referenceOfCoachGameYouPlayedWithPastError by remember { mutableStateOf<String?>(null) }
 
     var showTeamDetails by remember { mutableStateOf(false) }
-    var showDialog by remember { mutableStateOf(false) } // State for dialog visibility
+    var showDialog by remember { mutableStateOf(false) }
 
     val snackbarHostState = remember { SnackbarHostState() }
     val scope = rememberCoroutineScope()
+    val dataSource = remember { DataSource(context) }
 
     fun validateCoachDetails(): Boolean {
         var isValid = true
 
-        fullnameError = if (fullname.isBlank()) {
+        fullNameError = if (fullName.isBlank()) {
             isValid = false
             "Full name is required"
         } else null
@@ -59,6 +70,14 @@ fun RegisterScreen(navController: NavController) {
         } else if (!yearOfExperience.all { it.isDigit() }) {
             isValid = false
             "Year of experience must be a number"
+        } else null
+
+        emailError = if (email.isBlank()) {
+            isValid = false
+            "Email is required"
+        } else if (!android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+            isValid = false
+            "Invalid email format"
         } else null
 
         return isValid
@@ -101,6 +120,36 @@ fun RegisterScreen(navController: NavController) {
         return isValid
     }
 
+    fun registerCoachAndTeam() {
+        val defaultPassword = "default123" // Temporary default password
+        val user = User(
+            userID = 0, // Will be auto-incremented by database
+            fullName = fullName,
+            email = email,
+            userPassword = defaultPassword,
+            createdAt = "", // Database will set this
+            lastLogin = null,
+            userType = "Coach",
+            isVerified = false
+        )
+        dataSource.insertUser(fullName, email, defaultPassword, "Coach", false)
+
+        val teamRegistration = TeamRegistration(
+            registrationID = 0, // Will be auto-incremented by database
+            teamName = teamName,
+            coachName = fullName,
+            contactEmail = email,
+            createdAt = "", // Database will set this
+            status = "Pending",
+            coachUserID = 0 // Will be set after user is inserted if needed
+        )
+        dataSource.insertTeamRegistration(teamName, fullName, email, "Pending")
+
+        scope.launch {
+            snackbarHostState.showSnackbar("Registration submitted. Awaiting approval.")
+        }
+    }
+
     Scaffold(
         snackbarHost = { SnackbarHost(snackbarHostState) }
     ) { paddingValues ->
@@ -135,12 +184,12 @@ fun RegisterScreen(navController: NavController) {
                         )
 
                         OutlinedTextField(
-                            value = fullname,
-                            onValueChange = { fullname = it },
-                            label = { Text("fullname *") },
+                            value = fullName,
+                            onValueChange = { fullName = it },
+                            label = { Text("Full Name *") },
                             modifier = Modifier.fillMaxWidth(),
-                            isError = fullnameError != null,
-                            supportingText = { if (fullnameError != null) Text(fullnameError!!) }
+                            isError = fullNameError != null,
+                            supportingText = { if (fullNameError != null) Text(fullNameError!!) }
                         )
 
                         Spacer(modifier = Modifier.height(12.dp))
@@ -148,7 +197,7 @@ fun RegisterScreen(navController: NavController) {
                         OutlinedTextField(
                             value = idNo,
                             onValueChange = { idNo = it },
-                            label = { Text("id no *") },
+                            label = { Text("ID Number *") },
                             modifier = Modifier.fillMaxWidth(),
                             isError = idNoError != null,
                             supportingText = { if (idNoError != null) Text(idNoError!!) }
@@ -159,11 +208,23 @@ fun RegisterScreen(navController: NavController) {
                         OutlinedTextField(
                             value = yearOfExperience,
                             onValueChange = { if (it.isEmpty() || it.all { char -> char.isDigit() }) yearOfExperience = it },
-                            label = { Text("Year of experience *") },
+                            label = { Text("Year of Experience *") },
                             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
                             modifier = Modifier.fillMaxWidth(),
                             isError = yearOfExperienceError != null,
                             supportingText = { if (yearOfExperienceError != null) Text(yearOfExperienceError!!) }
+                        )
+
+                        Spacer(modifier = Modifier.height(12.dp))
+
+                        OutlinedTextField(
+                            value = email,
+                            onValueChange = { email = it },
+                            label = { Text("Email *") },
+                            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email),
+                            modifier = Modifier.fillMaxWidth(),
+                            isError = emailError != null,
+                            supportingText = { if (emailError != null) Text(emailError!!) }
                         )
                     }
                 }
@@ -203,7 +264,7 @@ fun RegisterScreen(navController: NavController) {
                         OutlinedTextField(
                             value = teamName,
                             onValueChange = { teamName = it },
-                            label = { Text("team name *") },
+                            label = { Text("Team Name *") },
                             modifier = Modifier.fillMaxWidth(),
                             isError = teamNameError != null,
                             supportingText = { if (teamNameError != null) Text(teamNameError!!) }
@@ -214,7 +275,7 @@ fun RegisterScreen(navController: NavController) {
                         OutlinedTextField(
                             value = teamYearsOfExistin,
                             onValueChange = { if (it.isEmpty() || it.all { char -> char.isDigit() }) teamYearsOfExistin = it },
-                            label = { Text("team years of existin *") },
+                            label = { Text("Team Years of Existence *") },
                             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
                             modifier = Modifier.fillMaxWidth(),
                             isError = teamYearsOfExistinError != null,
@@ -226,7 +287,7 @@ fun RegisterScreen(navController: NavController) {
                         OutlinedTextField(
                             value = addressOfFieldOrCort,
                             onValueChange = { addressOfFieldOrCort = it },
-                            label = { Text("address of the field or cort *") },
+                            label = { Text("Address of Field or Court *") },
                             modifier = Modifier.fillMaxWidth(),
                             isError = addressOfFieldOrCortError != null,
                             supportingText = { if (addressOfFieldOrCortError != null) Text(addressOfFieldOrCortError!!) }
@@ -237,7 +298,7 @@ fun RegisterScreen(navController: NavController) {
                         OutlinedTextField(
                             value = numberOfGamesYouPlayed,
                             onValueChange = { if (it.isEmpty() || it.all { char -> char.isDigit() }) numberOfGamesYouPlayed = it },
-                            label = { Text("number of games you played *") },
+                            label = { Text("Number of Games Played *") },
                             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
                             modifier = Modifier.fillMaxWidth(),
                             isError = numberOfGamesYouPlayedError != null,
@@ -249,7 +310,7 @@ fun RegisterScreen(navController: NavController) {
                         OutlinedTextField(
                             value = referenceOfCoachGameYouPlayedWithPast,
                             onValueChange = { referenceOfCoachGameYouPlayedWithPast = it },
-                            label = { Text("Reference of coach game you played with past *") },
+                            label = { Text("Reference of Coach/Game Played with Past *") },
                             modifier = Modifier.fillMaxWidth(),
                             isError = referenceOfCoachGameYouPlayedWithPastError != null,
                             supportingText = { if (referenceOfCoachGameYouPlayedWithPastError != null) Text(referenceOfCoachGameYouPlayedWithPastError!!) }
@@ -260,7 +321,8 @@ fun RegisterScreen(navController: NavController) {
                 Button(
                     onClick = {
                         if (validateTeamDetails()) {
-                            showDialog = true // Show dialog on successful validation
+                            registerCoachAndTeam()
+                            showDialog = true
                         } else {
                             scope.launch {
                                 snackbarHostState.showSnackbar("Please fix the errors in the team details")
@@ -298,11 +360,30 @@ fun RegisterScreen(navController: NavController) {
             confirmButton = {
                 Button(onClick = {
                     showDialog = false
-                    navController.navigate("login") // Navigate to login screen
+                    navController.navigate("login") {
+                        popUpTo(navController.graph.startDestinationId)
+                        launchSingleTop = true
+                    }
                 }) {
                     Text("OK")
                 }
             }
         )
     }
+}
+
+// Extension function to insert TeamRegistration
+fun DataSource.insertTeamRegistration(
+    teamName: String,
+    coachName: String,
+    contactEmail: String,
+    status: String
+) {
+    val values = ContentValues().apply {
+        put("team_name", teamName)
+        put("coachName", coachName)
+        put("contact_email", contactEmail)
+        put("status", status)
+    }
+    db.insert("TeamRegistrations", null, values)
 }

@@ -4,22 +4,11 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
@@ -34,6 +23,7 @@ import com.example.hockeyapplive.screens.PlayerRegistrationScreen
 import com.example.hockeyapplive.screens.RegisterScreen
 import com.example.hockeyapplive.screens.SearchFilterScreen
 import com.example.hockeyapplive.screens.SettingsScreen
+import com.example.hockeyapplive.screens.SplashScreen
 import com.example.hockeyapplive.screens.TeamRegistrationScreen
 import com.example.hockeyapplive.screens.admin.AdminDashboardScreen
 import com.example.hockeyapplive.screens.admin.ManageEventsScreen
@@ -61,11 +51,11 @@ class MainActivity : ComponentActivity() {
     private fun AppNavigation() {
         val navController = rememberNavController()
 
-        NavHost(navController = navController, startDestination = "welcome") {
-            composable("welcome") { WelcomeScreen(navController) }
+        NavHost(navController = navController, startDestination = "splash") {
+            composable("splash") { SplashScreen(navController) }
             composable("onboarding") { OnboardingScreen(navController) }
-            composable("login") { LoginScreen(navController) }
-            composable("register") { RegisterScreen(navController) }
+            composable("login") { LoginScreen(navController, context = this@MainActivity) }
+            composable("register") { RegisterScreen(navController, context = this@MainActivity) }
             composable("settings") { SettingsScreen(navController) }
             composable("chat") { ChatScreen(navController) }
             composable("search_filter") { SearchFilterScreen(navController) }
@@ -84,67 +74,6 @@ class MainActivity : ComponentActivity() {
             composable("manage_teams") { ManageTeamsScreen(navController) }
             composable("manage_events") { ManageEventsScreen(navController) }
             composable("manage_feedback") { ManageFeedbackScreen(navController) }
-        }
-    }
-
-    @Composable
-    private fun WelcomeScreen(
-        navController: NavController,
-        welcomeMessage: String = "Welcome to Hockey App Live!"
-    ) {
-        Column(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(24.dp),
-            verticalArrangement = Arrangement.Center,
-            horizontalAlignment = Alignment.CenterHorizontally
-        ) {
-            Text(
-                text = welcomeMessage,
-                style = MaterialTheme.typography.headlineMedium,
-                textAlign = TextAlign.Center,
-                color = MaterialTheme.colorScheme.primary
-            )
-
-            Spacer(modifier = Modifier.height(32.dp))
-
-            NavigationButton(
-                text = "Login",
-                onClick = { navController.navigate("onboarding") }
-            )
-
-            NavigationButton(
-                text = "Register",
-                onClick = { navController.navigate("register") }
-            )
-
-            Spacer(modifier = Modifier.height(16.dp))
-
-            NavigationButton(
-                text = "Admin Dashboard",
-                onClick = { navController.navigate("admin_dashboard") }
-            )
-        }
-    }
-
-    @Composable
-    private fun NavigationButton(text: String, onClick: () -> Unit) {
-        Button(
-            onClick = onClick,
-            modifier = Modifier.padding(vertical = 6.dp)
-        ) {
-            Text(text)
-        }
-    }
-
-    @Preview(showBackground = true)
-    @Composable
-    private fun WelcomeScreenPreview() {
-        HockeyAPPLiveTheme {
-            WelcomeScreen(
-                navController = rememberNavController(),
-                welcomeMessage = "Welcome to the Ultimate Hockey Experience!"
-            )
         }
     }
 }

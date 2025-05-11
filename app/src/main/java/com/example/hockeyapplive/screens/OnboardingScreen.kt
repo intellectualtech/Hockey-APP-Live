@@ -1,7 +1,10 @@
 package com.example.hockeyapplive.screens
 
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Menu
@@ -10,8 +13,13 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import com.example.hockeyapplive.R
 import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -170,6 +178,43 @@ fun OnboardingScreen(navController: NavController) {
                 Spacer(modifier = Modifier.height(24.dp))
 
                 Text(
+                    text = "Events",
+                    style = MaterialTheme.typography.titleLarge,
+                    modifier = Modifier.align(Alignment.Start)
+                )
+
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .horizontalScroll(rememberScrollState())
+                        .padding(vertical = 8.dp),
+                    horizontalArrangement = Arrangement.spacedBy(16.dp)
+                ) {
+                    EventImageCard(
+                        imageRes = R.drawable.image1,
+                        description = "Hockey Tournament 2025",
+                        onClick = { navController.navigate("events_screen") }
+                    )
+                    EventImageCard(
+                        imageRes = R.drawable.image2,
+                        description = "Training Camp",
+                        onClick = { navController.navigate("events_screen") }
+                    )
+                    EventImageCard(
+                        imageRes = R.drawable.image3,
+                        description = "National Championship",
+                        onClick = { navController.navigate("events_screen") }
+                    )
+                    EventImageCard(
+                        imageRes = R.drawable.image4,
+                        description = "Youth League Finals",
+                        onClick = { navController.navigate("events_screen") }
+                    )
+                }
+
+                Spacer(modifier = Modifier.height(24.dp))
+
+                Text(
                     text = "Latest Announcement",
                     style = MaterialTheme.typography.titleLarge,
                     modifier = Modifier.align(Alignment.Start)
@@ -258,6 +303,41 @@ fun OnboardingScreen(navController: NavController) {
                     Text("View Upcoming Events")
                 }
             }
+        }
+    }
+}
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun EventImageCard(imageRes: Int, description: String, onClick: () -> Unit) {
+    Card(
+        modifier = Modifier
+            .width(200.dp)
+            .height(250.dp),
+        onClick = onClick
+    ) {
+        Column(
+            modifier = Modifier.fillMaxSize(),
+            verticalArrangement = Arrangement.SpaceBetween
+        ) {
+            Image(
+                painter = painterResource(id = imageRes),
+                contentDescription = description,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(180.dp)
+                    .clip(RoundedCornerShape(topStart = 8.dp, topEnd = 8.dp)),
+                contentScale = ContentScale.Crop
+            )
+            Text(
+                text = description,
+                style = MaterialTheme.typography.bodyMedium,
+                fontWeight = FontWeight.Medium,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(8.dp),
+                textAlign = androidx.compose.ui.text.style.TextAlign.Center
+            )
         }
     }
 }

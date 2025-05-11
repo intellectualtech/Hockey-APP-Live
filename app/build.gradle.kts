@@ -61,6 +61,13 @@ dependencies {
     implementation(libs.androidx.navigation.runtime)  // Corrected from runtime-android
     implementation(libs.androidx.navigation.compose)
     implementation(libs.androidx.ui.android)
+    implementation("javax.mail:mail:1.4.7")
+    implementation("androidx.compose.material:material-icons-extended:1.5.0")
+    implementation ("androidx.compose.material3:material3:1.3.0")
+    implementation ("androidx.compose.animation:animation:1.6.0")
+    implementation(libs.androidx.datastore.core.android)
+    implementation(libs.generativeai)
+    implementation(libs.androidx.material3.android)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
