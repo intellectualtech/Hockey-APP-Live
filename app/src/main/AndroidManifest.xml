@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <application
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.HockeyApp"
+        tools:targetApi="31">
+
+        <!-- LoginActivity with AppCompat Theme -->
+        <activity
+            android:name=".LoginActivity"
+            android:theme="@style/Theme.HockeyApp"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+
+        <!-- SignupActivity with AppCompat Theme -->
+        <activity
+            android:name=".SignupActivity"
+            android:theme="@style/Theme.HockeyApp"
+            android:exported="false" />
+
+        <activity
+            android:name=".PlayerRegistrationActivity"
+            android:theme="@style/Theme.HockeyApp"
+            android:exported="false" />
+
+        <activity
+            android:name=".PlayerListActivity"
+            android:theme="@style/Theme.HockeyApp"
+            android:exported="false" />
+
+        <activity
+            android:name=".PlayerManagementActivity"
+            android:theme="@style/Theme.HockeyApp"
+            android:exported="false" />
+
+        <activity
+            android:name=".TeamRegistrationActivity"
+            android:theme="@style/Theme.HockeyApp"
+            android:exported="false" />
+
+        <activity
+            android:name=".TeamListActivity"
+            android:theme="@style/Theme.HockeyApp"
+            android:exported="false" />
+
+        <activity
+            android:name=".HomeActivity"
+            android:theme="@style/Theme.HockeyApp"
+            android:exported="false" />
+
+        <activity
+            android:name=".EventRegistrationActivity"
+            android:theme="@style/Theme.HockeyApp"
+            android:exported="false" />
+
+        <!-- MainActivity as launcher -->
+        <activity
+            android:name=".MainActivity"
+            android:exported="false"
+            android:theme="@style/Theme.HockeyApp">
+        </activity>
+    </application>
+
+</manifest>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <style name="Theme.HockeyApp" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Set custom green theme colors -->
+        <item name="colorPrimary">@color/green_primary</item>
+        <item name="colorPrimaryDark">@color/green_dark</item>
+        <item name="colorAccent">@color/light_green</item>
+        <!-- Optional: Set the background window color -->
+        <item name="android:windowBackground">@color/light_green</item>
+    </style>
+</resources>

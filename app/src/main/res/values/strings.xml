@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">HockeyApp</string>
+
+    <string-array name="roles_array">
+        <item>Select Role</item>
+        <item>Admin</item>
+        <item>Coach</item>
+    </string-array>
+
+</resources>
