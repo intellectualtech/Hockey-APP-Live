@@ -103,5 +103,3 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 For questions, suggestions, or support, please open an issue in this repository or contact the maintainer.
 
 ---
-
-Let me know if you want to add or edit any section (like API details, team info, or specific screenshots). You can now copy and use this README.md content directly in your repository!
