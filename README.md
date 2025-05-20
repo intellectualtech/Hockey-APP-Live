@@ -98,8 +98,4 @@ Please refer to the [CONTRIBUTING.md](CONTRIBUTING.md) file for more details.
 
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more information.
 
-## Contact
-
-For questions, suggestions, or support, please open an issue in this repository or contact the maintainer.
-
 ---
