@@ -49,9 +49,9 @@ com.example.hockeyapplive.app-savedstate-ktx-1.2.1-47 C:\Users\cotad\.gradle\cac
 com.example.hockeyapplive.app-animation-release-48 C:\Users\cotad\.gradle\caches\8.10.2\transforms\f93aae1d87945e80be89092d9bcc8935\transformed\animation-release\res
 com.example.hockeyapplive.app-lifecycle-runtime-release-49 C:\Users\cotad\.gradle\caches\8.10.2\transforms\f9b51b1ad534a73bf4c6ce091a1c4cf7\transformed\lifecycle-runtime-release\res
 com.example.hockeyapplive.app-material-release-50 C:\Users\cotad\.gradle\caches\8.10.2\transforms\fbebc0d704e054a4c62679daa7dfcee8\transformed\material-release\res
-com.example.hockeyapplive.app-resValues-51 C:\Users\cotad\AndroidStudioProjects\Hockey-APP-Live\app\build\generated\res\resValues\debug
-com.example.hockeyapplive.app-packageDebugResources-52 C:\Users\cotad\AndroidStudioProjects\Hockey-APP-Live\app\build\intermediates\incremental\debug\packageDebugResources\merged.dir
-com.example.hockeyapplive.app-packageDebugResources-53 C:\Users\cotad\AndroidStudioProjects\Hockey-APP-Live\app\build\intermediates\incremental\debug\packageDebugResources\stripped.dir
-com.example.hockeyapplive.app-debug-54 C:\Users\cotad\AndroidStudioProjects\Hockey-APP-Live\app\build\intermediates\merged_res\debug\mergeDebugResources
-com.example.hockeyapplive.app-debug-55 C:\Users\cotad\AndroidStudioProjects\Hockey-APP-Live\app\src\debug\res
-com.example.hockeyapplive.app-main-56 C:\Users\cotad\AndroidStudioProjects\Hockey-APP-Live\app\src\main\res
+com.example.hockeyapplive.app-resValues-51 C:\Users\cotad\AndroidStudioProjects\HockeyAPPLive\app\build\generated\res\resValues\debug
+com.example.hockeyapplive.app-packageDebugResources-52 C:\Users\cotad\AndroidStudioProjects\HockeyAPPLive\app\build\intermediates\incremental\debug\packageDebugResources\merged.dir
+com.example.hockeyapplive.app-packageDebugResources-53 C:\Users\cotad\AndroidStudioProjects\HockeyAPPLive\app\build\intermediates\incremental\debug\packageDebugResources\stripped.dir
+com.example.hockeyapplive.app-debug-54 C:\Users\cotad\AndroidStudioProjects\HockeyAPPLive\app\build\intermediates\merged_res\debug\mergeDebugResources
+com.example.hockeyapplive.app-debug-55 C:\Users\cotad\AndroidStudioProjects\HockeyAPPLive\app\src\debug\res
+com.example.hockeyapplive.app-main-56 C:\Users\cotad\AndroidStudioProjects\HockeyAPPLive\app\src\main\res

@@ -53,7 +53,7 @@ class MainActivity : ComponentActivity() {
 
         NavHost(navController = navController, startDestination = "splash") {
             composable("splash") { SplashScreen(navController) }
-            composable("onboarding") { OnboardingScreen(navController) }
+            composable("onboarding") { OnboardingScreen(navController, context = this@MainActivity) }
             composable("login") { LoginScreen(navController, context = this@MainActivity) }
             composable("register") { RegisterScreen(navController, context = this@MainActivity) }
             composable("settings") { SettingsScreen(navController) }
@@ -70,9 +70,9 @@ class MainActivity : ComponentActivity() {
                     teamName = backStackEntry.arguments?.getString("teamName") ?: ""
                 )
             }
-            composable("admin_dashboard") { AdminDashboardScreen(navController) }
-            composable("manage_teams") { ManageTeamsScreen(navController) }
-            composable("manage_events") { ManageEventsScreen(navController) }
+            composable("admin_dashboard") { AdminDashboardScreen(navController, context = this@MainActivity) }
+            composable("manage_teams") { ManageTeamsScreen(navController = navController, context = this@MainActivity) }
+            composable("manage_events") { ManageEventsScreen(navController, context = this@MainActivity) }
             composable("manage_feedback") { ManageFeedbackScreen(navController) }
         }
     }

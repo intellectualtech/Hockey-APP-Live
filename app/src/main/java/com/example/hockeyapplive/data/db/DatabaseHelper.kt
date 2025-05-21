@@ -143,6 +143,26 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME
             INSERT INTO TeamRegistrations (team_name, coachName, contact_email, status, coach_userID)
             VALUES ('Demo Team', 'Demo User', 'demo@example.com', 'Pending', 1)
         """)
+
+        // Insert demo data into Events table
+        db.execSQL("""
+            INSERT INTO Events (event_name, event_description, event_DateTime, event_type, created_by)
+            VALUES ('Windhoek HC VS Odibo HC', 'Match between Windhoek and Odibo', '2025-05-20 19:00:00', 'Match', 1)
+        """)
+        db.execSQL("""
+            INSERT INTO Events (event_name, event_description, event_DateTime, event_type, created_by)
+            VALUES ('Owan Tournament', 'Tournament in Ohangwena', '2025-05-20 10:00:00', 'Tournament', 1)
+        """)
+        db.execSQL("""
+            INSERT INTO Events (event_name, event_description, event_DateTime, event_type, created_by)
+            VALUES ('Friendly', 'Friendly match in Okahandja', '2025-05-20 14:00:00', 'Match', 1)
+        """)
+
+        // Insert demo data into Players table
+        db.execSQL("""
+            INSERT INTO Players (user_id, team_id, jersey_number, position, date_of_birth, join_date)
+            VALUES (2, NULL, 10, 'Forward', '1995-01-01', '2025-01-01')
+        """)
     }
 
     override fun onUpgrade(db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
@@ -157,7 +177,7 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME
         onCreate(db)
     }
 
-    // Helper method to insert a TeamRegistration
+    // Existing TeamRegistration methods
     fun insertTeamRegistration(
         teamName: String,
         coachName: String,
@@ -178,7 +198,6 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME
         return db.insert("TeamRegistrations", null, values)
     }
 
-    // Helper method to get all TeamRegistrations
     fun getAllTeamRegistrations(): List<TeamRegistration> {
         val registrations = mutableListOf<TeamRegistration>()
         val db = readableDatabase
@@ -202,9 +221,179 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME
         return registrations
     }
 
-    // Helper method to delete a TeamRegistration
     fun deleteTeamRegistration(registrationId: Int): Int {
         val db = writableDatabase
         return db.delete("TeamRegistrations", "registrationID = ?", arrayOf(registrationId.toString()))
     }
+
+    // Existing Event methods
+    fun insertEvent(eventName: String, eventDescription: String, eventDateTime: String, eventType: String, createdBy: Int? = null): Long {
+        val db = writableDatabase
+        val values = ContentValues().apply {
+            put("event_name", eventName)
+            put("event_description", eventDescription)
+            put("event_DateTime", eventDateTime)
+            put("event_type", eventType)
+            if (createdBy != null) {
+                put("created_by", createdBy)
+            }
+        }
+        return db.insert("Events", null, values)
+    }
+
+    fun getAllEvents(): List<Event> {
+        val events = mutableListOf<Event>()
+        val db = readableDatabase
+        val cursor = db.rawQuery("SELECT event_id, event_name, event_description, event_DateTime, event_type FROM Events", null)
+        if (cursor.moveToFirst()) {
+            do {
+                val eventId = cursor.getInt(cursor.getColumnIndexOrThrow("event_id"))
+                val eventName = cursor.getString(cursor.getColumnIndexOrThrow("event_name"))
+                val eventDescription = cursor.getString(cursor.getColumnIndexOrThrow("event_description")) ?: "No description"
+                val eventDateTime = cursor.getString(cursor.getColumnIndexOrThrow("event_DateTime"))
+                val eventType = cursor.getString(cursor.getColumnIndexOrThrow("event_type"))
+                events.add(Event(eventId, eventName, eventDescription, eventDateTime, eventType))
+            } while (cursor.moveToNext())
+        }
+        cursor.close()
+        return events
+    }
+
+    fun deleteEvent(eventId: Int): Int {
+        val db = writableDatabase
+        return db.delete("Events", "event_id = ?", arrayOf(eventId.toString()))
+    }
+
+    // New Player methods
+    fun insertPlayer(fullName: String): Long {
+        val db = writableDatabase
+        db.beginTransaction()
+        try {
+            // Generate a unique email (simple approach for demo purposes)
+            val email = "${fullName.replace(" ", "").lowercase()}@hockeyapp.com"
+            // Check if email already exists
+            val cursor = db.rawQuery(
+                "SELECT COUNT(*) FROM Users WHERE email = ?",
+                arrayOf(email)
+            )
+            val exists = try {
+                cursor.moveToFirst() && cursor.getInt(0) > 0
+            } finally {
+                cursor.close()
+            }
+            if (exists) {
+                throw Exception("Player with this name already exists")
+            }
+
+            // Insert into Users table
+            val userValues = ContentValues().apply {
+                put("fullName", fullName)
+                put("email", email)
+                put("userPassword", "default123") // Default password (consider a better approach in production)
+                put("user_type", "Player")
+                put("isVerified", 1)
+            }
+            val userId = db.insert("Users", null, userValues)
+            if (userId == -1L) {
+                throw Exception("Failed to create user")
+            }
+
+            // Insert into Players table
+            val playerValues = ContentValues().apply {
+                put("user_id", userId)
+                // team_id is null as UI doesn't specify team selection
+                // Add other fields if needed (jersey_number, position, etc.)
+                put("join_date", "2025-05-21") // Current date for demo
+            }
+            val playerId = db.insert("Players", null, playerValues)
+            if (playerId == -1L) {
+                throw Exception("Failed to create player")
+            }
+
+            db.setTransactionSuccessful()
+            return playerId
+        } finally {
+            db.endTransaction()
+        }
+    }
+
+    fun getAllPlayers(): List<Player> {
+        val players = mutableListOf<Player>()
+        val db = readableDatabase
+        val cursor = db.rawQuery("""
+            SELECT p.player_id, p.user_id, u.fullName 
+            FROM Players p 
+            JOIN Users u ON p.user_id = u.userID
+        """, null)
+        try {
+            if (cursor.moveToFirst()) {
+                do {
+                    val playerId = cursor.getInt(cursor.getColumnIndexOrThrow("player_id"))
+                    val userId = cursor.getInt(cursor.getColumnIndexOrThrow("user_id"))
+                    val fullName = cursor.getString(cursor.getColumnIndexOrThrow("fullName"))
+                    players.add(Player(playerId, userId, fullName))
+                } while (cursor.moveToNext())
+            }
+        } finally {
+            cursor.close()
+        }
+        return players
+    }
+
+    fun updatePlayerName(userId: Int, newName: String): Boolean {
+        val db = writableDatabase
+        db.beginTransaction()
+        try {
+            // Check if email would conflict (generate new email based on name)
+            val newEmail = "${newName.replace(" ", "").lowercase()}@hockeyapp.com"
+            val cursor = db.rawQuery(
+                "SELECT COUNT(*) FROM Users WHERE email = ? AND userID != ?",
+                arrayOf(newEmail, userId.toString())
+            )
+            val exists = try {
+                cursor.moveToFirst() && cursor.getInt(0) > 0
+            } finally {
+                cursor.close()
+            }
+            if (exists) {
+                throw Exception("Player with this name already exists")
+            }
+
+            // Update Users table
+            val values = ContentValues().apply {
+                put("fullName", newName)
+                put("email", newEmail)
+            }
+            val rowsAffected = db.update("Users", values, "userID = ?", arrayOf(userId.toString()))
+            if (rowsAffected == 0) {
+                throw Exception("Failed to update player name")
+            }
+
+            db.setTransactionSuccessful()
+            return true
+        } finally {
+            db.endTransaction()
+        }
+    }
+
+    fun deletePlayer(playerId: Int): Int {
+        val db = writableDatabase
+        return db.delete("Players", "player_id = ?", arrayOf(playerId.toString()))
+    }
 }
+
+// Existing data classes
+data class Event(
+    val eventId: Int,
+    val eventName: String,
+    val eventDescription: String,
+    val eventDateTime: String,
+    val eventType: String
+)
+
+// New data class for Player
+data class Player(
+    val playerId: Int,
+    val userId: Int,
+    val fullName: String
+)

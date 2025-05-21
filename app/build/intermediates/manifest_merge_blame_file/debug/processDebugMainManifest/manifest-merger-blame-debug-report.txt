@@ -9,8 +9,8 @@
 9        android:targetSdkVersion="34" />
 10
 11    <uses-permission android:name="android.permission.INTERNET" />
-11-->C:\Users\cotad\AndroidStudioProjects\Hockey-APP-Live\app\src\main\AndroidManifest.xml:27:5-67
-11-->C:\Users\cotad\AndroidStudioProjects\Hockey-APP-Live\app\src\main\AndroidManifest.xml:27:22-64
+11-->C:\Users\cotad\AndroidStudioProjects\HockeyAPPLive\app\src\main\AndroidManifest.xml:27:5-67
+11-->C:\Users\cotad\AndroidStudioProjects\HockeyAPPLive\app\src\main\AndroidManifest.xml:27:22-64
 12
 13    <permission
 13-->[androidx.core:core:1.13.1] C:\Users\cotad\.gradle\caches\8.10.2\transforms\bc6ad74444985216e118c147df47a27a\transformed\core-1.13.1\AndroidManifest.xml:22:5-24:47
@@ -24,47 +24,47 @@
 17-->[androidx.core:core:1.13.1] C:\Users\cotad\.gradle\caches\8.10.2\transforms\bc6ad74444985216e118c147df47a27a\transformed\core-1.13.1\AndroidManifest.xml:26:22-94
 18
 19    <application
-19-->C:\Users\cotad\AndroidStudioProjects\Hockey-APP-Live\app\src\main\AndroidManifest.xml:5:5-26:19
+19-->C:\Users\cotad\AndroidStudioProjects\HockeyAPPLive\app\src\main\AndroidManifest.xml:5:5-26:19
 20        android:allowBackup="true"
-20-->C:\Users\cotad\AndroidStudioProjects\Hockey-APP-Live\app\src\main\AndroidManifest.xml:6:9-35
+20-->C:\Users\cotad\AndroidStudioProjects\HockeyAPPLive\app\src\main\AndroidManifest.xml:6:9-35
 21        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
 21-->[androidx.core:core:1.13.1] C:\Users\cotad\.gradle\caches\8.10.2\transforms\bc6ad74444985216e118c147df47a27a\transformed\core-1.13.1\AndroidManifest.xml:28:18-86
 22        android:dataExtractionRules="@xml/data_extraction_rules"
-22-->C:\Users\cotad\AndroidStudioProjects\Hockey-APP-Live\app\src\main\AndroidManifest.xml:7:9-65
+22-->C:\Users\cotad\AndroidStudioProjects\HockeyAPPLive\app\src\main\AndroidManifest.xml:7:9-65
 23        android:debuggable="true"
 24        android:extractNativeLibs="false"
 25        android:fullBackupContent="@xml/backup_rules"
-25-->C:\Users\cotad\AndroidStudioProjects\Hockey-APP-Live\app\src\main\AndroidManifest.xml:8:9-54
+25-->C:\Users\cotad\AndroidStudioProjects\HockeyAPPLive\app\src\main\AndroidManifest.xml:8:9-54
 26        android:icon="@mipmap/ic_launcher"
-26-->C:\Users\cotad\AndroidStudioProjects\Hockey-APP-Live\app\src\main\AndroidManifest.xml:9:9-43
+26-->C:\Users\cotad\AndroidStudioProjects\HockeyAPPLive\app\src\main\AndroidManifest.xml:9:9-43
 27        android:label="@string/app_name"
-27-->C:\Users\cotad\AndroidStudioProjects\Hockey-APP-Live\app\src\main\AndroidManifest.xml:10:9-41
+27-->C:\Users\cotad\AndroidStudioProjects\HockeyAPPLive\app\src\main\AndroidManifest.xml:10:9-41
 28        android:roundIcon="@mipmap/ic_launcher_round"
-28-->C:\Users\cotad\AndroidStudioProjects\Hockey-APP-Live\app\src\main\AndroidManifest.xml:11:9-54
+28-->C:\Users\cotad\AndroidStudioProjects\HockeyAPPLive\app\src\main\AndroidManifest.xml:11:9-54
 29        android:supportsRtl="true"
-29-->C:\Users\cotad\AndroidStudioProjects\Hockey-APP-Live\app\src\main\AndroidManifest.xml:12:9-35
+29-->C:\Users\cotad\AndroidStudioProjects\HockeyAPPLive\app\src\main\AndroidManifest.xml:12:9-35
 30        android:testOnly="true"
 31        android:theme="@style/Theme.HockeyAPPLive" >
-31-->C:\Users\cotad\AndroidStudioProjects\Hockey-APP-Live\app\src\main\AndroidManifest.xml:13:9-51
+31-->C:\Users\cotad\AndroidStudioProjects\HockeyAPPLive\app\src\main\AndroidManifest.xml:13:9-51
 32        <activity
-32-->C:\Users\cotad\AndroidStudioProjects\Hockey-APP-Live\app\src\main\AndroidManifest.xml:15:9-25:20
+32-->C:\Users\cotad\AndroidStudioProjects\HockeyAPPLive\app\src\main\AndroidManifest.xml:15:9-25:20
 33            android:name="com.example.hockeyapplive.MainActivity"
-33-->C:\Users\cotad\AndroidStudioProjects\Hockey-APP-Live\app\src\main\AndroidManifest.xml:16:13-41
+33-->C:\Users\cotad\AndroidStudioProjects\HockeyAPPLive\app\src\main\AndroidManifest.xml:16:13-41
 34            android:exported="true"
-34-->C:\Users\cotad\AndroidStudioProjects\Hockey-APP-Live\app\src\main\AndroidManifest.xml:17:13-36
+34-->C:\Users\cotad\AndroidStudioProjects\HockeyAPPLive\app\src\main\AndroidManifest.xml:17:13-36
 35            android:label="@string/app_name"
-35-->C:\Users\cotad\AndroidStudioProjects\Hockey-APP-Live\app\src\main\AndroidManifest.xml:18:13-45
+35-->C:\Users\cotad\AndroidStudioProjects\HockeyAPPLive\app\src\main\AndroidManifest.xml:18:13-45
 36            android:theme="@style/Theme.HockeyAPPLive" >
-36-->C:\Users\cotad\AndroidStudioProjects\Hockey-APP-Live\app\src\main\AndroidManifest.xml:19:13-55
+36-->C:\Users\cotad\AndroidStudioProjects\HockeyAPPLive\app\src\main\AndroidManifest.xml:19:13-55
 37            <intent-filter>
-37-->C:\Users\cotad\AndroidStudioProjects\Hockey-APP-Live\app\src\main\AndroidManifest.xml:20:13-24:29
+37-->C:\Users\cotad\AndroidStudioProjects\HockeyAPPLive\app\src\main\AndroidManifest.xml:20:13-24:29
 38                <action android:name="android.intent.action.MAIN" />
-38-->C:\Users\cotad\AndroidStudioProjects\Hockey-APP-Live\app\src\main\AndroidManifest.xml:21:17-69
-38-->C:\Users\cotad\AndroidStudioProjects\Hockey-APP-Live\app\src\main\AndroidManifest.xml:21:25-66
+38-->C:\Users\cotad\AndroidStudioProjects\HockeyAPPLive\app\src\main\AndroidManifest.xml:21:17-69
+38-->C:\Users\cotad\AndroidStudioProjects\HockeyAPPLive\app\src\main\AndroidManifest.xml:21:25-66
 39
 40                <category android:name="android.intent.category.LAUNCHER" />
-40-->C:\Users\cotad\AndroidStudioProjects\Hockey-APP-Live\app\src\main\AndroidManifest.xml:23:17-77
-40-->C:\Users\cotad\AndroidStudioProjects\Hockey-APP-Live\app\src\main\AndroidManifest.xml:23:27-74
+40-->C:\Users\cotad\AndroidStudioProjects\HockeyAPPLive\app\src\main\AndroidManifest.xml:23:17-77
+40-->C:\Users\cotad\AndroidStudioProjects\HockeyAPPLive\app\src\main\AndroidManifest.xml:23:27-74
 41            </intent-filter>
 42        </activity>
 43        <activity

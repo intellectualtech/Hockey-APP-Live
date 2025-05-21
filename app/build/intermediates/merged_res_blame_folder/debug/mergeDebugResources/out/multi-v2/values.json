@@ -23,6 +23,23 @@
                     }
                 },
                 {
+                    "source": "C:\\Users\\cotad\\AndroidStudioProjects\\HockeyAPPLive\\app\\src\\main\\res\\values\\themes.xml",
+                    "from": {
+                        "startLines": "3",
+                        "startColumns": "4",
+                        "startOffsets": "59",
+                        "endColumns": "90",
+                        "endOffsets": "145"
+                    },
+                    "to": {
+                        "startLines": "233",
+                        "startColumns": "4",
+                        "startOffsets": "14781",
+                        "endColumns": "89",
+                        "endOffsets": "14866"
+                    }
+                },
+                {
                     "source": "C:\\Users\\cotad\\.gradle\\caches\\8.10.2\\transforms\\bfe1f51822f6f455e35325bcf98c184b\\transformed\\customview-poolingcontainer-1.0.0\\res\\values\\values.xml",
                     "from": {
                         "startLines": "2,3",
@@ -37,23 +54,6 @@
                         "startOffsets": "4896,5073",
                         "endColumns": "53,66",
                         "endOffsets": "4945,5135"
-                    }
-                },
-                {
-                    "source": "C:\\Users\\cotad\\AndroidStudioProjects\\Hockey-APP-Live\\app\\src\\main\\res\\values\\themes.xml",
-                    "from": {
-                        "startLines": "3",
-                        "startColumns": "4",
-                        "startOffsets": "59",
-                        "endColumns": "90",
-                        "endOffsets": "145"
-                    },
-                    "to": {
-                        "startLines": "233",
-                        "startColumns": "4",
-                        "startOffsets": "14781",
-                        "endColumns": "89",
-                        "endOffsets": "14866"
                     }
                 },
                 {
@@ -141,6 +141,23 @@
                         "startOffsets": "6198",
                         "endColumns": "49",
                         "endOffsets": "6243"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\cotad\\AndroidStudioProjects\\HockeyAPPLive\\app\\src\\main\\res\\values\\colors.xml",
+                    "from": {
+                        "startLines": "7,2,3,4,5,6,8",
+                        "startColumns": "4,4,4,4,4,4,4",
+                        "startOffsets": "293,57,105,153,201,247,336",
+                        "endColumns": "41,46,46,46,44,44,41",
+                        "endOffsets": "330,99,147,195,241,287,373"
+                    },
+                    "to": {
+                        "startLines": "5,10,11,12,13,14,15",
+                        "startColumns": "4,4,4,4,4,4,4",
+                        "startOffsets": "370,675,722,769,816,861,906",
+                        "endColumns": "41,46,46,46,44,44,41",
+                        "endOffsets": "407,717,764,811,856,901,943"
                     }
                 },
                 {
@@ -235,24 +252,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\cotad\\AndroidStudioProjects\\Hockey-APP-Live\\app\\src\\main\\res\\values\\colors.xml",
-                    "from": {
-                        "startLines": "7,2,3,4,5,6,8",
-                        "startColumns": "4,4,4,4,4,4,4",
-                        "startOffsets": "293,57,105,153,201,247,336",
-                        "endColumns": "41,46,46,46,44,44,41",
-                        "endOffsets": "330,99,147,195,241,287,373"
-                    },
-                    "to": {
-                        "startLines": "5,10,11,12,13,14,15",
-                        "startColumns": "4,4,4,4,4,4,4",
-                        "startOffsets": "370,675,722,769,816,861,906",
-                        "endColumns": "41,46,46,46,44,44,41",
-                        "endOffsets": "407,717,764,811,856,901,943"
-                    }
-                },
-                {
-                    "source": "C:\\Users\\cotad\\AndroidStudioProjects\\Hockey-APP-Live\\app\\src\\main\\res\\values\\strings.xml",
+                    "source": "C:\\Users\\cotad\\AndroidStudioProjects\\HockeyAPPLive\\app\\src\\main\\res\\values\\strings.xml",
                     "from": {
                         "startLines": "1",
                         "startColumns": "4",
