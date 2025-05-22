@@ -11,7 +11,7 @@ import com.example.hockeyapplive.data.model.Player
 import com.example.hockeyapplive.data.model.Team
 import com.example.hockeyapplive.data.model.TeamRegistration
 import com.example.hockeyapplive.data.model.User
-import java.time.OffsetDateTime
+import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 
 class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, null, DATABASE_VERSION) {
@@ -161,7 +161,7 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME
 
         // Insert demo data with consistent timestamp format and Int contact numbers
         val timestampFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")
-        val now = OffsetDateTime.now().toLocalDateTime().format(timestampFormatter)
+        val now = LocalDateTime.now().format(timestampFormatter) // Current time: 2025-05-22 20:12:00 (UTC)
 
         // Users
         db.execSQL("""
@@ -730,7 +730,7 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME
                             else cursor.getInt(cursor.getColumnIndexOrThrow("coach_experience_years")),
                             coachName = cursor.getString(cursor.getColumnIndexOrThrow("coachName")),
                             createdAt = cursor.getString(cursor.getColumnIndexOrThrow("created_at"))?.let {
-                                OffsetDateTime.parse(it, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")).toLocalDateTime()
+                                LocalDateTime.parse(it, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"))
                             }
                         )
                     )
@@ -794,7 +794,7 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME
                 put("coach_reference", coachReference)
                 put("coach_id_no", coachIdNo)
                 put("coach_experience_years", coachExperienceYears)
-                put("created_at", OffsetDateTime.now().toLocalDateTime().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")))
+                put("created_at", LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")))
             }
             val teamId = db.insert("Teams", null, teamValues)
             if (teamId == -1L) throw IllegalArgumentException("Failed to insert team")
@@ -972,7 +972,7 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME
             val userId = db.insert("Users", null, userValues)
             if (userId == -1L) throw IllegalArgumentException("Failed to create user")
 
-            val currentDate = OffsetDateTime.now().toLocalDateTime().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))
+            val currentDate = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))
             val playerValues = ContentValues().apply {
                 put("user_id", userId)
                 put("team_id", teamId)
@@ -1178,5 +1178,10 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME
         } finally {
             db.endTransaction()
         }
+    }
+
+    override fun close() {
+        super.close()
+        writableDatabase.close()
     }
 }

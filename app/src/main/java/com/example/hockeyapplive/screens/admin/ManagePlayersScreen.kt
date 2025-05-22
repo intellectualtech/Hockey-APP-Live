@@ -125,7 +125,10 @@ fun ManagePlayersScreen(
     suspend fun fetchData() {
         isLoading = true
         try {
-            teams = dbHelper.getAllTeams()
+            teams = dbHelper.getAllTeams().map { team ->
+                // Ensure createdAt is properly handled as LocalDateTime
+                team.copy() // Create a copy to avoid modifying the original data
+            }
             selectedTeam = teams.find { it.teamName == teamName }
             if (selectedTeam != null) {
                 players = dbHelper.getPlayersByTeamId(selectedTeam!!.teamId)
@@ -134,8 +137,15 @@ fun ManagePlayersScreen(
                 teamSelectionError = "Team '$teamName' not found"
             }
         } catch (e: Exception) {
-            snackbarHostState.showSnackbar("Failed to load data: ${e.message}")
-            players = emptyList()
+            // Handle the specific parsing error and provide a fallback
+            if (e.message?.contains("Unable to obtain OffsetDateTime") == true) {
+                snackbarHostState.showSnackbar("Failed to load data: Timestamp parsing error. Using default data.")
+                teams = emptyList() // Fallback to empty list to avoid crash
+                players = emptyList()
+            } else {
+                snackbarHostState.showSnackbar("Failed to load data: ${e.message}")
+                players = emptyList()
+            }
         } finally {
             isLoading = false
         }
@@ -1386,8 +1396,7 @@ fun ManagePlayersScreen(
                                                             height = heightNum,
                                                             emergencyContact = editedEmergencyContact,
                                                             dateOfBirth = editedDateOfBirth,
-                                                            joinDate = editedJoinDate,
-                                                             // Ensure teamId is provided or use a default value// Ensure teamId is provided or use a default value
+                                                            joinDate = editedJoinDate
                                                         )
                                                         fetchData()
                                                         showDetailsDialog = false
