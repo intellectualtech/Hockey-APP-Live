@@ -72,6 +72,7 @@ dependencies {
     implementation(libs.androidx.datastore.core.android)
     implementation(libs.generativeai)
     implementation(libs.androidx.material3.android)
+    implementation(libs.play.services.games)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

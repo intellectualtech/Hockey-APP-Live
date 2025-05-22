@@ -16,7 +16,7 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.example.hockeyapplive.R
 import com.example.hockeyapplive.data.db.DatabaseHelper
-import com.example.hockeyapplive.data.TeamRegistration
+import com.example.hockeyapplive.data.model.TeamRegistration
 import kotlinx.coroutines.launch
 
 // Professional Navy Blue Color Palette
@@ -31,6 +31,21 @@ private val AccentBlue = Color(0xFF4267B2)
 @Composable
 fun AdminDashboardScreen(navController: NavController, context: Context) {
     val dbHelper = remember { DatabaseHelper(context) }
+    var adminUserId by remember { mutableStateOf<Int?>(null) }
+    val snackbarHostState = remember { SnackbarHostState() }
+    val scope = rememberCoroutineScope()
+
+    // Fetch admin user ID
+    LaunchedEffect(Unit) {
+        val adminUser = dbHelper.getAdminUser()
+        if (adminUser != null) {
+            adminUserId = adminUser.userID
+        } else {
+            scope.launch {
+                snackbarHostState.showSnackbar("Error: Admin user not found")
+            }
+        }
+    }
 
     // Fetch data from the database
     var pendingRegistrations by remember { mutableStateOf<List<TeamRegistration>>(emptyList()) }
@@ -73,7 +88,6 @@ fun AdminDashboardScreen(navController: NavController, context: Context) {
     }
 
     val drawerState = rememberDrawerState(initialValue = DrawerValue.Closed)
-    val scope = rememberCoroutineScope()
     val navigationItems = listOf(
         Triple("Home", android.R.drawable.ic_menu_today) { navController.navigate("admin_dashboard") },
         Triple("Teams", android.R.drawable.ic_menu_preferences) { navController.navigate("manage_teams") },
@@ -204,12 +218,37 @@ fun AdminDashboardScreen(navController: NavController, context: Context) {
                         modifier = Modifier.padding(NavigationDrawerItemDefaults.ItemPadding)
                     )
                 }
+                NavigationDrawerItem(
+                    icon = {
+                        Icon(
+                            imageVector = Icons.Default.AccountCircle,
+                            contentDescription = "Profile",
+                            tint = WhiteText
+                        )
+                    },
+                    label = { Text("Profile", color = WhiteText) },
+                    selected = false,
+                    onClick = {
+                        adminUserId?.let { userId ->
+                            navController.navigate("admin_profile/$userId")
+                            scope.launch { drawerState.close() }
+                        } ?: scope.launch {
+                            snackbarHostState.showSnackbar("Error: Admin user not found")
+                        }
+                    },
+                    colors = NavigationDrawerItemDefaults.colors(
+                        unselectedContainerColor = NavyBlueDark,
+                        selectedContainerColor = NavyBlueSecondary
+                    ),
+                    modifier = Modifier.padding(NavigationDrawerItemDefaults.ItemPadding)
+                )
             }
         },
         gesturesEnabled = true
     ) {
         Scaffold(
             containerColor = Color(0xFFF5F7FA),
+            snackbarHost = { SnackbarHost(snackbarHostState) },
             bottomBar = {
                 NavigationBar(
                     containerColor = NavyBluePrimary,
@@ -245,7 +284,7 @@ fun AdminDashboardScreen(navController: NavController, context: Context) {
                         icon = { Icon(Icons.Filled.SportsHockey, contentDescription = "Players") },
                         label = { Text("Players") },
                         selected = false,
-                        onClick = { navController.navigate("manage_players") },
+                        onClick = { navController.navigate("manage_players?teamName=") },
                         colors = NavigationBarItemDefaults.colors(
                             selectedIconColor = AccentBlue,
                             unselectedIconColor = Color.White.copy(alpha = 0.8f),
@@ -271,7 +310,13 @@ fun AdminDashboardScreen(navController: NavController, context: Context) {
                         icon = { Icon(Icons.Filled.AccountCircle, contentDescription = "Profile") },
                         label = { Text("Profile") },
                         selected = false,
-                        onClick = { navController.navigate("admin_profile") },
+                        onClick = {
+                            adminUserId?.let { userId ->
+                                navController.navigate("admin_profile/$userId")
+                            } ?: scope.launch {
+                                snackbarHostState.showSnackbar("Error: Admin user not found")
+                            }
+                        },
                         colors = NavigationBarItemDefaults.colors(
                             selectedIconColor = AccentBlue,
                             unselectedIconColor = Color.White.copy(alpha = 0.8f),
@@ -390,7 +435,7 @@ fun AdminDashboardScreen(navController: NavController, context: Context) {
                             )
                             Spacer(modifier = Modifier.height(4.dp))
                             Text(
-                                text = " Coaches",
+                                text = "Coaches",
                                 color = WhiteText,
                                 style = MaterialTheme.typography.bodyMedium
                             )

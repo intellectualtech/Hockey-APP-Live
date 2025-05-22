@@ -33,7 +33,7 @@ import kotlinx.coroutines.launch
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun LoginScreen(navController: NavController, context: android.content.Context) {
-    val (username, setUsername) = remember { mutableStateOf("") }
+    val (email, setEmail) = remember { mutableStateOf("") }
     val (password, setPassword) = remember { mutableStateOf("") }
     val (errorMessage, setErrorMessage) = remember { mutableStateOf<String?>(null) }
     val (isLoading, setIsLoading) = remember { mutableStateOf(false) }
@@ -76,20 +76,12 @@ fun LoginScreen(navController: NavController, context: android.content.Context) 
                     Column(
                         horizontalAlignment = Alignment.CenterHorizontally
                     ) {
-                        // Replace with your custom logo resource
                         Image(
                             painter = painterResource(id = R.drawable.logo11),
                             contentDescription = "Hockey App Logo",
                             modifier = Modifier.size(150.dp),
                             contentScale = ContentScale.Fit
                         )
-                        /*Text(
-                            text = "Hockey App Live",
-                            style = MaterialTheme.typography.headlineMedium,
-                            color = MaterialTheme.colorScheme.onPrimary,
-                            fontWeight = FontWeight.Bold,
-                            modifier = Modifier.padding(top = 8.dp)
-                        )*/
                     }
                 }
 
@@ -116,11 +108,11 @@ fun LoginScreen(navController: NavController, context: android.content.Context) 
                             modifier = Modifier.padding(bottom = 24.dp)
                         )
 
-                        // Username/Email field
+                        // Email field
                         OutlinedTextField(
-                            value = username,
-                            onValueChange = setUsername,
-                            label = { Text("Username or Email") },
+                            value = email,
+                            onValueChange = { setEmail(it.trim()) },
+                            label = { Text("Email") },
                             leadingIcon = {
                                 Icon(
                                     imageVector = Icons.Default.Email,
@@ -133,13 +125,14 @@ fun LoginScreen(navController: NavController, context: android.content.Context) 
                                 .padding(bottom = 16.dp),
                             shape = RoundedCornerShape(12.dp),
                             enabled = !isLoading,
-                            singleLine = true
+                            singleLine = true,
+                            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email)
                         )
 
                         // Password field
                         OutlinedTextField(
                             value = password,
-                            onValueChange = setPassword,
+                            onValueChange = { setPassword(it) },
                             label = { Text("Password") },
                             leadingIcon = {
                                 Icon(
@@ -174,7 +167,7 @@ fun LoginScreen(navController: NavController, context: android.content.Context) 
                                 .padding(bottom = 24.dp),
                             contentAlignment = Alignment.CenterEnd
                         ) {
-                            TextButton(onClick = { /* Handle forgot password */ }) {
+                            TextButton(onClick = { /* TODO: Implement forgot password */ }) {
                                 Text(
                                     text = "Forgot Password?",
                                     color = MaterialTheme.colorScheme.primary,
@@ -184,7 +177,7 @@ fun LoginScreen(navController: NavController, context: android.content.Context) 
                         }
 
                         // Error message
-                        if (errorMessage != null) {
+                        errorMessage?.let {
                             Surface(
                                 color = MaterialTheme.colorScheme.errorContainer,
                                 shape = RoundedCornerShape(8.dp),
@@ -193,7 +186,7 @@ fun LoginScreen(navController: NavController, context: android.content.Context) 
                                     .padding(bottom = 16.dp)
                             ) {
                                 Text(
-                                    text = errorMessage,
+                                    text = it,
                                     color = MaterialTheme.colorScheme.error,
                                     style = MaterialTheme.typography.bodyMedium,
                                     modifier = Modifier.padding(12.dp),
@@ -206,38 +199,49 @@ fun LoginScreen(navController: NavController, context: android.content.Context) 
                         Button(
                             onClick = {
                                 setErrorMessage(null)
-                                setIsLoading(true)
-                                scope.launch {
-                                    try {
-                                        val user = dataSource.authenticateUser(username, password)
-                                        if (user != null) {
-                                            if (user.isVerified) {
-                                                when (user.userType) {
-                                                    "Admin" -> navController.navigate("admin_dashboard") {
-                                                        popUpTo(navController.graph.startDestinationId)
-                                                        launchSingleTop = true
+                                when {
+                                    email.isBlank() -> setErrorMessage("Please enter your email")
+                                    !email.contains("@") -> setErrorMessage("Invalid email format")
+                                    password.isBlank() -> setErrorMessage("Please enter your password")
+                                    else -> {
+                                        setIsLoading(true)
+                                        scope.launch {
+                                            try {
+                                                val user = dataSource.authenticateUser(email, password)
+                                                if (user != null) {
+                                                    if (user.isVerified) {
+                                                        // Update last_login timestamp
+                                                        dataSource.updateLastLogin(user.userID)
+                                                        when (user.userType) {
+                                                            "Admin" -> navController.navigate("admin_dashboard") {
+                                                                popUpTo(navController.graph.startDestinationId) { inclusive = true }
+                                                                launchSingleTop = true
+                                                            }
+                                                            "Coach" -> navController.navigate("onboarding") {
+                                                                popUpTo(navController.graph.startDestinationId) { inclusive = true }
+                                                                launchSingleTop = true
+                                                            }
+                                                            "Player" -> navController.navigate("settings") {
+                                                                popUpTo(navController.graph.startDestinationId) { inclusive = true }
+                                                                launchSingleTop = true
+                                                            }
+                                                            else -> setErrorMessage("Unknown user type")
+                                                        }
+                                                    } else {
+                                                        setErrorMessage("Account not verified. Please check your email.")
                                                     }
-                                                    "Coach" -> navController.navigate("onboarding") {
-                                                        popUpTo(navController.graph.startDestinationId)
-                                                        launchSingleTop = true
-                                                    }
-                                                    "Player" -> navController.navigate("settings") {
-                                                        popUpTo(navController.graph.startDestinationId)
-                                                        launchSingleTop = true
-                                                    }
-                                                    else -> setErrorMessage("Unknown user type")
+                                                } else {
+                                                    setErrorMessage("Invalid email or password")
                                                 }
-                                            } else {
-                                                setErrorMessage("Account not verified. Please check your email.")
+                                            } catch (e: Exception) {
+                                                setErrorMessage("Login failed: ${e.message}")
+                                                scope.launch {
+                                                    snackbarHostState.showSnackbar("Login error: ${e.message}")
+                                                }
+                                            } finally {
+                                                setIsLoading(false)
                                             }
-                                        } else {
-                                            setErrorMessage("Invalid username/email or password")
                                         }
-                                    } catch (e: Exception) {
-                                        setErrorMessage("An error occurred during login: ${e.message}")
-                                    } finally {
-                                        setIsLoading(false)
-                                        dataSource.close()
                                     }
                                 }
                             },
@@ -289,15 +293,15 @@ fun LoginScreen(navController: NavController, context: android.content.Context) 
                         )
                         Spacer(modifier = Modifier.height(8.dp))
                         Text(
+                            text = "Coach: coach@example.com / coach123",
+                            style = MaterialTheme.typography.bodyMedium,
+                            color = MaterialTheme.colorScheme.onSurfaceVariant
+                        )
+                        Text(
                             text = "Coach: demo@example.com / password123",
                             style = MaterialTheme.typography.bodyMedium,
                             color = MaterialTheme.colorScheme.onSurfaceVariant
                         )
-                        /*Text(
-                            text = "Player: player@example.com / player123",
-                            style = MaterialTheme.typography.bodyMedium,
-                            color = MaterialTheme.colorScheme.onSurfaceVariant
-                        )*/
                         Text(
                             text = "Admin: admin@example.com / admin123",
                             style = MaterialTheme.typography.bodyMedium,
@@ -322,7 +326,7 @@ fun LoginScreen(navController: NavController, context: android.content.Context) 
                     TextButton(
                         onClick = {
                             navController.navigate("register") {
-                                popUpTo(navController.graph.startDestinationId)
+                                popUpTo(navController.graph.startDestinationId) { inclusive = false }
                                 launchSingleTop = true
                             }
                         }
@@ -336,6 +340,13 @@ fun LoginScreen(navController: NavController, context: android.content.Context) 
                     }
                 }
             }
+        }
+    }
+
+    // Ensure DataSource is closed when the composable is disposed
+    DisposableEffect(Unit) {
+        onDispose {
+            dataSource.close()
         }
     }
 }

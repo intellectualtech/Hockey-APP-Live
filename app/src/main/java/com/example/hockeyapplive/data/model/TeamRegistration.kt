@@ -1,5 +1,7 @@
 package com.example.hockeyapplive.data.model
 
+
+
 data class TeamRegistration(
     val registrationID: Int,
     val teamName: String,
@@ -7,5 +9,5 @@ data class TeamRegistration(
     val contactEmail: String,
     val createdAt: String,
     val status: String,
-    val coachUserID: Int? = null
+    val coachUserID: Int?
 )

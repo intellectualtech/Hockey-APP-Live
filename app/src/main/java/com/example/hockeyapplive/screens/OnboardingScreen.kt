@@ -27,7 +27,7 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.example.hockeyapplive.R
 import com.example.hockeyapplive.data.db.DatabaseHelper
-import com.example.hockeyapplive.data.db.Event
+import com.example.hockeyapplive.data.model.Event
 import kotlinx.coroutines.launch
 
 // Define professional light navy blue color palette

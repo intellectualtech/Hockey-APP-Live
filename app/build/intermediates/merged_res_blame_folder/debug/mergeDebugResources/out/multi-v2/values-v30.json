@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "com.example.hockeyapplive.app-mergeDebugResources-53:/values-v30/values-v30.xml",
+            "outputFile": "com.example.hockeyapplive.app-mergeDebugResources-58:/values-v30/values-v30.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\cotad\\.gradle\\caches\\8.10.2\\transforms\\db3ba69ef05d8ee4b52338d013bdaddd\\transformed\\material3-release\\res\\values-v30\\values-v30.xml",
+                    "source": "C:\\Users\\cotad\\.gradle\\caches\\8.10.2\\transforms\\5d8b14b7e545b461e55fcd92d480604f\\transformed\\material3-release\\res\\values-v30\\values-v30.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",
