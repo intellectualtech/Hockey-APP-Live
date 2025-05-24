@@ -14,9 +14,14 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.text.input.PasswordVisualTransformation
+import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.example.hockeyapplive.data.datasource.DataSource
+import com.example.hockeyapplive.data.model.CoachTeamDetails
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -27,6 +32,10 @@ fun RegisterScreen(navController: NavController, context: android.content.Contex
     var idNo by remember { mutableStateOf("") }
     var yearOfExperience by remember { mutableStateOf("") }
     var email by remember { mutableStateOf("") }
+    var password by remember { mutableStateOf("") }
+    var confirmPassword by remember { mutableStateOf("") }
+    var passwordVisible by remember { mutableStateOf(false) }
+    var confirmPasswordVisible by remember { mutableStateOf(false) }
 
     // State for team details
     var teamName by remember { mutableStateOf("") }
@@ -40,6 +49,8 @@ fun RegisterScreen(navController: NavController, context: android.content.Contex
     var idNoError by remember { mutableStateOf<String?>(null) }
     var yearOfExperienceError by remember { mutableStateOf<String?>(null) }
     var emailError by remember { mutableStateOf<String?>(null) }
+    var passwordError by remember { mutableStateOf<String?>(null) }
+    var confirmPasswordError by remember { mutableStateOf<String?>(null) }
     var teamNameError by remember { mutableStateOf<String?>(null) }
     var teamYearsOfExistinError by remember { mutableStateOf<String?>(null) }
     var addressOfFieldOrCortError by remember { mutableStateOf<String?>(null) }
@@ -82,6 +93,30 @@ fun RegisterScreen(navController: NavController, context: android.content.Contex
             "Invalid email format"
         } else null
 
+        passwordError = when {
+            password.isBlank() -> {
+                isValid = false
+                "Password is required"
+            }
+            password.length < 8 -> {
+                isValid = false
+                "Password must be at least 8 characters"
+            }
+            else -> null
+        }
+
+        confirmPasswordError = when {
+            confirmPassword.isBlank() -> {
+                isValid = false
+                "Confirm password is required"
+            }
+            confirmPassword != password -> {
+                isValid = false
+                "Passwords do not match"
+            }
+            else -> null
+        }
+
         return isValid
     }
 
@@ -123,21 +158,46 @@ fun RegisterScreen(navController: NavController, context: android.content.Contex
     }
 
     fun registerCoachAndTeam() {
-        val defaultPassword = "default123" // Temporary default password
         scope.launch {
             try {
                 // Register the user (Coach)
-                val userResult = dataSource.registerUser(fullName, email, defaultPassword, "Coach")
+                val userResult = dataSource.registerUser(fullName, email, password, "Coach")
                 when {
                     userResult.isSuccess -> {
                         val userId = userResult.getOrThrow()
-                        // After user is registered, insert the team registration
+
+                        // Create CoachTeamDetails object
+                        val coachTeamDetails = CoachTeamDetails(
+                            fullName = fullName,
+                            idNo = idNo,
+                            yearsOfExperience = yearOfExperience.toIntOrNull() ?: 0,
+                            email = email,
+                            teamName = teamName,
+                            teamYearsOfExistence = teamYearsOfExistin.toIntOrNull() ?: 0,
+                            addressOfFieldOrCourt = addressOfFieldOrCort,
+                            numberOfGamesPlayed = numberOfGamesYouPlayed.toIntOrNull() ?: 0,
+                            referenceOfCoachGame = referenceOfCoachGameYouPlayedWithPast,
+                            createdAt = LocalDateTime.now() // Current time: 2025-05-23T04:56:00
+                        )
+
+                        // Format createdAt to String
+                        val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")
+                        val createdAtString = coachTeamDetails.createdAt.format(formatter)
+
+                        // Insert the team registration
                         val teamResult = dataSource.insertTeamRegistration(
                             teamName = teamName,
                             coachName = fullName,
                             contactEmail = email,
+                            createdAt = createdAtString, // Pass the formatted createdAt
                             status = "Pending",
-                            coachUserId = userId
+                            coachUserId = userId,
+                            yearsOfExistence = coachTeamDetails.teamYearsOfExistence,
+                            fieldAddress = coachTeamDetails.addressOfFieldOrCourt,
+                            gamesPlayed = coachTeamDetails.numberOfGamesPlayed,
+                            coachReference = coachTeamDetails.referenceOfCoachGame,
+                            coachIdNo = coachTeamDetails.idNo,
+                            coachExperienceYears = coachTeamDetails.yearsOfExperience
                         )
                         if (teamResult.isSuccess) {
                             snackbarHostState.showSnackbar("Registration submitted. Awaiting approval.")
@@ -288,6 +348,54 @@ fun RegisterScreen(navController: NavController, context: android.content.Contex
                             modifier = Modifier.fillMaxWidth(),
                             isError = emailError != null,
                             supportingText = { if (emailError != null) Text(emailError!!) },
+                            singleLine = true,
+                            shape = RoundedCornerShape(8.dp)
+                        )
+
+                        Spacer(modifier = Modifier.height(16.dp))
+
+                        OutlinedTextField(
+                            value = password,
+                            onValueChange = { password = it },
+                            label = { Text("Password *") },
+                            leadingIcon = { Icon(Icons.Default.Lock, contentDescription = "Password") },
+                            trailingIcon = {
+                                IconButton(onClick = { passwordVisible = !passwordVisible }) {
+                                    Icon(
+                                        imageVector = if (passwordVisible) Icons.Default.Visibility else Icons.Default.VisibilityOff,
+                                        contentDescription = if (passwordVisible) "Hide password" else "Show password"
+                                    )
+                                }
+                            },
+                            visualTransformation = if (passwordVisible) VisualTransformation.None else PasswordVisualTransformation(),
+                            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
+                            modifier = Modifier.fillMaxWidth(),
+                            isError = passwordError != null,
+                            supportingText = { if (passwordError != null) Text(passwordError!!) },
+                            singleLine = true,
+                            shape = RoundedCornerShape(8.dp)
+                        )
+
+                        Spacer(modifier = Modifier.height(16.dp))
+
+                        OutlinedTextField(
+                            value = confirmPassword,
+                            onValueChange = { confirmPassword = it },
+                            label = { Text("Confirm Password *") },
+                            leadingIcon = { Icon(Icons.Default.Lock, contentDescription = "Confirm Password") },
+                            trailingIcon = {
+                                IconButton(onClick = { confirmPasswordVisible = !confirmPasswordVisible }) {
+                                    Icon(
+                                        imageVector = if (confirmPasswordVisible) Icons.Default.Visibility else Icons.Default.VisibilityOff,
+                                        contentDescription = if (confirmPasswordVisible) "Hide password" else "Show password"
+                                    )
+                                }
+                            },
+                            visualTransformation = if (confirmPasswordVisible) VisualTransformation.None else PasswordVisualTransformation(),
+                            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
+                            modifier = Modifier.fillMaxWidth(),
+                            isError = confirmPasswordError != null,
+                            supportingText = { if (confirmPasswordError != null) Text(confirmPasswordError!!) },
                             singleLine = true,
                             shape = RoundedCornerShape(8.dp)
                         )

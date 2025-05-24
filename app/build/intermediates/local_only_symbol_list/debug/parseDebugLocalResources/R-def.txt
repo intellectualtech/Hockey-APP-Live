@@ -20,6 +20,7 @@ drawable logo11
 drawable profile
 mipmap ic_launcher
 mipmap ic_launcher_round
+mipmap logo11
 string app_name
 style Theme.HockeyAPPLive
 xml backup_rules

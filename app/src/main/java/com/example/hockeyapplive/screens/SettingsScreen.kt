@@ -17,34 +17,55 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.example.hockeyapplive.R
+import com.example.hockeyapplive.data.db.DatabaseHelper
+import com.example.hockeyapplive.data.model.Team
+import com.example.hockeyapplive.data.model.User
+import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun SettingsScreen(navController: NavController) {
-    var showDevicesDialog by remember { mutableStateOf(false) }
-    var showNotificationsDialog by remember { mutableStateOf(false) }
-    var showAppearanceDialog by remember { mutableStateOf(false) }
-    var showLanguageDialog by remember { mutableStateOf(false) }
-    var showPrivacyDialog by remember { mutableStateOf(false) }
-    var showStorageDialog by remember { mutableStateOf(false) }
-    var showEditProfileDialog by remember { mutableStateOf(false) }
+    val context = LocalContext.current
+    val dbHelper = remember { DatabaseHelper(context) }
 
-    val settingsOptions = listOf(
-        SettingsOption("Saved Messages", Icons.Outlined.Message, onClick = { navController.navigate("chat") }),
-        SettingsOption("Recent Game", Icons.Default.Event, onClick = { navController.navigate("events_screen") }), // Replaced SportsHockey with Event
-        SettingsOption("Devices", Icons.Default.Devices, onClick = { showDevicesDialog = true }),
-        SettingsOption("Notifications", Icons.Default.Notifications, onClick = { showNotificationsDialog = true }),
-        SettingsOption("Appearance", Icons.Default.Palette, onClick = { showAppearanceDialog = true }),
-        SettingsOption("Language", Icons.Default.Language, onClick = { showLanguageDialog = true }),
-        SettingsOption("Privacy & Security", Icons.Default.Lock, onClick = { showPrivacyDialog = true }),
-        SettingsOption("Storage", Icons.Default.Storage, onClick = { showStorageDialog = true })
-    )
+    var coach by remember { mutableStateOf<User?>(null) }
+    var team by remember { mutableStateOf<Team?>(null) }
+    var isLoading by remember { mutableStateOf(true) }
+    var errorMessage by remember { mutableStateOf<String?>(null) }
+
+    val loggedInUserId = 1
+
+    val coroutineScope = rememberCoroutineScope()
+
+    fun loadCoachAndTeam() {
+        coroutineScope.launch {
+            isLoading = true
+            errorMessage = null
+            try {
+                coach = dbHelper.getUserById(loggedInUserId)
+                coach?.let { user ->
+                    team = dbHelper.getTeamByCoachId(user.userID)
+                }
+            } catch (e: Exception) {
+                errorMessage = "Failed to load profile: ${e.message}"
+            } finally {
+                isLoading = false
+            }
+        }
+    }
+
+    LaunchedEffect(Unit) {
+        loadCoachAndTeam()
+    }
+
+    var showEditProfileDialog by remember { mutableStateOf(false) }
 
     Scaffold(
         topBar = {
@@ -59,173 +80,137 @@ fun SettingsScreen(navController: NavController) {
             )
         }
     ) { paddingValues ->
-        LazyColumn(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(paddingValues)
-                .padding(horizontal = 16.dp),
-            verticalArrangement = Arrangement.spacedBy(8.dp)
-        ) {
-            item {
-                // Profile Section
-                Card(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(vertical = 8.dp),
-                    elevation = CardDefaults.cardElevation(defaultElevation = 2.dp)
+        if (isLoading) {
+            Box(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(paddingValues),
+                contentAlignment = Alignment.Center
+            ) {
+                CircularProgressIndicator(color = MaterialTheme.colorScheme.primary)
+            }
+        } else if (errorMessage != null) {
+            Box(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(paddingValues),
+                contentAlignment = Alignment.Center
+            ) {
+                Text(
+                    text = errorMessage!!,
+                    color = MaterialTheme.colorScheme.error,
+                    style = MaterialTheme.typography.bodyLarge
+                )
+                Button(
+                    onClick = { loadCoachAndTeam() },
+                    modifier = Modifier.padding(top = 16.dp)
                 ) {
-                    Row(
+                    Text("Retry")
+                }
+            }
+        } else {
+            LazyColumn(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(paddingValues)
+                    .padding(horizontal = 16.dp),
+                verticalArrangement = Arrangement.spacedBy(8.dp)
+            ) {
+                item {
+                    Card(
                         modifier = Modifier
                             .fillMaxWidth()
-                            .padding(16.dp),
-                        verticalAlignment = Alignment.CenterVertically
+                            .padding(vertical = 8.dp),
+                        elevation = CardDefaults.cardElevation(defaultElevation = 2.dp)
                     ) {
-                        Image(
-                            painter = painterResource(id = R.drawable.ic_launcher_foreground), // Fallback to default drawable
-                            contentDescription = "Profile Picture",
+                        Row(
                             modifier = Modifier
-                                .size(80.dp)
-                                .clip(CircleShape)
-                        )
-
-                        Spacer(modifier = Modifier.width(16.dp))
-
-                        Column(
-                            modifier = Modifier.weight(1f)
+                                .fillMaxWidth()
+                                .padding(16.dp),
+                            verticalAlignment = Alignment.CenterVertically
                         ) {
-                            Text(
-                                text = "Lucas Scott",
-                                style = MaterialTheme.typography.titleLarge,
-                                fontWeight = FontWeight.SemiBold
+                            Image(
+                                painter = painterResource(id = R.drawable.ic_launcher_foreground),
+                                contentDescription = "Profile Picture",
+                                modifier = Modifier
+                                    .size(80.dp)
+                                    .clip(CircleShape)
                             )
-                            Text(
-                                text = "@lucasscott3",
-                                style = MaterialTheme.typography.bodyMedium,
-                                color = MaterialTheme.colorScheme.onSurfaceVariant,
-                                modifier = Modifier.padding(top = 2.dp)
-                            )
-                            Text(
-                                text = "Email: lucas.scott@example.com",
-                                style = MaterialTheme.typography.bodySmall,
-                                color = MaterialTheme.colorScheme.onSurfaceVariant,
-                                modifier = Modifier.padding(top = 4.dp)
-                            )
-                            Text(
-                                text = "Phone: +264 81 123 4567",
-                                style = MaterialTheme.typography.bodySmall,
-                                color = MaterialTheme.colorScheme.onSurfaceVariant,
-                                modifier = Modifier.padding(top = 2.dp)
-                            )
+
+                            Spacer(modifier = Modifier.width(16.dp))
+
+                            Column(
+                                modifier = Modifier.weight(1f)
+                            ) {
+                                Text(
+                                    text = coach?.fullName ?: "Unknown Coach",
+                                    style = MaterialTheme.typography.titleLarge,
+                                    fontWeight = FontWeight.SemiBold
+                                )
+                                Text(
+                                    text = "@${coach?.email?.split("@")?.firstOrNull() ?: "unknown"}",
+                                    style = MaterialTheme.typography.bodyMedium,
+                                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                                    modifier = Modifier.padding(top = 2.dp)
+                                )
+                                Text(
+                                    text = "Email: ${coach?.email ?: "N/A"}",
+                                    style = MaterialTheme.typography.bodySmall,
+                                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                                    modifier = Modifier.padding(top = 4.dp)
+                                )
+                                Text(
+                                    text = "Phone: ${coach?.contactNumber ?: "N/A"}",
+                                    style = MaterialTheme.typography.bodySmall,
+                                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                                    modifier = Modifier.padding(top = 2.dp)
+                                )
+                                team?.let {
+                                    Text(
+                                        text = "Team: ${it.teamName}",
+                                        style = MaterialTheme.typography.bodySmall,
+                                        color = MaterialTheme.colorScheme.onSurfaceVariant,
+                                        modifier = Modifier.padding(top = 2.dp)
+                                    )
+                                }
+                            }
                         }
                     }
                 }
-            }
 
-            item {
-                // Edit Profile Button
-                Button(
-                    onClick = { showEditProfileDialog = true },
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(vertical = 8.dp),
-                    colors = ButtonDefaults.buttonColors(
-                        containerColor = MaterialTheme.colorScheme.primaryContainer,
-                        contentColor = MaterialTheme.colorScheme.onPrimaryContainer
-                    )
-                ) {
-                    Row(
-                        verticalAlignment = Alignment.CenterVertically,
-                        horizontalArrangement = Arrangement.Center
-                    ) {
-                        Icon(
-                            imageVector = Icons.Default.Edit,
-                            contentDescription = "Edit Profile",
-                            modifier = Modifier.size(20.dp)
+                item {
+                    Button(
+                        onClick = { showEditProfileDialog = true },
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(vertical = 8.dp),
+                        colors = ButtonDefaults.buttonColors(
+                            containerColor = MaterialTheme.colorScheme.primaryContainer,
+                            contentColor = MaterialTheme.colorScheme.onPrimaryContainer
                         )
-                        Spacer(modifier = Modifier.width(8.dp))
-                        Text("Edit Profile")
-                    }
-                }
-            }
-
-            item {
-                Text(
-                    text = "Preferences",
-                    style = MaterialTheme.typography.titleMedium,
-                    fontWeight = FontWeight.Medium,
-                    modifier = Modifier.padding(vertical = 8.dp)
-                )
-            }
-
-            items(settingsOptions) { option ->
-                SettingsOptionRow(option)
-            }
-
-            item {
-                Spacer(modifier = Modifier.height(16.dp))
-                // Navigation Button
-                Button(
-                    onClick = { navController.navigate("chat") },
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(vertical = 8.dp),
-                    colors = ButtonDefaults.buttonColors(
-                        containerColor = MaterialTheme.colorScheme.secondary,
-                        contentColor = MaterialTheme.colorScheme.onSecondary
-                    )
-                ) {
-                    Row(
-                        verticalAlignment = Alignment.CenterVertically,
-                        horizontalArrangement = Arrangement.Center
                     ) {
-                        Icon(
-                            imageVector = Icons.Default.Chat,
-                            contentDescription = "Go to Chats",
-                            modifier = Modifier.size(20.dp)
-                        )
-                        Spacer(modifier = Modifier.width(8.dp))
-                        Text("Go to Chats")
-                    }
-                }
-            }
-
-            item {
-                // Logout Button
-                OutlinedButton(
-                    onClick = {
-                        // Handle logout (e.g., clear user session)
-                        navController.navigate("login_screen") { // Updated to match existing route
-                            popUpTo(navController.graph.startDestinationId) { inclusive = true }
-                            launchSingleTop = true
+                        Row(
+                            verticalAlignment = Alignment.CenterVertically,
+                            horizontalArrangement = Arrangement.Center
+                        ) {
+                            Icon(
+                                imageVector = Icons.Default.Edit,
+                                contentDescription = "Edit Profile",
+                                modifier = Modifier.size(20.dp)
+                            )
+                            Spacer(modifier = Modifier.width(8.dp))
+                            Text("Edit Profile")
                         }
-                    },
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(vertical = 8.dp)
-                ) {
-                    Row(
-                        verticalAlignment = Alignment.CenterVertically,
-                        horizontalArrangement = Arrangement.Center
-                    ) {
-                        Icon(
-                            imageVector = Icons.Default.ExitToApp,
-                            contentDescription = "Logout",
-                            modifier = Modifier.size(20.dp)
-                        )
-                        Spacer(modifier = Modifier.width(8.dp))
-                        Text("Logout")
                     }
                 }
             }
         }
     }
 
-    // Edit Profile Dialog
     if (showEditProfileDialog) {
-        val (name, setName) = remember { mutableStateOf("Lucas Scott") }
-        val (handle, setHandle) = remember { mutableStateOf("@lucasscott3") }
-        val (email, setEmail) = remember { mutableStateOf("lucas.scott@example.com") }
-        val (phone, setPhone) = remember { mutableStateOf("+264 81 123 4567") }
+        val (name, setName) = remember { mutableStateOf(coach?.fullName ?: "Unknown Coach") }
+        val (email, setEmail) = remember { mutableStateOf(coach?.email ?: "N/A") }
+        val (phone, setPhone) = remember { mutableStateOf(coach?.contactNumber?.toString() ?: "N/A") }
 
         AlertDialog(
             onDismissRequest = { showEditProfileDialog = false },
@@ -236,14 +221,6 @@ fun SettingsScreen(navController: NavController) {
                         value = name,
                         onValueChange = setName,
                         label = { Text("Name") },
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(bottom = 8.dp)
-                    )
-                    OutlinedTextField(
-                        value = handle,
-                        onValueChange = setHandle,
-                        label = { Text("Handle") },
                         modifier = Modifier
                             .fillMaxWidth()
                             .padding(bottom = 8.dp)
@@ -271,7 +248,21 @@ fun SettingsScreen(navController: NavController) {
             confirmButton = {
                 Button(
                     onClick = {
-                        // Save profile changes (e.g., update in database)
+                        coach = coach?.copy(
+                            fullName = name,
+                            email = email,
+                            contactNumber = phone.toLongOrNull() ?: 0L
+                        )
+                        coach?.let { updatedCoach ->
+                            coroutineScope.launch {
+                                dbHelper.updateUser(
+                                    updatedCoach.userID,
+                                    updatedCoach.fullName,
+                                    updatedCoach.email,
+                                    updatedCoach.contactNumber?.toInt() ?: 0
+                                )
+                            }
+                        }
                         showEditProfileDialog = false
                     }
                 ) {
@@ -285,220 +276,95 @@ fun SettingsScreen(navController: NavController) {
             }
         )
     }
-
-    // Devices Dialog
-    if (showDevicesDialog) {
-        AlertDialog(
-            onDismissRequest = { showDevicesDialog = false },
-            title = { Text("Devices") },
-            text = {
-                Column {
-                    Text("Manage your connected devices.")
-                    Spacer(modifier = Modifier.height(8.dp))
-                    Text("Device 1: Samsung Galaxy S21 (Active)")
-                    Text("Device 2: iPhone 14 (Logged out)")
-                }
-            },
-            confirmButton = {
-                Button(onClick = { showDevicesDialog = false }) {
-                    Text("Close")
-                }
-            },
-            dismissButton = {
-                TextButton(onClick = { showDevicesDialog = false }) {
-                    Text("Cancel")
-                }
-            }
+}
+// Bottom navigation bar composable
+@Composable
+fun SettingsBottomBar(navController: NavController) {
+    NavigationBar(
+        containerColor = HockeyAppTheme.LightNavyBlue,
+        contentColor = HockeyAppTheme.White
+    ) {
+        NavigationBarItem(
+            icon = { Icon(imageVector = Icons.Default.Home, contentDescription = "Home", tint = HockeyAppTheme.White) },
+            label = { Text("Home", color = HockeyAppTheme.White) },
+            selected = true,
+            onClick = { navController.navigate("onboarding") },
+            colors = NavigationBarItemDefaults.colors(
+                selectedIconColor = HockeyAppTheme.White,
+                selectedTextColor = HockeyAppTheme.White,
+                indicatorColor = HockeyAppTheme.AccentBlue,
+                unselectedIconColor = HockeyAppTheme.White.copy(alpha = 0.7f),
+                unselectedTextColor = HockeyAppTheme.White.copy(alpha = 0.7f)
+            )
         )
-    }
-
-    // Notifications Dialog
-    if (showNotificationsDialog) {
-        var pushNotifications by remember { mutableStateOf(true) }
-        var emailNotifications by remember { mutableStateOf(false) }
-
-        AlertDialog(
-            onDismissRequest = { showNotificationsDialog = false },
-            title = { Text("Notifications") },
-            text = {
-                Column {
-                    Row(
-                        modifier = Modifier.fillMaxWidth(),
-                        verticalAlignment = Alignment.CenterVertically
-                    ) {
-                        Text("Push Notifications", modifier = Modifier.weight(1f))
-                        Switch(
-                            checked = pushNotifications,
-                            onCheckedChange = { pushNotifications = it }
-                        )
-                    }
-                    Row(
-                        modifier = Modifier.fillMaxWidth(),
-                        verticalAlignment = Alignment.CenterVertically
-                    ) {
-                        Text("Email Notifications", modifier = Modifier.weight(1f))
-                        Switch(
-                            checked = emailNotifications,
-                            onCheckedChange = { emailNotifications = it }
-                        )
-                    }
-                }
-            },
-            confirmButton = {
-                Button(onClick = { showNotificationsDialog = false }) {
-                    Text("Save")
-                }
-            },
-            dismissButton = {
-                TextButton(onClick = { showNotificationsDialog = false }) {
-                    Text("Cancel")
-                }
-            }
+        NavigationBarItem(
+            icon = { Icon(imageVector = Icons.Default.Group, contentDescription = "Teams", tint = HockeyAppTheme.White.copy(alpha = 0.7f)) },
+            label = { Text("Teams", color = HockeyAppTheme.White.copy(alpha = 0.7f)) },
+            selected = false,
+            onClick = { navController.navigate("team_registration") },
+            colors = NavigationBarItemDefaults.colors(
+                selectedIconColor = HockeyAppTheme.White,
+                selectedTextColor = HockeyAppTheme.White,
+                indicatorColor = HockeyAppTheme.AccentBlue,
+                unselectedIconColor = HockeyAppTheme.White.copy(alpha = 0.7f),
+                unselectedTextColor = HockeyAppTheme.White.copy(alpha = 0.7f)
+            )
         )
-    }
-
-    // Appearance Dialog
-    if (showAppearanceDialog) {
-        var isDarkMode by remember { mutableStateOf(false) }
-
-        AlertDialog(
-            onDismissRequest = { showAppearanceDialog = false },
-            title = { Text("Appearance") },
-            text = {
-                Column {
-                    Row(
-                        modifier = Modifier.fillMaxWidth(),
-                        verticalAlignment = Alignment.CenterVertically
-                    ) {
-                        Text("Dark Mode", modifier = Modifier.weight(1f))
-                        Switch(
-                            checked = isDarkMode,
-                            onCheckedChange = { isDarkMode = it }
-                        )
-                    }
-                }
-            },
-            confirmButton = {
-                Button(onClick = { showAppearanceDialog = false }) {
-                    Text("Save")
-                }
-            },
-            dismissButton = {
-                TextButton(onClick = { showAppearanceDialog = false }) {
-                    Text("Cancel")
-                }
-            }
+        NavigationBarItem(
+            icon = { Icon(imageVector = Icons.Default.Person, contentDescription = "Players", tint = HockeyAppTheme.White.copy(alpha = 0.7f)) },
+            label = { Text("Players", color = HockeyAppTheme.White.copy(alpha = 0.7f)) },
+            selected = false,
+            onClick = { navController.navigate("manage_players") },
+            colors = NavigationBarItemDefaults.colors(
+                selectedIconColor = HockeyAppTheme.White,
+                selectedTextColor = HockeyAppTheme.White,
+                indicatorColor = HockeyAppTheme.AccentBlue,
+                unselectedIconColor = HockeyAppTheme.White.copy(alpha = 0.7f),
+                unselectedTextColor = HockeyAppTheme.White.copy(alpha = 0.7f)
+            )
         )
-    }
-
-    // Language Dialog
-    if (showLanguageDialog) {
-        var selectedLanguage by remember { mutableStateOf("English") }
-
-        AlertDialog(
-            onDismissRequest = { showLanguageDialog = false },
-            title = { Text("Language") },
-            text = {
-                Column {
-                    listOf("English", "Afrikaans", "German").forEach { language ->
-                        Row(
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .clickable { selectedLanguage = language }
-                                .padding(vertical = 8.dp),
-                            verticalAlignment = Alignment.CenterVertically
-                        ) {
-                            RadioButton(
-                                selected = (language == selectedLanguage),
-                                onClick = { selectedLanguage = language }
-                            )
-                            Spacer(modifier = Modifier.width(8.dp))
-                            Text(language)
-                        }
-                    }
-                }
-            },
-            confirmButton = {
-                Button(onClick = { showLanguageDialog = false }) {
-                    Text("Save")
-                }
-            },
-            dismissButton = {
-                TextButton(onClick = { showLanguageDialog = false }) {
-                    Text("Cancel")
-                }
-            }
+        NavigationBarItem(
+            icon = { Icon(imageVector = Icons.Default.Event, contentDescription = "Events", tint = HockeyAppTheme.White.copy(alpha = 0.7f)) },
+            label = { Text("Events", color = HockeyAppTheme.White.copy(alpha = 0.7f)) },
+            selected = false,
+            onClick = { navController.navigate("events") },
+            colors = NavigationBarItemDefaults.colors(
+                selectedIconColor = HockeyAppTheme.White,
+                selectedTextColor = HockeyAppTheme.White,
+                indicatorColor = HockeyAppTheme.AccentBlue,
+                unselectedIconColor = HockeyAppTheme.White.copy(alpha = 0.7f),
+                unselectedTextColor = HockeyAppTheme.White.copy(alpha = 0.7f)
+            )
         )
-    }
-
-    // Privacy & Security Dialog
-    if (showPrivacyDialog) {
-        var twoFactorAuth by remember { mutableStateOf(false) }
-
-        AlertDialog(
-            onDismissRequest = { showPrivacyDialog = false },
-            title = { Text("Privacy & Security") },
-            text = {
-                Column {
-                    Row(
-                        modifier = Modifier.fillMaxWidth(),
-                        verticalAlignment = Alignment.CenterVertically
-                    ) {
-                        Text("Two-Factor Authentication", modifier = Modifier.weight(1f))
-                        Switch(
-                            checked = twoFactorAuth,
-                            onCheckedChange = { twoFactorAuth = it }
-                        )
-                    }
-                    Spacer(modifier = Modifier.height(8.dp))
-                    TextButton(onClick = { /* Navigate to change password */ }) {
-                        Text("Change Password")
-                    }
-                }
-            },
-            confirmButton = {
-                Button(onClick = { showPrivacyDialog = false }) {
-                    Text("Save")
-                }
-            },
-            dismissButton = {
-                TextButton(onClick = { showPrivacyDialog = false }) {
-                    Text("Cancel")
-                }
-            }
+        NavigationBarItem(
+            icon = { Icon(imageVector = Icons.Default.Feedback, contentDescription = "Feedback", tint = HockeyAppTheme.White.copy(alpha = 0.7f)) },
+            label = { Text("Feedback", color = HockeyAppTheme.White.copy(alpha = 0.7f)) },
+            selected = false,
+            onClick = { navController.navigate("manage_feedback") },
+            colors = NavigationBarItemDefaults.colors(
+                selectedIconColor = HockeyAppTheme.White,
+                selectedTextColor = HockeyAppTheme.White,
+                indicatorColor = HockeyAppTheme.AccentBlue,
+                unselectedIconColor = HockeyAppTheme.White.copy(alpha = 0.7f),
+                unselectedTextColor = HockeyAppTheme.White.copy(alpha = 0.7f)
+            )
         )
-    }
-
-    // Storage Dialog
-    if (showStorageDialog) {
-        AlertDialog(
-            onDismissRequest = { showStorageDialog = false },
-            title = { Text("Storage") },
-            text = {
-                Column {
-                    Text("Storage Usage: 150 MB")
-                    Spacer(modifier = Modifier.height(8.dp))
-                    Button(
-                        onClick = { /* Clear cache */ },
-                        modifier = Modifier.fillMaxWidth()
-                    ) {
-                        Text("Clear Cache")
-                    }
-                }
-            },
-            confirmButton = {
-                Button(onClick = { showStorageDialog = false }) {
-                    Text("Close")
-                }
-            },
-            dismissButton = {
-                TextButton(onClick = { showStorageDialog = false }) {
-                    Text("Cancel")
-                }
-            }
+        NavigationBarItem(
+            icon = { Icon(imageVector = Icons.Default.AccountCircle, contentDescription = "Profile", tint = HockeyAppTheme.White.copy(alpha = 0.7f)) },
+            label = { Text("Profile", color = HockeyAppTheme.White.copy(alpha = 0.7f)) },
+            selected = false,
+            onClick = { navController.navigate("settings") },
+            colors = NavigationBarItemDefaults.colors(
+                selectedIconColor = HockeyAppTheme.White,
+                selectedTextColor = HockeyAppTheme.White,
+                indicatorColor = HockeyAppTheme.AccentBlue,
+                unselectedIconColor = HockeyAppTheme.White.copy(alpha = 0.7f),
+                unselectedTextColor = HockeyAppTheme.White.copy(alpha = 0.7f)
+            )
         )
     }
 }
+
 
 data class SettingsOption(val title: String, val icon: ImageVector, val onClick: () -> Unit)
 

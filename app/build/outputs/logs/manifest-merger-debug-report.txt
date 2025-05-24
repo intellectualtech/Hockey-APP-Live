@@ -1,78 +1,82 @@
 -- Merging decision tree log ---
 manifest
-ADDED from C:\Users\cotad\AndroidStudioProjects\HockeyAPPLive\app\src\main\AndroidManifest.xml:2:1-29:12
-INJECTED from C:\Users\cotad\AndroidStudioProjects\HockeyAPPLive\app\src\main\AndroidManifest.xml:2:1-29:12
-INJECTED from C:\Users\cotad\AndroidStudioProjects\HockeyAPPLive\app\src\main\AndroidManifest.xml:2:1-29:12
-INJECTED from C:\Users\cotad\AndroidStudioProjects\HockeyAPPLive\app\src\main\AndroidManifest.xml:2:1-29:12
-MERGED from [com.google.ai.client.generativeai:generativeai:0.9.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\8671f16dec99d0560f6da89a976e6bf5\transformed\generativeai-0.9.0\AndroidManifest.xml:17:1-24:12
-MERGED from [com.google.ai.client.generativeai:common:0.8.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\459895fb3105ccc8954ce4c03feb76b5\transformed\common-0.8.0\AndroidManifest.xml:17:1-24:12
-MERGED from [androidx.datastore:datastore-core-android:1.1.6] C:\Users\cotad\.gradle\caches\8.10.2\transforms\46eda280d64a97c3703e578c3aaaa7b1\transformed\datastore-core-release\AndroidManifest.xml:2:1-7:12
-MERGED from [com.google.android.gms:play-services-games:23.2.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\48028653a82ffc584ef6dacf146db8b7\transformed\play-services-games-23.2.0\AndroidManifest.xml:2:1-8:12
-MERGED from [com.google.android.gms:play-services-drive:17.0.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\732878395a2e110c3c2f16eb66bc0228\transformed\play-services-drive-17.0.0\AndroidManifest.xml:17:1-24:12
-MERGED from [com.google.android.gms:play-services-base:18.5.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\a113bdf225fd0d3e4f70548f96d0533e\transformed\play-services-base-18.5.0\AndroidManifest.xml:2:1-7:12
-MERGED from [com.google.android.gms:play-services-tasks:18.2.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\ba38349ac81ec8cacf35343aef638155\transformed\play-services-tasks-18.2.0\AndroidManifest.xml:2:1-5:12
-MERGED from [com.google.android.gms:play-services-basement:18.4.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\f6aedf5a1b407cb8128943c08dc25e3f\transformed\play-services-basement-18.4.0\AndroidManifest.xml:2:1-9:12
-MERGED from [androidx.navigation:navigation-common-ktx:2.7.7] C:\Users\cotad\.gradle\caches\8.10.2\transforms\272165d1ba9567e1a422a163d24850ff\transformed\navigation-common-ktx-2.7.7\AndroidManifest.xml:2:1-7:12
-MERGED from [androidx.navigation:navigation-runtime-ktx:2.7.7] C:\Users\cotad\.gradle\caches\8.10.2\transforms\8f0af626c38c4a0c46d574d603decb33\transformed\navigation-runtime-ktx-2.7.7\AndroidManifest.xml:2:1-7:12
-MERGED from [androidx.navigation:navigation-common:2.7.7] C:\Users\cotad\.gradle\caches\8.10.2\transforms\893b095c4e26c49b1df76861ae3058f2\transformed\navigation-common-2.7.7\AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.navigation:navigation-runtime:2.7.7] C:\Users\cotad\.gradle\caches\8.10.2\transforms\a0a1b2578876965b98aadfca799142a1\transformed\navigation-runtime-2.7.7\AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.navigation:navigation-compose:2.7.7] C:\Users\cotad\.gradle\caches\8.10.2\transforms\896c0839d21e597574b9f49bafcffe19\transformed\navigation-compose-2.7.7\AndroidManifest.xml:2:1-7:12
-MERGED from [androidx.compose.material3:material3-android:1.3.2] C:\Users\cotad\.gradle\caches\8.10.2\transforms\5d8b14b7e545b461e55fcd92d480604f\transformed\material3-release\AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.compose.material:material-android:1.6.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\b20e1921db6ca5f1b77e85cd2cd14c2c\transformed\material-release\AndroidManifest.xml:2:1-7:12
-MERGED from [androidx.compose.material:material-icons-extended-android:1.6.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\44f94187dcf91df736587dae7df6343b\transformed\material-icons-extended-release\AndroidManifest.xml:2:1-7:12
-MERGED from [androidx.compose.material:material-icons-core-android:1.6.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\546a68735cbd698c69194a928a47a158\transformed\material-icons-core-release\AndroidManifest.xml:2:1-7:12
-MERGED from [androidx.compose.material:material-ripple-android:1.7.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\54a03807a29c0fff42f0da0c1fbe5e2e\transformed\material-ripple-release\AndroidManifest.xml:2:1-7:12
-MERGED from [androidx.compose.animation:animation-core-android:1.7.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\7bc59341070e834d3d3a1feb79e50e3e\transformed\animation-core-release\AndroidManifest.xml:2:1-7:12
-MERGED from [androidx.compose.animation:animation-android:1.7.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\d4fbbcf8b7b7df27b51c736faea920ce\transformed\animation-release\AndroidManifest.xml:2:1-7:12
-MERGED from [androidx.compose.ui:ui-tooling-data-android:1.7.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\e4fa5618657a7edc8772c46f6f4cd5a6\transformed\ui-tooling-data-release\AndroidManifest.xml:2:1-7:12
-MERGED from [androidx.compose.ui:ui-tooling-preview-android:1.7.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\17ad23978f2a17644ff516ca6786175c\transformed\ui-tooling-preview-release\AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.compose.ui:ui-text-android:1.7.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\16bafe5580a3508b9e1c01390fe0ba8e\transformed\ui-text-release\AndroidManifest.xml:2:1-7:12
-MERGED from [androidx.compose.ui:ui-graphics-android:1.7.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\d99b983ed73431e5ea05f142de9e21a5\transformed\ui-graphics-release\AndroidManifest.xml:2:1-7:12
-MERGED from [androidx.compose.ui:ui-geometry-android:1.7.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\1e4dccf75e2ef759d1af9fe441fd0361\transformed\ui-geometry-release\AndroidManifest.xml:2:1-7:12
-MERGED from [androidx.compose.ui:ui-test-manifest:1.7.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\583ab9fa3ea07d210c134f3701142b7c\transformed\ui-test-manifest-1.7.0\AndroidManifest.xml:17:1-28:12
-MERGED from [androidx.compose.ui:ui-util-android:1.7.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\36af26a6cc7d4dea92857257a331aa3c\transformed\ui-util-release\AndroidManifest.xml:2:1-7:12
-MERGED from [androidx.fragment:fragment:1.1.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\e5e15966d4f5eec2b0cd0ccafa95433f\transformed\fragment-1.1.0\AndroidManifest.xml:17:1-24:12
-MERGED from [androidx.loader:loader:1.0.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\c93bbea9ddb94ec21934ee2778ee2786\transformed\loader-1.0.0\AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.emoji2:emoji2:1.3.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\e400760b959edfdfc60090ff30fa9d3a\transformed\emoji2-1.3.0\AndroidManifest.xml:17:1-35:12
-MERGED from [androidx.savedstate:savedstate-ktx:1.2.1] C:\Users\cotad\.gradle\caches\8.10.2\transforms\3580285135ceab98b757e9e779bf29da\transformed\savedstate-ktx-1.2.1\AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.savedstate:savedstate:1.2.1] C:\Users\cotad\.gradle\caches\8.10.2\transforms\5088dc9207634477eef13f6368c72c0b\transformed\savedstate-1.2.1\AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.8.3] C:\Users\cotad\.gradle\caches\8.10.2\transforms\d908efd68cb38691ee91da08292dfa77\transformed\lifecycle-viewmodel-2.8.3\AndroidManifest.xml:2:1-5:12
-MERGED from [androidx.lifecycle:lifecycle-viewmodel-android:2.8.3] C:\Users\cotad\.gradle\caches\8.10.2\transforms\54c49e21662492a511b47cacf39fb66f\transformed\lifecycle-viewmodel-release\AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.lifecycle:lifecycle-livedata-core-ktx:2.8.3] C:\Users\cotad\.gradle\caches\8.10.2\transforms\95d233e213fa3a89a524df298972e4c2\transformed\lifecycle-livedata-core-ktx-2.8.3\AndroidManifest.xml:2:1-7:12
-MERGED from [androidx.lifecycle:lifecycle-runtime-ktx-android:2.8.3] C:\Users\cotad\.gradle\caches\8.10.2\transforms\5aa74bdf86830e330ddfa089d3f9ad31\transformed\lifecycle-runtime-ktx-release\AndroidManifest.xml:2:1-7:12
-MERGED from [androidx.lifecycle:lifecycle-runtime-android:2.8.3] C:\Users\cotad\.gradle\caches\8.10.2\transforms\51558ecaa9e62f41c8a50fd586b987d2\transformed\lifecycle-runtime-release\AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.3] C:\Users\cotad\.gradle\caches\8.10.2\transforms\619e37008d022ca895631557d98ce6fb\transformed\lifecycle-viewmodel-ktx-2.8.3\AndroidManifest.xml:2:1-7:12
-MERGED from [androidx.lifecycle:lifecycle-viewmodel-savedstate:2.8.3] C:\Users\cotad\.gradle\caches\8.10.2\transforms\c9607510d608478615fc25c37a60e752\transformed\lifecycle-viewmodel-savedstate-2.8.3\AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.lifecycle:lifecycle-process:2.8.3] C:\Users\cotad\.gradle\caches\8.10.2\transforms\90091b77c74b9b2cefa30767887ab073\transformed\lifecycle-process-2.8.3\AndroidManifest.xml:17:1-35:12
-MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.8.3] C:\Users\cotad\.gradle\caches\8.10.2\transforms\b55bc4f63cae06e8fd3cee22fba750c5\transformed\lifecycle-livedata-core-2.8.3\AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.lifecycle:lifecycle-livedata:2.8.3] C:\Users\cotad\.gradle\caches\8.10.2\transforms\e6828e3c8aa609ade4f3def8e716ca5d\transformed\lifecycle-livedata-2.8.3\AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.lifecycle:lifecycle-runtime-compose-android:2.8.3] C:\Users\cotad\.gradle\caches\8.10.2\transforms\dd1c64e4cbc06d175cd3621d7dcef6d8\transformed\lifecycle-runtime-compose-release\AndroidManifest.xml:2:1-7:12
-MERGED from [androidx.lifecycle:lifecycle-viewmodel-compose-android:2.8.3] C:\Users\cotad\.gradle\caches\8.10.2\transforms\07885b1f06ded0efc5bfff1c0069c2cc\transformed\lifecycle-viewmodel-compose-release\AndroidManifest.xml:2:1-7:12
-MERGED from [androidx.compose.ui:ui-android:1.7.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\0504395583baa951e9751e5f48db34d6\transformed\ui-release\AndroidManifest.xml:2:1-7:12
-MERGED from [androidx.compose.foundation:foundation-android:1.7.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\52b05de6be8fd03dd3312bed71bdd376\transformed\foundation-release\AndroidManifest.xml:2:1-7:12
-MERGED from [androidx.compose.foundation:foundation-layout-android:1.7.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\1382ec4674d6d37b13f956a95f0060ef\transformed\foundation-layout-release\AndroidManifest.xml:2:1-7:12
-MERGED from [androidx.compose.ui:ui-unit-android:1.7.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\d78ebceb9829763417c425021790582f\transformed\ui-unit-release\AndroidManifest.xml:2:1-7:12
-MERGED from [androidx.compose.ui:ui-tooling-android:1.7.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\f4149c21731fe21ceef988c847e58986\transformed\ui-tooling-release\AndroidManifest.xml:17:1-28:12
-MERGED from [androidx.activity:activity-compose:1.8.2] C:\Users\cotad\.gradle\caches\8.10.2\transforms\73d485fd798297e4e3055f8b47c7ec71\transformed\activity-compose-1.8.2\AndroidManifest.xml:2:1-7:12
-MERGED from [androidx.activity:activity-ktx:1.8.2] C:\Users\cotad\.gradle\caches\8.10.2\transforms\c2eaa3ef60a1abacdefaa96b5ffb3eaf\transformed\activity-ktx-1.8.2\AndroidManifest.xml:2:1-7:12
-MERGED from [androidx.activity:activity:1.8.2] C:\Users\cotad\.gradle\caches\8.10.2\transforms\832453e37cbd7e91172a6cb8d469920b\transformed\activity-1.8.2\AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.viewpager:viewpager:1.0.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\88628dd88a7ffdecdc928c0aafb90056\transformed\viewpager-1.0.0\AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.customview:customview-poolingcontainer:1.0.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\62e872f2dbc7bb13d15431d3960346d6\transformed\customview-poolingcontainer-1.0.0\AndroidManifest.xml:17:1-23:12
-MERGED from [androidx.core:core-ktx:1.13.1] C:\Users\cotad\.gradle\caches\8.10.2\transforms\01dc94ffdada7b49da6243d5a896b75a\transformed\core-ktx-1.13.1\AndroidManifest.xml:2:1-7:12
-MERGED from [androidx.customview:customview:1.0.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\9cb2d698c61103bdb40b867c035c528f\transformed\customview-1.0.0\AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.autofill:autofill:1.0.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\72889483c67d897e24d930412c931fc3\transformed\autofill-1.0.0\AndroidManifest.xml:17:1-24:12
-MERGED from [androidx.graphics:graphics-path:1.0.1] C:\Users\cotad\.gradle\caches\8.10.2\transforms\d0c11082e17ff912bf1862b715c37330\transformed\graphics-path-1.0.1\AndroidManifest.xml:2:1-7:12
-MERGED from [androidx.core:core:1.13.1] C:\Users\cotad\.gradle\caches\8.10.2\transforms\1e50e9b05d9bd82a8046b64a9941a0bb\transformed\core-1.13.1\AndroidManifest.xml:17:1-30:12
-MERGED from [androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\cotad\.gradle\caches\8.10.2\transforms\02a1164e7d223a9a223f0fdd0f4085d1\transformed\profileinstaller-1.3.1\AndroidManifest.xml:17:1-55:12
-MERGED from [androidx.compose.runtime:runtime-saveable-android:1.7.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\b34a962706bfa32aa573172b46661b83\transformed\runtime-saveable-release\AndroidManifest.xml:2:1-7:12
-MERGED from [androidx.compose.runtime:runtime-android:1.7.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\85a979aa383395aac913098e7c0753f1\transformed\runtime-release\AndroidManifest.xml:2:1-7:12
-MERGED from [androidx.sqlite:sqlite:2.4.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\eea2b0ac6a241d6cd1b88de67223f8c7\transformed\sqlite-2.4.0\AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.annotation:annotation-experimental:1.4.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\c6ce4f5b27676b06c46d21bfa68b1220\transformed\annotation-experimental-1.4.0\AndroidManifest.xml:2:1-7:12
-MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\cotad\.gradle\caches\8.10.2\transforms\a5a335efcc0ded2c1639ed6aac8072e6\transformed\versionedparcelable-1.1.1\AndroidManifest.xml:17:1-27:12
-MERGED from [androidx.startup:startup-runtime:1.1.1] C:\Users\cotad\.gradle\caches\8.10.2\transforms\f816a24fc4ddcb0812ce24c7284294bb\transformed\startup-runtime-1.1.1\AndroidManifest.xml:17:1-33:12
-MERGED from [androidx.tracing:tracing:1.0.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\c43239d7a4e67bb5c4d6c1f012598728\transformed\tracing-1.0.0\AndroidManifest.xml:17:1-24:12
-MERGED from [androidx.interpolator:interpolator:1.0.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\080286306ce4b4927a696bb5f4bafd52\transformed\interpolator-1.0.0\AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.arch.core:core-runtime:2.2.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\f5220206c6c9fc54d21da903e0a45b8b\transformed\core-runtime-2.2.0\AndroidManifest.xml:17:1-22:12
+ADDED from C:\Users\cotad\AndroidStudioProjects\HockeyAPPLive\app\src\main\AndroidManifest.xml:2:1-31:12
+INJECTED from C:\Users\cotad\AndroidStudioProjects\HockeyAPPLive\app\src\main\AndroidManifest.xml:2:1-31:12
+INJECTED from C:\Users\cotad\AndroidStudioProjects\HockeyAPPLive\app\src\main\AndroidManifest.xml:2:1-31:12
+INJECTED from C:\Users\cotad\AndroidStudioProjects\HockeyAPPLive\app\src\main\AndroidManifest.xml:2:1-31:12
+MERGED from [com.google.ai.client.generativeai:generativeai:0.9.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\d93b328af3d45b38c34f53522e5ead92\transformed\generativeai-0.9.0\AndroidManifest.xml:17:1-24:12
+MERGED from [com.google.ai.client.generativeai:common:0.8.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\7b147ebf960ae928c0b2942c4c03b6cb\transformed\common-0.8.0\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.datastore:datastore-core-android:1.1.6] C:\Users\cotad\.gradle\caches\8.10.2\transforms\1e5e3f5ab57039da77ca3141a3d86024\transformed\datastore-core-release\AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.wear.compose:compose-material-core:1.4.1] C:\Users\cotad\.gradle\caches\8.10.2\transforms\74e3f6c0783814e298a3f579104104ed\transformed\compose-material-core-1.4.1\AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.wear.compose:compose-foundation:1.4.1] C:\Users\cotad\.gradle\caches\8.10.2\transforms\dd633abfcfbb33ac3c9a4a94a724ce69\transformed\compose-foundation-1.4.1\AndroidManifest.xml:17:1-28:12
+MERGED from [androidx.wear.compose:compose-material:1.4.1] C:\Users\cotad\.gradle\caches\8.10.2\transforms\e851b8e1bee6d464e446ec2714a4d2ba\transformed\compose-material-1.4.1\AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.wear.compose:compose-navigation:1.4.1] C:\Users\cotad\.gradle\caches\8.10.2\transforms\94e6d941860a58b1fc9c253773aa032c\transformed\compose-navigation-1.4.1\AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.navigation:navigation-common-ktx:2.7.7] C:\Users\cotad\.gradle\caches\8.10.2\transforms\217e9bee8f440cb6e7d9ffdb47664890\transformed\navigation-common-ktx-2.7.7\AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.navigation:navigation-runtime-ktx:2.7.7] C:\Users\cotad\.gradle\caches\8.10.2\transforms\9c948dd78f32488f93b41e588920e70b\transformed\navigation-runtime-ktx-2.7.7\AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.navigation:navigation-compose:2.7.7] C:\Users\cotad\.gradle\caches\8.10.2\transforms\e8e4aa47904a9b107ebd4cf323004918\transformed\navigation-compose-2.7.7\AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.navigation:navigation-runtime:2.7.7] C:\Users\cotad\.gradle\caches\8.10.2\transforms\4257a9004556897741bd4183497c8560\transformed\navigation-runtime-2.7.7\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.navigation:navigation-common:2.7.7] C:\Users\cotad\.gradle\caches\8.10.2\transforms\30bc1596bb0ef4bbe264ce6800576b44\transformed\navigation-common-2.7.7\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.compose.material3:material3-android:1.3.2] C:\Users\cotad\.gradle\caches\8.10.2\transforms\d1653e85debbe85a718d93788c6856f4\transformed\material3-release\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.compose.material:material-android:1.5.4] C:\Users\cotad\.gradle\caches\8.10.2\transforms\f1331a6bfb6b7fe6b4d770e0f919540b\transformed\material-release\AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.compose.material:material-icons-extended-android:1.5.4] C:\Users\cotad\.gradle\caches\8.10.2\transforms\5fcce8dde8b87a57b43099f2600f54dd\transformed\material-icons-extended-release\AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.compose.material:material-ripple-android:1.7.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\9026254c1f2e957b4888396905ee8074\transformed\material-ripple-release\AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.compose.foundation:foundation-android:1.7.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\dc23583e1f2f25fdf40e67ff4cbcf2e2\transformed\foundation-release\AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.compose.animation:animation-core-android:1.7.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\d60b90297cf5ff4820e3b14973f8533f\transformed\animation-core-release\AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.compose.animation:animation-android:1.7.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\577caf1c90265a243315973d8b2075ab\transformed\animation-release\AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.compose.foundation:foundation-layout-android:1.7.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\ddf556e0a888ecbbf820cfcde13a96ee\transformed\foundation-layout-release\AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.compose.ui:ui-tooling-data-android:1.7.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\27857fd9ca31d48b6d341fbb7bf520e0\transformed\ui-tooling-data-release\AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.compose.ui:ui-tooling-preview-android:1.7.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\a7439e98a4672125f5d9dd6ce601856b\transformed\ui-tooling-preview-release\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.compose.ui:ui-geometry-android:1.7.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\cb4b9f7095a5b63a20af10dd3ea9be65\transformed\ui-geometry-release\AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.compose.ui:ui-graphics-android:1.7.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\85a1fcb26b4a4703939ced55a26c7fe4\transformed\ui-graphics-release\AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.compose.ui:ui-unit-android:1.7.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\dec820bd31335e6828cf5c66136022cd\transformed\ui-unit-release\AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.compose.ui:ui-util-android:1.7.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\9f446fe31fe600de70cd72d7dfd3f551\transformed\ui-util-release\AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.compose.ui:ui-text-android:1.7.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\aff49356b6b347b0cfc4c7c425a306cb\transformed\ui-text-release\AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.compose.ui:ui-test-manifest:1.7.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\9bfb81bf07b13a43a5c24f50e5d98f9e\transformed\ui-test-manifest-1.7.0\AndroidManifest.xml:17:1-28:12
+MERGED from [androidx.compose.material:material-icons-core-android:1.7.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\46d9a87a5b5882ede1fa3a81eaecdf93\transformed\material-icons-core-release\AndroidManifest.xml:2:1-7:12
+MERGED from [com.google.android.gms:play-services-games:23.2.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\2d8556054b6bc9c91c7f3a04852409f6\transformed\play-services-games-23.2.0\AndroidManifest.xml:2:1-8:12
+MERGED from [com.google.android.gms:play-services-drive:17.0.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\e592049eb437f9c3363b1102a4f6287a\transformed\play-services-drive-17.0.0\AndroidManifest.xml:17:1-24:12
+MERGED from [com.google.android.gms:play-services-base:18.5.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\64984f9fc3a4da34d7cdf6c77a69a0f8\transformed\play-services-base-18.5.0\AndroidManifest.xml:2:1-7:12
+MERGED from [com.google.android.gms:play-services-tasks:18.2.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\710c213ddbed0e603b7fda493053688a\transformed\play-services-tasks-18.2.0\AndroidManifest.xml:2:1-5:12
+MERGED from [com.google.android.gms:play-services-basement:18.4.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\a74b555f688daa4f69cf44696f76beff\transformed\play-services-basement-18.4.0\AndroidManifest.xml:2:1-9:12
+MERGED from [androidx.fragment:fragment:1.1.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\cbd5b44803dcafc4303433f52449d92b\transformed\fragment-1.1.0\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.loader:loader:1.0.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\996d77807f0ff34850bcfc6d98da2b55\transformed\loader-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.emoji2:emoji2:1.3.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\b0a02b88b4c0110fca76690b6e2a7adc\transformed\emoji2-1.3.0\AndroidManifest.xml:17:1-35:12
+MERGED from [androidx.viewpager:viewpager:1.0.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\ee0b07bdb37f08094efa6e0ee80e1564\transformed\viewpager-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.autofill:autofill:1.0.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\1c990ba63db06d32a6a2d46f3fbcc72c\transformed\autofill-1.0.0\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.customview:customview-poolingcontainer:1.0.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\0d8548bea48962efa7b705d96039a66e\transformed\customview-poolingcontainer-1.0.0\AndroidManifest.xml:17:1-23:12
+MERGED from [androidx.core:core-ktx:1.13.1] C:\Users\cotad\.gradle\caches\8.10.2\transforms\6cd2532ef3f6d815fc9f86baf3711f7a\transformed\core-ktx-1.13.1\AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.customview:customview:1.0.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\004e3b8472522174afb694b618cfe082\transformed\customview-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.graphics:graphics-path:1.0.1] C:\Users\cotad\.gradle\caches\8.10.2\transforms\b29bc63c4042366fce21c3666ddd75af\transformed\graphics-path-1.0.1\AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.core:core:1.13.1] C:\Users\cotad\.gradle\caches\8.10.2\transforms\023b3d9e2bd3c5c3ba41f194fba8e5af\transformed\core-1.13.1\AndroidManifest.xml:17:1-30:12
+MERGED from [androidx.savedstate:savedstate-ktx:1.2.1] C:\Users\cotad\.gradle\caches\8.10.2\transforms\2939c65a74f655fa81b397d0f092e5a2\transformed\savedstate-ktx-1.2.1\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.savedstate:savedstate:1.2.1] C:\Users\cotad\.gradle\caches\8.10.2\transforms\27e29c1ae607bde9aebe767a8c69dcd6\transformed\savedstate-1.2.1\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.8.3] C:\Users\cotad\.gradle\caches\8.10.2\transforms\ab1edb36b0b8ba45b8c4211e6b3855f4\transformed\lifecycle-viewmodel-2.8.3\AndroidManifest.xml:2:1-5:12
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-android:2.8.3] C:\Users\cotad\.gradle\caches\8.10.2\transforms\1143afc2942b7434e2c8967a446760de\transformed\lifecycle-viewmodel-release\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-livedata-core-ktx:2.8.3] C:\Users\cotad\.gradle\caches\8.10.2\transforms\95f04df7cefb46429067f5aee3ad3b92\transformed\lifecycle-livedata-core-ktx-2.8.3\AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.lifecycle:lifecycle-runtime-ktx-android:2.8.3] C:\Users\cotad\.gradle\caches\8.10.2\transforms\99f3bce5562528eb112eb9d1c2822413\transformed\lifecycle-runtime-ktx-release\AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.lifecycle:lifecycle-runtime-android:2.8.3] C:\Users\cotad\.gradle\caches\8.10.2\transforms\4d7294362ee76053211c450dfd9beef0\transformed\lifecycle-runtime-release\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.3] C:\Users\cotad\.gradle\caches\8.10.2\transforms\dc8315de9727903dfe6e2d7d953d50e9\transformed\lifecycle-viewmodel-ktx-2.8.3\AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-savedstate:2.8.3] C:\Users\cotad\.gradle\caches\8.10.2\transforms\4eec2cefb9bb8e8912f69c6a3a62c19a\transformed\lifecycle-viewmodel-savedstate-2.8.3\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-process:2.8.3] C:\Users\cotad\.gradle\caches\8.10.2\transforms\5206a028ce0bb97565cd50f973b85c6b\transformed\lifecycle-process-2.8.3\AndroidManifest.xml:17:1-35:12
+MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.8.3] C:\Users\cotad\.gradle\caches\8.10.2\transforms\96245a451dcf5676436c3bd4993d10be\transformed\lifecycle-livedata-core-2.8.3\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-livedata:2.8.3] C:\Users\cotad\.gradle\caches\8.10.2\transforms\d5ada758de729f2714fb99adf52d6f02\transformed\lifecycle-livedata-2.8.3\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-runtime-compose-android:2.8.3] C:\Users\cotad\.gradle\caches\8.10.2\transforms\fb8ad70cd2542dfdbce3c33c29b2bc23\transformed\lifecycle-runtime-compose-release\AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-compose-android:2.8.3] C:\Users\cotad\.gradle\caches\8.10.2\transforms\6fcfc356a7cf34a5063f85ab1969ac22\transformed\lifecycle-viewmodel-compose-release\AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.compose.ui:ui-android:1.7.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\eef64ddde80f28f2ed6282d259d23772\transformed\ui-release\AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.compose.ui:ui-tooling-android:1.7.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\5aaec9dbf419672f2f981091bc6a66b2\transformed\ui-tooling-release\AndroidManifest.xml:17:1-28:12
+MERGED from [androidx.activity:activity-compose:1.8.2] C:\Users\cotad\.gradle\caches\8.10.2\transforms\b0c762dbb16ac22fdcfab45822caffd0\transformed\activity-compose-1.8.2\AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.activity:activity-ktx:1.8.2] C:\Users\cotad\.gradle\caches\8.10.2\transforms\30508a25eda4a9e1e0d72f6f7e13ead2\transformed\activity-ktx-1.8.2\AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.activity:activity:1.8.2] C:\Users\cotad\.gradle\caches\8.10.2\transforms\f4d05600be9529244ecc72a76eaefe0a\transformed\activity-1.8.2\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\cotad\.gradle\caches\8.10.2\transforms\00bf976b0a66db2bcf3caf7a45ef2b63\transformed\profileinstaller-1.3.1\AndroidManifest.xml:17:1-55:12
+MERGED from [androidx.compose.runtime:runtime-saveable-android:1.7.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\3e644562783a02b3d938e497b0449701\transformed\runtime-saveable-release\AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.compose.runtime:runtime-android:1.7.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\eb660a8eac94b1828f91edce8a5bbaa7\transformed\runtime-release\AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.sqlite:sqlite:2.4.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\760d831337b329f575b28df90a4b8e28\transformed\sqlite-2.4.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.annotation:annotation-experimental:1.4.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\2e271f5ee39261ccf61ac4d9a3229b81\transformed\annotation-experimental-1.4.0\AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\cotad\.gradle\caches\8.10.2\transforms\51534a50ed13b2e88a22c107f6179bcc\transformed\versionedparcelable-1.1.1\AndroidManifest.xml:17:1-27:12
+MERGED from [androidx.startup:startup-runtime:1.1.1] C:\Users\cotad\.gradle\caches\8.10.2\transforms\347c757e5d95848b9f3531e1b97fe2ca\transformed\startup-runtime-1.1.1\AndroidManifest.xml:17:1-33:12
+MERGED from [androidx.tracing:tracing:1.0.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\7042d893d9bffd6a41435ab2dff67e43\transformed\tracing-1.0.0\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.interpolator:interpolator:1.0.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\76a55d71920f5832d4ff116322ae7b32\transformed\interpolator-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.arch.core:core-runtime:2.2.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\1c8b04429d8d6083b6c8402088ec2565\transformed\core-runtime-2.2.0\AndroidManifest.xml:17:1-22:12
 	package
 		INJECTED from C:\Users\cotad\AndroidStudioProjects\HockeyAPPLive\app\src\main\AndroidManifest.xml
 	android:versionName
@@ -83,344 +87,362 @@ MERGED from [androidx.arch.core:core-runtime:2.2.0] C:\Users\cotad\.gradle\cache
 		INJECTED from C:\Users\cotad\AndroidStudioProjects\HockeyAPPLive\app\src\main\AndroidManifest.xml
 	xmlns:android
 		ADDED from C:\Users\cotad\AndroidStudioProjects\HockeyAPPLive\app\src\main\AndroidManifest.xml:2:11-69
-application
-ADDED from C:\Users\cotad\AndroidStudioProjects\HockeyAPPLive\app\src\main\AndroidManifest.xml:5:5-26:19
-INJECTED from C:\Users\cotad\AndroidStudioProjects\HockeyAPPLive\app\src\main\AndroidManifest.xml:5:5-26:19
-MERGED from [com.google.android.gms:play-services-games:23.2.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\48028653a82ffc584ef6dacf146db8b7\transformed\play-services-games-23.2.0\AndroidManifest.xml:6:5-20
-MERGED from [com.google.android.gms:play-services-games:23.2.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\48028653a82ffc584ef6dacf146db8b7\transformed\play-services-games-23.2.0\AndroidManifest.xml:6:5-20
-MERGED from [com.google.android.gms:play-services-drive:17.0.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\732878395a2e110c3c2f16eb66bc0228\transformed\play-services-drive-17.0.0\AndroidManifest.xml:22:5-20
-MERGED from [com.google.android.gms:play-services-drive:17.0.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\732878395a2e110c3c2f16eb66bc0228\transformed\play-services-drive-17.0.0\AndroidManifest.xml:22:5-20
-MERGED from [com.google.android.gms:play-services-base:18.5.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\a113bdf225fd0d3e4f70548f96d0533e\transformed\play-services-base-18.5.0\AndroidManifest.xml:4:5-6:19
-MERGED from [com.google.android.gms:play-services-base:18.5.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\a113bdf225fd0d3e4f70548f96d0533e\transformed\play-services-base-18.5.0\AndroidManifest.xml:4:5-6:19
-MERGED from [com.google.android.gms:play-services-tasks:18.2.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\ba38349ac81ec8cacf35343aef638155\transformed\play-services-tasks-18.2.0\AndroidManifest.xml:4:5-20
-MERGED from [com.google.android.gms:play-services-tasks:18.2.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\ba38349ac81ec8cacf35343aef638155\transformed\play-services-tasks-18.2.0\AndroidManifest.xml:4:5-20
-MERGED from [com.google.android.gms:play-services-basement:18.4.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\f6aedf5a1b407cb8128943c08dc25e3f\transformed\play-services-basement-18.4.0\AndroidManifest.xml:5:5-7:19
-MERGED from [com.google.android.gms:play-services-basement:18.4.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\f6aedf5a1b407cb8128943c08dc25e3f\transformed\play-services-basement-18.4.0\AndroidManifest.xml:5:5-7:19
-MERGED from [androidx.compose.ui:ui-test-manifest:1.7.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\583ab9fa3ea07d210c134f3701142b7c\transformed\ui-test-manifest-1.7.0\AndroidManifest.xml:22:5-26:19
-MERGED from [androidx.compose.ui:ui-test-manifest:1.7.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\583ab9fa3ea07d210c134f3701142b7c\transformed\ui-test-manifest-1.7.0\AndroidManifest.xml:22:5-26:19
-MERGED from [androidx.emoji2:emoji2:1.3.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\e400760b959edfdfc60090ff30fa9d3a\transformed\emoji2-1.3.0\AndroidManifest.xml:23:5-33:19
-MERGED from [androidx.emoji2:emoji2:1.3.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\e400760b959edfdfc60090ff30fa9d3a\transformed\emoji2-1.3.0\AndroidManifest.xml:23:5-33:19
-MERGED from [androidx.lifecycle:lifecycle-process:2.8.3] C:\Users\cotad\.gradle\caches\8.10.2\transforms\90091b77c74b9b2cefa30767887ab073\transformed\lifecycle-process-2.8.3\AndroidManifest.xml:23:5-33:19
-MERGED from [androidx.lifecycle:lifecycle-process:2.8.3] C:\Users\cotad\.gradle\caches\8.10.2\transforms\90091b77c74b9b2cefa30767887ab073\transformed\lifecycle-process-2.8.3\AndroidManifest.xml:23:5-33:19
-MERGED from [androidx.compose.ui:ui-tooling-android:1.7.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\f4149c21731fe21ceef988c847e58986\transformed\ui-tooling-release\AndroidManifest.xml:22:5-26:19
-MERGED from [androidx.compose.ui:ui-tooling-android:1.7.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\f4149c21731fe21ceef988c847e58986\transformed\ui-tooling-release\AndroidManifest.xml:22:5-26:19
-MERGED from [androidx.core:core:1.13.1] C:\Users\cotad\.gradle\caches\8.10.2\transforms\1e50e9b05d9bd82a8046b64a9941a0bb\transformed\core-1.13.1\AndroidManifest.xml:28:5-89
-MERGED from [androidx.core:core:1.13.1] C:\Users\cotad\.gradle\caches\8.10.2\transforms\1e50e9b05d9bd82a8046b64a9941a0bb\transformed\core-1.13.1\AndroidManifest.xml:28:5-89
-MERGED from [androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\cotad\.gradle\caches\8.10.2\transforms\02a1164e7d223a9a223f0fdd0f4085d1\transformed\profileinstaller-1.3.1\AndroidManifest.xml:23:5-53:19
-MERGED from [androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\cotad\.gradle\caches\8.10.2\transforms\02a1164e7d223a9a223f0fdd0f4085d1\transformed\profileinstaller-1.3.1\AndroidManifest.xml:23:5-53:19
-MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\cotad\.gradle\caches\8.10.2\transforms\a5a335efcc0ded2c1639ed6aac8072e6\transformed\versionedparcelable-1.1.1\AndroidManifest.xml:24:5-25:19
-MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\cotad\.gradle\caches\8.10.2\transforms\a5a335efcc0ded2c1639ed6aac8072e6\transformed\versionedparcelable-1.1.1\AndroidManifest.xml:24:5-25:19
-MERGED from [androidx.startup:startup-runtime:1.1.1] C:\Users\cotad\.gradle\caches\8.10.2\transforms\f816a24fc4ddcb0812ce24c7284294bb\transformed\startup-runtime-1.1.1\AndroidManifest.xml:25:5-31:19
-MERGED from [androidx.startup:startup-runtime:1.1.1] C:\Users\cotad\.gradle\caches\8.10.2\transforms\f816a24fc4ddcb0812ce24c7284294bb\transformed\startup-runtime-1.1.1\AndroidManifest.xml:25:5-31:19
-	android:extractNativeLibs
-		INJECTED from C:\Users\cotad\AndroidStudioProjects\HockeyAPPLive\app\src\main\AndroidManifest.xml
-	android:appComponentFactory
-		ADDED from [androidx.core:core:1.13.1] C:\Users\cotad\.gradle\caches\8.10.2\transforms\1e50e9b05d9bd82a8046b64a9941a0bb\transformed\core-1.13.1\AndroidManifest.xml:28:18-86
-	android:supportsRtl
-		ADDED from C:\Users\cotad\AndroidStudioProjects\HockeyAPPLive\app\src\main\AndroidManifest.xml:12:9-35
-	android:label
-		ADDED from C:\Users\cotad\AndroidStudioProjects\HockeyAPPLive\app\src\main\AndroidManifest.xml:10:9-41
-	android:fullBackupContent
-		ADDED from C:\Users\cotad\AndroidStudioProjects\HockeyAPPLive\app\src\main\AndroidManifest.xml:8:9-54
-	android:roundIcon
-		ADDED from C:\Users\cotad\AndroidStudioProjects\HockeyAPPLive\app\src\main\AndroidManifest.xml:11:9-54
-	tools:targetApi
-		ADDED from C:\Users\cotad\AndroidStudioProjects\HockeyAPPLive\app\src\main\AndroidManifest.xml:14:9-29
-	android:icon
-		ADDED from C:\Users\cotad\AndroidStudioProjects\HockeyAPPLive\app\src\main\AndroidManifest.xml:9:9-43
-	android:allowBackup
-		ADDED from C:\Users\cotad\AndroidStudioProjects\HockeyAPPLive\app\src\main\AndroidManifest.xml:6:9-35
-	android:theme
-		ADDED from C:\Users\cotad\AndroidStudioProjects\HockeyAPPLive\app\src\main\AndroidManifest.xml:13:9-51
-	android:dataExtractionRules
-		ADDED from C:\Users\cotad\AndroidStudioProjects\HockeyAPPLive\app\src\main\AndroidManifest.xml:7:9-65
-activity#com.example.hockeyapplive.MainActivity
-ADDED from C:\Users\cotad\AndroidStudioProjects\HockeyAPPLive\app\src\main\AndroidManifest.xml:15:9-25:20
-	android:label
-		ADDED from C:\Users\cotad\AndroidStudioProjects\HockeyAPPLive\app\src\main\AndroidManifest.xml:18:13-45
-	android:exported
-		ADDED from C:\Users\cotad\AndroidStudioProjects\HockeyAPPLive\app\src\main\AndroidManifest.xml:17:13-36
-	android:theme
-		ADDED from C:\Users\cotad\AndroidStudioProjects\HockeyAPPLive\app\src\main\AndroidManifest.xml:19:13-55
-	android:name
-		ADDED from C:\Users\cotad\AndroidStudioProjects\HockeyAPPLive\app\src\main\AndroidManifest.xml:16:13-41
-intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
-ADDED from C:\Users\cotad\AndroidStudioProjects\HockeyAPPLive\app\src\main\AndroidManifest.xml:20:13-24:29
-action#android.intent.action.MAIN
-ADDED from C:\Users\cotad\AndroidStudioProjects\HockeyAPPLive\app\src\main\AndroidManifest.xml:21:17-69
-	android:name
-		ADDED from C:\Users\cotad\AndroidStudioProjects\HockeyAPPLive\app\src\main\AndroidManifest.xml:21:25-66
-category#android.intent.category.LAUNCHER
-ADDED from C:\Users\cotad\AndroidStudioProjects\HockeyAPPLive\app\src\main\AndroidManifest.xml:23:17-77
-	android:name
-		ADDED from C:\Users\cotad\AndroidStudioProjects\HockeyAPPLive\app\src\main\AndroidManifest.xml:23:27-74
-uses-permission#android.permission.INTERNET
-ADDED from C:\Users\cotad\AndroidStudioProjects\HockeyAPPLive\app\src\main\AndroidManifest.xml:27:5-67
-MERGED from [com.google.ai.client.generativeai:generativeai:0.9.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\8671f16dec99d0560f6da89a976e6bf5\transformed\generativeai-0.9.0\AndroidManifest.xml:22:5-67
-MERGED from [com.google.ai.client.generativeai:generativeai:0.9.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\8671f16dec99d0560f6da89a976e6bf5\transformed\generativeai-0.9.0\AndroidManifest.xml:22:5-67
-MERGED from [com.google.ai.client.generativeai:common:0.8.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\459895fb3105ccc8954ce4c03feb76b5\transformed\common-0.8.0\AndroidManifest.xml:22:5-67
-MERGED from [com.google.ai.client.generativeai:common:0.8.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\459895fb3105ccc8954ce4c03feb76b5\transformed\common-0.8.0\AndroidManifest.xml:22:5-67
-	android:name
-		ADDED from C:\Users\cotad\AndroidStudioProjects\HockeyAPPLive\app\src\main\AndroidManifest.xml:27:22-64
 uses-sdk
-INJECTED from C:\Users\cotad\AndroidStudioProjects\HockeyAPPLive\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
-INJECTED from C:\Users\cotad\AndroidStudioProjects\HockeyAPPLive\app\src\main\AndroidManifest.xml
-INJECTED from C:\Users\cotad\AndroidStudioProjects\HockeyAPPLive\app\src\main\AndroidManifest.xml
-MERGED from [com.google.ai.client.generativeai:generativeai:0.9.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\8671f16dec99d0560f6da89a976e6bf5\transformed\generativeai-0.9.0\AndroidManifest.xml:20:5-44
-MERGED from [com.google.ai.client.generativeai:generativeai:0.9.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\8671f16dec99d0560f6da89a976e6bf5\transformed\generativeai-0.9.0\AndroidManifest.xml:20:5-44
-MERGED from [com.google.ai.client.generativeai:common:0.8.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\459895fb3105ccc8954ce4c03feb76b5\transformed\common-0.8.0\AndroidManifest.xml:20:5-44
-MERGED from [com.google.ai.client.generativeai:common:0.8.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\459895fb3105ccc8954ce4c03feb76b5\transformed\common-0.8.0\AndroidManifest.xml:20:5-44
-MERGED from [androidx.datastore:datastore-core-android:1.1.6] C:\Users\cotad\.gradle\caches\8.10.2\transforms\46eda280d64a97c3703e578c3aaaa7b1\transformed\datastore-core-release\AndroidManifest.xml:5:5-44
-MERGED from [androidx.datastore:datastore-core-android:1.1.6] C:\Users\cotad\.gradle\caches\8.10.2\transforms\46eda280d64a97c3703e578c3aaaa7b1\transformed\datastore-core-release\AndroidManifest.xml:5:5-44
-MERGED from [com.google.android.gms:play-services-games:23.2.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\48028653a82ffc584ef6dacf146db8b7\transformed\play-services-games-23.2.0\AndroidManifest.xml:4:5-44
-MERGED from [com.google.android.gms:play-services-games:23.2.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\48028653a82ffc584ef6dacf146db8b7\transformed\play-services-games-23.2.0\AndroidManifest.xml:4:5-44
-MERGED from [com.google.android.gms:play-services-drive:17.0.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\732878395a2e110c3c2f16eb66bc0228\transformed\play-services-drive-17.0.0\AndroidManifest.xml:20:5-44
-MERGED from [com.google.android.gms:play-services-drive:17.0.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\732878395a2e110c3c2f16eb66bc0228\transformed\play-services-drive-17.0.0\AndroidManifest.xml:20:5-44
-MERGED from [com.google.android.gms:play-services-base:18.5.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\a113bdf225fd0d3e4f70548f96d0533e\transformed\play-services-base-18.5.0\AndroidManifest.xml:3:5-44
-MERGED from [com.google.android.gms:play-services-base:18.5.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\a113bdf225fd0d3e4f70548f96d0533e\transformed\play-services-base-18.5.0\AndroidManifest.xml:3:5-44
-MERGED from [com.google.android.gms:play-services-tasks:18.2.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\ba38349ac81ec8cacf35343aef638155\transformed\play-services-tasks-18.2.0\AndroidManifest.xml:3:5-44
-MERGED from [com.google.android.gms:play-services-tasks:18.2.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\ba38349ac81ec8cacf35343aef638155\transformed\play-services-tasks-18.2.0\AndroidManifest.xml:3:5-44
-MERGED from [com.google.android.gms:play-services-basement:18.4.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\f6aedf5a1b407cb8128943c08dc25e3f\transformed\play-services-basement-18.4.0\AndroidManifest.xml:3:5-44
-MERGED from [com.google.android.gms:play-services-basement:18.4.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\f6aedf5a1b407cb8128943c08dc25e3f\transformed\play-services-basement-18.4.0\AndroidManifest.xml:3:5-44
-MERGED from [androidx.navigation:navigation-common-ktx:2.7.7] C:\Users\cotad\.gradle\caches\8.10.2\transforms\272165d1ba9567e1a422a163d24850ff\transformed\navigation-common-ktx-2.7.7\AndroidManifest.xml:5:5-44
-MERGED from [androidx.navigation:navigation-common-ktx:2.7.7] C:\Users\cotad\.gradle\caches\8.10.2\transforms\272165d1ba9567e1a422a163d24850ff\transformed\navigation-common-ktx-2.7.7\AndroidManifest.xml:5:5-44
-MERGED from [androidx.navigation:navigation-runtime-ktx:2.7.7] C:\Users\cotad\.gradle\caches\8.10.2\transforms\8f0af626c38c4a0c46d574d603decb33\transformed\navigation-runtime-ktx-2.7.7\AndroidManifest.xml:5:5-44
-MERGED from [androidx.navigation:navigation-runtime-ktx:2.7.7] C:\Users\cotad\.gradle\caches\8.10.2\transforms\8f0af626c38c4a0c46d574d603decb33\transformed\navigation-runtime-ktx-2.7.7\AndroidManifest.xml:5:5-44
-MERGED from [androidx.navigation:navigation-common:2.7.7] C:\Users\cotad\.gradle\caches\8.10.2\transforms\893b095c4e26c49b1df76861ae3058f2\transformed\navigation-common-2.7.7\AndroidManifest.xml:20:5-44
-MERGED from [androidx.navigation:navigation-common:2.7.7] C:\Users\cotad\.gradle\caches\8.10.2\transforms\893b095c4e26c49b1df76861ae3058f2\transformed\navigation-common-2.7.7\AndroidManifest.xml:20:5-44
-MERGED from [androidx.navigation:navigation-runtime:2.7.7] C:\Users\cotad\.gradle\caches\8.10.2\transforms\a0a1b2578876965b98aadfca799142a1\transformed\navigation-runtime-2.7.7\AndroidManifest.xml:20:5-44
-MERGED from [androidx.navigation:navigation-runtime:2.7.7] C:\Users\cotad\.gradle\caches\8.10.2\transforms\a0a1b2578876965b98aadfca799142a1\transformed\navigation-runtime-2.7.7\AndroidManifest.xml:20:5-44
-MERGED from [androidx.navigation:navigation-compose:2.7.7] C:\Users\cotad\.gradle\caches\8.10.2\transforms\896c0839d21e597574b9f49bafcffe19\transformed\navigation-compose-2.7.7\AndroidManifest.xml:5:5-44
-MERGED from [androidx.navigation:navigation-compose:2.7.7] C:\Users\cotad\.gradle\caches\8.10.2\transforms\896c0839d21e597574b9f49bafcffe19\transformed\navigation-compose-2.7.7\AndroidManifest.xml:5:5-44
-MERGED from [androidx.compose.material3:material3-android:1.3.2] C:\Users\cotad\.gradle\caches\8.10.2\transforms\5d8b14b7e545b461e55fcd92d480604f\transformed\material3-release\AndroidManifest.xml:20:5-44
-MERGED from [androidx.compose.material3:material3-android:1.3.2] C:\Users\cotad\.gradle\caches\8.10.2\transforms\5d8b14b7e545b461e55fcd92d480604f\transformed\material3-release\AndroidManifest.xml:20:5-44
-MERGED from [androidx.compose.material:material-android:1.6.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\b20e1921db6ca5f1b77e85cd2cd14c2c\transformed\material-release\AndroidManifest.xml:5:5-44
-MERGED from [androidx.compose.material:material-android:1.6.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\b20e1921db6ca5f1b77e85cd2cd14c2c\transformed\material-release\AndroidManifest.xml:5:5-44
-MERGED from [androidx.compose.material:material-icons-extended-android:1.6.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\44f94187dcf91df736587dae7df6343b\transformed\material-icons-extended-release\AndroidManifest.xml:5:5-44
-MERGED from [androidx.compose.material:material-icons-extended-android:1.6.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\44f94187dcf91df736587dae7df6343b\transformed\material-icons-extended-release\AndroidManifest.xml:5:5-44
-MERGED from [androidx.compose.material:material-icons-core-android:1.6.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\546a68735cbd698c69194a928a47a158\transformed\material-icons-core-release\AndroidManifest.xml:5:5-44
-MERGED from [androidx.compose.material:material-icons-core-android:1.6.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\546a68735cbd698c69194a928a47a158\transformed\material-icons-core-release\AndroidManifest.xml:5:5-44
-MERGED from [androidx.compose.material:material-ripple-android:1.7.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\54a03807a29c0fff42f0da0c1fbe5e2e\transformed\material-ripple-release\AndroidManifest.xml:5:5-44
-MERGED from [androidx.compose.material:material-ripple-android:1.7.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\54a03807a29c0fff42f0da0c1fbe5e2e\transformed\material-ripple-release\AndroidManifest.xml:5:5-44
-MERGED from [androidx.compose.animation:animation-core-android:1.7.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\7bc59341070e834d3d3a1feb79e50e3e\transformed\animation-core-release\AndroidManifest.xml:5:5-44
-MERGED from [androidx.compose.animation:animation-core-android:1.7.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\7bc59341070e834d3d3a1feb79e50e3e\transformed\animation-core-release\AndroidManifest.xml:5:5-44
-MERGED from [androidx.compose.animation:animation-android:1.7.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\d4fbbcf8b7b7df27b51c736faea920ce\transformed\animation-release\AndroidManifest.xml:5:5-44
-MERGED from [androidx.compose.animation:animation-android:1.7.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\d4fbbcf8b7b7df27b51c736faea920ce\transformed\animation-release\AndroidManifest.xml:5:5-44
-MERGED from [androidx.compose.ui:ui-tooling-data-android:1.7.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\e4fa5618657a7edc8772c46f6f4cd5a6\transformed\ui-tooling-data-release\AndroidManifest.xml:5:5-44
-MERGED from [androidx.compose.ui:ui-tooling-data-android:1.7.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\e4fa5618657a7edc8772c46f6f4cd5a6\transformed\ui-tooling-data-release\AndroidManifest.xml:5:5-44
-MERGED from [androidx.compose.ui:ui-tooling-preview-android:1.7.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\17ad23978f2a17644ff516ca6786175c\transformed\ui-tooling-preview-release\AndroidManifest.xml:20:5-44
-MERGED from [androidx.compose.ui:ui-tooling-preview-android:1.7.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\17ad23978f2a17644ff516ca6786175c\transformed\ui-tooling-preview-release\AndroidManifest.xml:20:5-44
-MERGED from [androidx.compose.ui:ui-text-android:1.7.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\16bafe5580a3508b9e1c01390fe0ba8e\transformed\ui-text-release\AndroidManifest.xml:5:5-44
-MERGED from [androidx.compose.ui:ui-text-android:1.7.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\16bafe5580a3508b9e1c01390fe0ba8e\transformed\ui-text-release\AndroidManifest.xml:5:5-44
-MERGED from [androidx.compose.ui:ui-graphics-android:1.7.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\d99b983ed73431e5ea05f142de9e21a5\transformed\ui-graphics-release\AndroidManifest.xml:5:5-44
-MERGED from [androidx.compose.ui:ui-graphics-android:1.7.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\d99b983ed73431e5ea05f142de9e21a5\transformed\ui-graphics-release\AndroidManifest.xml:5:5-44
-MERGED from [androidx.compose.ui:ui-geometry-android:1.7.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\1e4dccf75e2ef759d1af9fe441fd0361\transformed\ui-geometry-release\AndroidManifest.xml:5:5-44
-MERGED from [androidx.compose.ui:ui-geometry-android:1.7.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\1e4dccf75e2ef759d1af9fe441fd0361\transformed\ui-geometry-release\AndroidManifest.xml:5:5-44
-MERGED from [androidx.compose.ui:ui-test-manifest:1.7.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\583ab9fa3ea07d210c134f3701142b7c\transformed\ui-test-manifest-1.7.0\AndroidManifest.xml:20:5-44
-MERGED from [androidx.compose.ui:ui-test-manifest:1.7.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\583ab9fa3ea07d210c134f3701142b7c\transformed\ui-test-manifest-1.7.0\AndroidManifest.xml:20:5-44
-MERGED from [androidx.compose.ui:ui-util-android:1.7.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\36af26a6cc7d4dea92857257a331aa3c\transformed\ui-util-release\AndroidManifest.xml:5:5-44
-MERGED from [androidx.compose.ui:ui-util-android:1.7.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\36af26a6cc7d4dea92857257a331aa3c\transformed\ui-util-release\AndroidManifest.xml:5:5-44
-MERGED from [androidx.fragment:fragment:1.1.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\e5e15966d4f5eec2b0cd0ccafa95433f\transformed\fragment-1.1.0\AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.fragment:fragment:1.1.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\e5e15966d4f5eec2b0cd0ccafa95433f\transformed\fragment-1.1.0\AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.loader:loader:1.0.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\c93bbea9ddb94ec21934ee2778ee2786\transformed\loader-1.0.0\AndroidManifest.xml:20:5-44
-MERGED from [androidx.loader:loader:1.0.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\c93bbea9ddb94ec21934ee2778ee2786\transformed\loader-1.0.0\AndroidManifest.xml:20:5-44
-MERGED from [androidx.emoji2:emoji2:1.3.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\e400760b959edfdfc60090ff30fa9d3a\transformed\emoji2-1.3.0\AndroidManifest.xml:21:5-44
-MERGED from [androidx.emoji2:emoji2:1.3.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\e400760b959edfdfc60090ff30fa9d3a\transformed\emoji2-1.3.0\AndroidManifest.xml:21:5-44
-MERGED from [androidx.savedstate:savedstate-ktx:1.2.1] C:\Users\cotad\.gradle\caches\8.10.2\transforms\3580285135ceab98b757e9e779bf29da\transformed\savedstate-ktx-1.2.1\AndroidManifest.xml:20:5-44
-MERGED from [androidx.savedstate:savedstate-ktx:1.2.1] C:\Users\cotad\.gradle\caches\8.10.2\transforms\3580285135ceab98b757e9e779bf29da\transformed\savedstate-ktx-1.2.1\AndroidManifest.xml:20:5-44
-MERGED from [androidx.savedstate:savedstate:1.2.1] C:\Users\cotad\.gradle\caches\8.10.2\transforms\5088dc9207634477eef13f6368c72c0b\transformed\savedstate-1.2.1\AndroidManifest.xml:20:5-44
-MERGED from [androidx.savedstate:savedstate:1.2.1] C:\Users\cotad\.gradle\caches\8.10.2\transforms\5088dc9207634477eef13f6368c72c0b\transformed\savedstate-1.2.1\AndroidManifest.xml:20:5-44
-MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.8.3] C:\Users\cotad\.gradle\caches\8.10.2\transforms\d908efd68cb38691ee91da08292dfa77\transformed\lifecycle-viewmodel-2.8.3\AndroidManifest.xml:4:5-43
-MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.8.3] C:\Users\cotad\.gradle\caches\8.10.2\transforms\d908efd68cb38691ee91da08292dfa77\transformed\lifecycle-viewmodel-2.8.3\AndroidManifest.xml:4:5-43
-MERGED from [androidx.lifecycle:lifecycle-viewmodel-android:2.8.3] C:\Users\cotad\.gradle\caches\8.10.2\transforms\54c49e21662492a511b47cacf39fb66f\transformed\lifecycle-viewmodel-release\AndroidManifest.xml:20:5-44
-MERGED from [androidx.lifecycle:lifecycle-viewmodel-android:2.8.3] C:\Users\cotad\.gradle\caches\8.10.2\transforms\54c49e21662492a511b47cacf39fb66f\transformed\lifecycle-viewmodel-release\AndroidManifest.xml:20:5-44
-MERGED from [androidx.lifecycle:lifecycle-livedata-core-ktx:2.8.3] C:\Users\cotad\.gradle\caches\8.10.2\transforms\95d233e213fa3a89a524df298972e4c2\transformed\lifecycle-livedata-core-ktx-2.8.3\AndroidManifest.xml:5:5-44
-MERGED from [androidx.lifecycle:lifecycle-livedata-core-ktx:2.8.3] C:\Users\cotad\.gradle\caches\8.10.2\transforms\95d233e213fa3a89a524df298972e4c2\transformed\lifecycle-livedata-core-ktx-2.8.3\AndroidManifest.xml:5:5-44
-MERGED from [androidx.lifecycle:lifecycle-runtime-ktx-android:2.8.3] C:\Users\cotad\.gradle\caches\8.10.2\transforms\5aa74bdf86830e330ddfa089d3f9ad31\transformed\lifecycle-runtime-ktx-release\AndroidManifest.xml:5:5-44
-MERGED from [androidx.lifecycle:lifecycle-runtime-ktx-android:2.8.3] C:\Users\cotad\.gradle\caches\8.10.2\transforms\5aa74bdf86830e330ddfa089d3f9ad31\transformed\lifecycle-runtime-ktx-release\AndroidManifest.xml:5:5-44
-MERGED from [androidx.lifecycle:lifecycle-runtime-android:2.8.3] C:\Users\cotad\.gradle\caches\8.10.2\transforms\51558ecaa9e62f41c8a50fd586b987d2\transformed\lifecycle-runtime-release\AndroidManifest.xml:20:5-44
-MERGED from [androidx.lifecycle:lifecycle-runtime-android:2.8.3] C:\Users\cotad\.gradle\caches\8.10.2\transforms\51558ecaa9e62f41c8a50fd586b987d2\transformed\lifecycle-runtime-release\AndroidManifest.xml:20:5-44
-MERGED from [androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.3] C:\Users\cotad\.gradle\caches\8.10.2\transforms\619e37008d022ca895631557d98ce6fb\transformed\lifecycle-viewmodel-ktx-2.8.3\AndroidManifest.xml:5:5-44
-MERGED from [androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.3] C:\Users\cotad\.gradle\caches\8.10.2\transforms\619e37008d022ca895631557d98ce6fb\transformed\lifecycle-viewmodel-ktx-2.8.3\AndroidManifest.xml:5:5-44
-MERGED from [androidx.lifecycle:lifecycle-viewmodel-savedstate:2.8.3] C:\Users\cotad\.gradle\caches\8.10.2\transforms\c9607510d608478615fc25c37a60e752\transformed\lifecycle-viewmodel-savedstate-2.8.3\AndroidManifest.xml:20:5-44
-MERGED from [androidx.lifecycle:lifecycle-viewmodel-savedstate:2.8.3] C:\Users\cotad\.gradle\caches\8.10.2\transforms\c9607510d608478615fc25c37a60e752\transformed\lifecycle-viewmodel-savedstate-2.8.3\AndroidManifest.xml:20:5-44
-MERGED from [androidx.lifecycle:lifecycle-process:2.8.3] C:\Users\cotad\.gradle\caches\8.10.2\transforms\90091b77c74b9b2cefa30767887ab073\transformed\lifecycle-process-2.8.3\AndroidManifest.xml:21:5-44
-MERGED from [androidx.lifecycle:lifecycle-process:2.8.3] C:\Users\cotad\.gradle\caches\8.10.2\transforms\90091b77c74b9b2cefa30767887ab073\transformed\lifecycle-process-2.8.3\AndroidManifest.xml:21:5-44
-MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.8.3] C:\Users\cotad\.gradle\caches\8.10.2\transforms\b55bc4f63cae06e8fd3cee22fba750c5\transformed\lifecycle-livedata-core-2.8.3\AndroidManifest.xml:20:5-44
-MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.8.3] C:\Users\cotad\.gradle\caches\8.10.2\transforms\b55bc4f63cae06e8fd3cee22fba750c5\transformed\lifecycle-livedata-core-2.8.3\AndroidManifest.xml:20:5-44
-MERGED from [androidx.lifecycle:lifecycle-livedata:2.8.3] C:\Users\cotad\.gradle\caches\8.10.2\transforms\e6828e3c8aa609ade4f3def8e716ca5d\transformed\lifecycle-livedata-2.8.3\AndroidManifest.xml:20:5-44
-MERGED from [androidx.lifecycle:lifecycle-livedata:2.8.3] C:\Users\cotad\.gradle\caches\8.10.2\transforms\e6828e3c8aa609ade4f3def8e716ca5d\transformed\lifecycle-livedata-2.8.3\AndroidManifest.xml:20:5-44
-MERGED from [androidx.lifecycle:lifecycle-runtime-compose-android:2.8.3] C:\Users\cotad\.gradle\caches\8.10.2\transforms\dd1c64e4cbc06d175cd3621d7dcef6d8\transformed\lifecycle-runtime-compose-release\AndroidManifest.xml:5:5-44
-MERGED from [androidx.lifecycle:lifecycle-runtime-compose-android:2.8.3] C:\Users\cotad\.gradle\caches\8.10.2\transforms\dd1c64e4cbc06d175cd3621d7dcef6d8\transformed\lifecycle-runtime-compose-release\AndroidManifest.xml:5:5-44
-MERGED from [androidx.lifecycle:lifecycle-viewmodel-compose-android:2.8.3] C:\Users\cotad\.gradle\caches\8.10.2\transforms\07885b1f06ded0efc5bfff1c0069c2cc\transformed\lifecycle-viewmodel-compose-release\AndroidManifest.xml:5:5-44
-MERGED from [androidx.lifecycle:lifecycle-viewmodel-compose-android:2.8.3] C:\Users\cotad\.gradle\caches\8.10.2\transforms\07885b1f06ded0efc5bfff1c0069c2cc\transformed\lifecycle-viewmodel-compose-release\AndroidManifest.xml:5:5-44
-MERGED from [androidx.compose.ui:ui-android:1.7.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\0504395583baa951e9751e5f48db34d6\transformed\ui-release\AndroidManifest.xml:5:5-44
-MERGED from [androidx.compose.ui:ui-android:1.7.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\0504395583baa951e9751e5f48db34d6\transformed\ui-release\AndroidManifest.xml:5:5-44
-MERGED from [androidx.compose.foundation:foundation-android:1.7.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\52b05de6be8fd03dd3312bed71bdd376\transformed\foundation-release\AndroidManifest.xml:5:5-44
-MERGED from [androidx.compose.foundation:foundation-android:1.7.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\52b05de6be8fd03dd3312bed71bdd376\transformed\foundation-release\AndroidManifest.xml:5:5-44
-MERGED from [androidx.compose.foundation:foundation-layout-android:1.7.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\1382ec4674d6d37b13f956a95f0060ef\transformed\foundation-layout-release\AndroidManifest.xml:5:5-44
-MERGED from [androidx.compose.foundation:foundation-layout-android:1.7.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\1382ec4674d6d37b13f956a95f0060ef\transformed\foundation-layout-release\AndroidManifest.xml:5:5-44
-MERGED from [androidx.compose.ui:ui-unit-android:1.7.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\d78ebceb9829763417c425021790582f\transformed\ui-unit-release\AndroidManifest.xml:5:5-44
-MERGED from [androidx.compose.ui:ui-unit-android:1.7.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\d78ebceb9829763417c425021790582f\transformed\ui-unit-release\AndroidManifest.xml:5:5-44
-MERGED from [androidx.compose.ui:ui-tooling-android:1.7.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\f4149c21731fe21ceef988c847e58986\transformed\ui-tooling-release\AndroidManifest.xml:20:5-44
-MERGED from [androidx.compose.ui:ui-tooling-android:1.7.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\f4149c21731fe21ceef988c847e58986\transformed\ui-tooling-release\AndroidManifest.xml:20:5-44
-MERGED from [androidx.activity:activity-compose:1.8.2] C:\Users\cotad\.gradle\caches\8.10.2\transforms\73d485fd798297e4e3055f8b47c7ec71\transformed\activity-compose-1.8.2\AndroidManifest.xml:5:5-44
-MERGED from [androidx.activity:activity-compose:1.8.2] C:\Users\cotad\.gradle\caches\8.10.2\transforms\73d485fd798297e4e3055f8b47c7ec71\transformed\activity-compose-1.8.2\AndroidManifest.xml:5:5-44
-MERGED from [androidx.activity:activity-ktx:1.8.2] C:\Users\cotad\.gradle\caches\8.10.2\transforms\c2eaa3ef60a1abacdefaa96b5ffb3eaf\transformed\activity-ktx-1.8.2\AndroidManifest.xml:5:5-44
-MERGED from [androidx.activity:activity-ktx:1.8.2] C:\Users\cotad\.gradle\caches\8.10.2\transforms\c2eaa3ef60a1abacdefaa96b5ffb3eaf\transformed\activity-ktx-1.8.2\AndroidManifest.xml:5:5-44
-MERGED from [androidx.activity:activity:1.8.2] C:\Users\cotad\.gradle\caches\8.10.2\transforms\832453e37cbd7e91172a6cb8d469920b\transformed\activity-1.8.2\AndroidManifest.xml:20:5-44
-MERGED from [androidx.activity:activity:1.8.2] C:\Users\cotad\.gradle\caches\8.10.2\transforms\832453e37cbd7e91172a6cb8d469920b\transformed\activity-1.8.2\AndroidManifest.xml:20:5-44
-MERGED from [androidx.viewpager:viewpager:1.0.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\88628dd88a7ffdecdc928c0aafb90056\transformed\viewpager-1.0.0\AndroidManifest.xml:20:5-44
-MERGED from [androidx.viewpager:viewpager:1.0.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\88628dd88a7ffdecdc928c0aafb90056\transformed\viewpager-1.0.0\AndroidManifest.xml:20:5-44
-MERGED from [androidx.customview:customview-poolingcontainer:1.0.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\62e872f2dbc7bb13d15431d3960346d6\transformed\customview-poolingcontainer-1.0.0\AndroidManifest.xml:20:5-21:38
-MERGED from [androidx.customview:customview-poolingcontainer:1.0.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\62e872f2dbc7bb13d15431d3960346d6\transformed\customview-poolingcontainer-1.0.0\AndroidManifest.xml:20:5-21:38
-MERGED from [androidx.core:core-ktx:1.13.1] C:\Users\cotad\.gradle\caches\8.10.2\transforms\01dc94ffdada7b49da6243d5a896b75a\transformed\core-ktx-1.13.1\AndroidManifest.xml:5:5-44
-MERGED from [androidx.core:core-ktx:1.13.1] C:\Users\cotad\.gradle\caches\8.10.2\transforms\01dc94ffdada7b49da6243d5a896b75a\transformed\core-ktx-1.13.1\AndroidManifest.xml:5:5-44
-MERGED from [androidx.customview:customview:1.0.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\9cb2d698c61103bdb40b867c035c528f\transformed\customview-1.0.0\AndroidManifest.xml:20:5-44
-MERGED from [androidx.customview:customview:1.0.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\9cb2d698c61103bdb40b867c035c528f\transformed\customview-1.0.0\AndroidManifest.xml:20:5-44
-MERGED from [androidx.autofill:autofill:1.0.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\72889483c67d897e24d930412c931fc3\transformed\autofill-1.0.0\AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.autofill:autofill:1.0.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\72889483c67d897e24d930412c931fc3\transformed\autofill-1.0.0\AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.graphics:graphics-path:1.0.1] C:\Users\cotad\.gradle\caches\8.10.2\transforms\d0c11082e17ff912bf1862b715c37330\transformed\graphics-path-1.0.1\AndroidManifest.xml:5:5-44
-MERGED from [androidx.graphics:graphics-path:1.0.1] C:\Users\cotad\.gradle\caches\8.10.2\transforms\d0c11082e17ff912bf1862b715c37330\transformed\graphics-path-1.0.1\AndroidManifest.xml:5:5-44
-MERGED from [androidx.core:core:1.13.1] C:\Users\cotad\.gradle\caches\8.10.2\transforms\1e50e9b05d9bd82a8046b64a9941a0bb\transformed\core-1.13.1\AndroidManifest.xml:20:5-44
-MERGED from [androidx.core:core:1.13.1] C:\Users\cotad\.gradle\caches\8.10.2\transforms\1e50e9b05d9bd82a8046b64a9941a0bb\transformed\core-1.13.1\AndroidManifest.xml:20:5-44
-MERGED from [androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\cotad\.gradle\caches\8.10.2\transforms\02a1164e7d223a9a223f0fdd0f4085d1\transformed\profileinstaller-1.3.1\AndroidManifest.xml:21:5-44
-MERGED from [androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\cotad\.gradle\caches\8.10.2\transforms\02a1164e7d223a9a223f0fdd0f4085d1\transformed\profileinstaller-1.3.1\AndroidManifest.xml:21:5-44
-MERGED from [androidx.compose.runtime:runtime-saveable-android:1.7.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\b34a962706bfa32aa573172b46661b83\transformed\runtime-saveable-release\AndroidManifest.xml:5:5-44
-MERGED from [androidx.compose.runtime:runtime-saveable-android:1.7.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\b34a962706bfa32aa573172b46661b83\transformed\runtime-saveable-release\AndroidManifest.xml:5:5-44
-MERGED from [androidx.compose.runtime:runtime-android:1.7.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\85a979aa383395aac913098e7c0753f1\transformed\runtime-release\AndroidManifest.xml:5:5-44
-MERGED from [androidx.compose.runtime:runtime-android:1.7.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\85a979aa383395aac913098e7c0753f1\transformed\runtime-release\AndroidManifest.xml:5:5-44
-MERGED from [androidx.sqlite:sqlite:2.4.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\eea2b0ac6a241d6cd1b88de67223f8c7\transformed\sqlite-2.4.0\AndroidManifest.xml:20:5-44
-MERGED from [androidx.sqlite:sqlite:2.4.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\eea2b0ac6a241d6cd1b88de67223f8c7\transformed\sqlite-2.4.0\AndroidManifest.xml:20:5-44
-MERGED from [androidx.annotation:annotation-experimental:1.4.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\c6ce4f5b27676b06c46d21bfa68b1220\transformed\annotation-experimental-1.4.0\AndroidManifest.xml:5:5-44
-MERGED from [androidx.annotation:annotation-experimental:1.4.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\c6ce4f5b27676b06c46d21bfa68b1220\transformed\annotation-experimental-1.4.0\AndroidManifest.xml:5:5-44
-MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\cotad\.gradle\caches\8.10.2\transforms\a5a335efcc0ded2c1639ed6aac8072e6\transformed\versionedparcelable-1.1.1\AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\cotad\.gradle\caches\8.10.2\transforms\a5a335efcc0ded2c1639ed6aac8072e6\transformed\versionedparcelable-1.1.1\AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.startup:startup-runtime:1.1.1] C:\Users\cotad\.gradle\caches\8.10.2\transforms\f816a24fc4ddcb0812ce24c7284294bb\transformed\startup-runtime-1.1.1\AndroidManifest.xml:21:5-23:41
-MERGED from [androidx.startup:startup-runtime:1.1.1] C:\Users\cotad\.gradle\caches\8.10.2\transforms\f816a24fc4ddcb0812ce24c7284294bb\transformed\startup-runtime-1.1.1\AndroidManifest.xml:21:5-23:41
-MERGED from [androidx.tracing:tracing:1.0.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\c43239d7a4e67bb5c4d6c1f012598728\transformed\tracing-1.0.0\AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.tracing:tracing:1.0.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\c43239d7a4e67bb5c4d6c1f012598728\transformed\tracing-1.0.0\AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.interpolator:interpolator:1.0.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\080286306ce4b4927a696bb5f4bafd52\transformed\interpolator-1.0.0\AndroidManifest.xml:20:5-44
-MERGED from [androidx.interpolator:interpolator:1.0.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\080286306ce4b4927a696bb5f4bafd52\transformed\interpolator-1.0.0\AndroidManifest.xml:20:5-44
-MERGED from [androidx.arch.core:core-runtime:2.2.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\f5220206c6c9fc54d21da903e0a45b8b\transformed\core-runtime-2.2.0\AndroidManifest.xml:20:5-44
-MERGED from [androidx.arch.core:core-runtime:2.2.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\f5220206c6c9fc54d21da903e0a45b8b\transformed\core-runtime-2.2.0\AndroidManifest.xml:20:5-44
+ADDED from C:\Users\cotad\AndroidStudioProjects\HockeyAPPLive\app\src\main\AndroidManifest.xml:6:5-77
+INJECTED from C:\Users\cotad\AndroidStudioProjects\HockeyAPPLive\app\src\main\AndroidManifest.xml:6:5-77
+INJECTED from C:\Users\cotad\AndroidStudioProjects\HockeyAPPLive\app\src\main\AndroidManifest.xml:6:5-77
+MERGED from [com.google.ai.client.generativeai:generativeai:0.9.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\d93b328af3d45b38c34f53522e5ead92\transformed\generativeai-0.9.0\AndroidManifest.xml:20:5-44
+MERGED from [com.google.ai.client.generativeai:generativeai:0.9.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\d93b328af3d45b38c34f53522e5ead92\transformed\generativeai-0.9.0\AndroidManifest.xml:20:5-44
+MERGED from [com.google.ai.client.generativeai:common:0.8.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\7b147ebf960ae928c0b2942c4c03b6cb\transformed\common-0.8.0\AndroidManifest.xml:20:5-44
+MERGED from [com.google.ai.client.generativeai:common:0.8.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\7b147ebf960ae928c0b2942c4c03b6cb\transformed\common-0.8.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.datastore:datastore-core-android:1.1.6] C:\Users\cotad\.gradle\caches\8.10.2\transforms\1e5e3f5ab57039da77ca3141a3d86024\transformed\datastore-core-release\AndroidManifest.xml:5:5-44
+MERGED from [androidx.datastore:datastore-core-android:1.1.6] C:\Users\cotad\.gradle\caches\8.10.2\transforms\1e5e3f5ab57039da77ca3141a3d86024\transformed\datastore-core-release\AndroidManifest.xml:5:5-44
+MERGED from [androidx.wear.compose:compose-material-core:1.4.1] C:\Users\cotad\.gradle\caches\8.10.2\transforms\74e3f6c0783814e298a3f579104104ed\transformed\compose-material-core-1.4.1\AndroidManifest.xml:5:5-44
+MERGED from [androidx.wear.compose:compose-material-core:1.4.1] C:\Users\cotad\.gradle\caches\8.10.2\transforms\74e3f6c0783814e298a3f579104104ed\transformed\compose-material-core-1.4.1\AndroidManifest.xml:5:5-44
+MERGED from [androidx.wear.compose:compose-foundation:1.4.1] C:\Users\cotad\.gradle\caches\8.10.2\transforms\dd633abfcfbb33ac3c9a4a94a724ce69\transformed\compose-foundation-1.4.1\AndroidManifest.xml:20:5-44
+MERGED from [androidx.wear.compose:compose-foundation:1.4.1] C:\Users\cotad\.gradle\caches\8.10.2\transforms\dd633abfcfbb33ac3c9a4a94a724ce69\transformed\compose-foundation-1.4.1\AndroidManifest.xml:20:5-44
+MERGED from [androidx.wear.compose:compose-material:1.4.1] C:\Users\cotad\.gradle\caches\8.10.2\transforms\e851b8e1bee6d464e446ec2714a4d2ba\transformed\compose-material-1.4.1\AndroidManifest.xml:5:5-44
+MERGED from [androidx.wear.compose:compose-material:1.4.1] C:\Users\cotad\.gradle\caches\8.10.2\transforms\e851b8e1bee6d464e446ec2714a4d2ba\transformed\compose-material-1.4.1\AndroidManifest.xml:5:5-44
+MERGED from [androidx.wear.compose:compose-navigation:1.4.1] C:\Users\cotad\.gradle\caches\8.10.2\transforms\94e6d941860a58b1fc9c253773aa032c\transformed\compose-navigation-1.4.1\AndroidManifest.xml:5:5-44
+MERGED from [androidx.wear.compose:compose-navigation:1.4.1] C:\Users\cotad\.gradle\caches\8.10.2\transforms\94e6d941860a58b1fc9c253773aa032c\transformed\compose-navigation-1.4.1\AndroidManifest.xml:5:5-44
+MERGED from [androidx.navigation:navigation-common-ktx:2.7.7] C:\Users\cotad\.gradle\caches\8.10.2\transforms\217e9bee8f440cb6e7d9ffdb47664890\transformed\navigation-common-ktx-2.7.7\AndroidManifest.xml:5:5-44
+MERGED from [androidx.navigation:navigation-common-ktx:2.7.7] C:\Users\cotad\.gradle\caches\8.10.2\transforms\217e9bee8f440cb6e7d9ffdb47664890\transformed\navigation-common-ktx-2.7.7\AndroidManifest.xml:5:5-44
+MERGED from [androidx.navigation:navigation-runtime-ktx:2.7.7] C:\Users\cotad\.gradle\caches\8.10.2\transforms\9c948dd78f32488f93b41e588920e70b\transformed\navigation-runtime-ktx-2.7.7\AndroidManifest.xml:5:5-44
+MERGED from [androidx.navigation:navigation-runtime-ktx:2.7.7] C:\Users\cotad\.gradle\caches\8.10.2\transforms\9c948dd78f32488f93b41e588920e70b\transformed\navigation-runtime-ktx-2.7.7\AndroidManifest.xml:5:5-44
+MERGED from [androidx.navigation:navigation-compose:2.7.7] C:\Users\cotad\.gradle\caches\8.10.2\transforms\e8e4aa47904a9b107ebd4cf323004918\transformed\navigation-compose-2.7.7\AndroidManifest.xml:5:5-44
+MERGED from [androidx.navigation:navigation-compose:2.7.7] C:\Users\cotad\.gradle\caches\8.10.2\transforms\e8e4aa47904a9b107ebd4cf323004918\transformed\navigation-compose-2.7.7\AndroidManifest.xml:5:5-44
+MERGED from [androidx.navigation:navigation-runtime:2.7.7] C:\Users\cotad\.gradle\caches\8.10.2\transforms\4257a9004556897741bd4183497c8560\transformed\navigation-runtime-2.7.7\AndroidManifest.xml:20:5-44
+MERGED from [androidx.navigation:navigation-runtime:2.7.7] C:\Users\cotad\.gradle\caches\8.10.2\transforms\4257a9004556897741bd4183497c8560\transformed\navigation-runtime-2.7.7\AndroidManifest.xml:20:5-44
+MERGED from [androidx.navigation:navigation-common:2.7.7] C:\Users\cotad\.gradle\caches\8.10.2\transforms\30bc1596bb0ef4bbe264ce6800576b44\transformed\navigation-common-2.7.7\AndroidManifest.xml:20:5-44
+MERGED from [androidx.navigation:navigation-common:2.7.7] C:\Users\cotad\.gradle\caches\8.10.2\transforms\30bc1596bb0ef4bbe264ce6800576b44\transformed\navigation-common-2.7.7\AndroidManifest.xml:20:5-44
+MERGED from [androidx.compose.material3:material3-android:1.3.2] C:\Users\cotad\.gradle\caches\8.10.2\transforms\d1653e85debbe85a718d93788c6856f4\transformed\material3-release\AndroidManifest.xml:20:5-44
+MERGED from [androidx.compose.material3:material3-android:1.3.2] C:\Users\cotad\.gradle\caches\8.10.2\transforms\d1653e85debbe85a718d93788c6856f4\transformed\material3-release\AndroidManifest.xml:20:5-44
+MERGED from [androidx.compose.material:material-android:1.5.4] C:\Users\cotad\.gradle\caches\8.10.2\transforms\f1331a6bfb6b7fe6b4d770e0f919540b\transformed\material-release\AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.material:material-android:1.5.4] C:\Users\cotad\.gradle\caches\8.10.2\transforms\f1331a6bfb6b7fe6b4d770e0f919540b\transformed\material-release\AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.material:material-icons-extended-android:1.5.4] C:\Users\cotad\.gradle\caches\8.10.2\transforms\5fcce8dde8b87a57b43099f2600f54dd\transformed\material-icons-extended-release\AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.material:material-icons-extended-android:1.5.4] C:\Users\cotad\.gradle\caches\8.10.2\transforms\5fcce8dde8b87a57b43099f2600f54dd\transformed\material-icons-extended-release\AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.material:material-ripple-android:1.7.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\9026254c1f2e957b4888396905ee8074\transformed\material-ripple-release\AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.material:material-ripple-android:1.7.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\9026254c1f2e957b4888396905ee8074\transformed\material-ripple-release\AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.foundation:foundation-android:1.7.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\dc23583e1f2f25fdf40e67ff4cbcf2e2\transformed\foundation-release\AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.foundation:foundation-android:1.7.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\dc23583e1f2f25fdf40e67ff4cbcf2e2\transformed\foundation-release\AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.animation:animation-core-android:1.7.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\d60b90297cf5ff4820e3b14973f8533f\transformed\animation-core-release\AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.animation:animation-core-android:1.7.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\d60b90297cf5ff4820e3b14973f8533f\transformed\animation-core-release\AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.animation:animation-android:1.7.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\577caf1c90265a243315973d8b2075ab\transformed\animation-release\AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.animation:animation-android:1.7.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\577caf1c90265a243315973d8b2075ab\transformed\animation-release\AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.foundation:foundation-layout-android:1.7.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\ddf556e0a888ecbbf820cfcde13a96ee\transformed\foundation-layout-release\AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.foundation:foundation-layout-android:1.7.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\ddf556e0a888ecbbf820cfcde13a96ee\transformed\foundation-layout-release\AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.ui:ui-tooling-data-android:1.7.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\27857fd9ca31d48b6d341fbb7bf520e0\transformed\ui-tooling-data-release\AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.ui:ui-tooling-data-android:1.7.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\27857fd9ca31d48b6d341fbb7bf520e0\transformed\ui-tooling-data-release\AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.ui:ui-tooling-preview-android:1.7.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\a7439e98a4672125f5d9dd6ce601856b\transformed\ui-tooling-preview-release\AndroidManifest.xml:20:5-44
+MERGED from [androidx.compose.ui:ui-tooling-preview-android:1.7.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\a7439e98a4672125f5d9dd6ce601856b\transformed\ui-tooling-preview-release\AndroidManifest.xml:20:5-44
+MERGED from [androidx.compose.ui:ui-geometry-android:1.7.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\cb4b9f7095a5b63a20af10dd3ea9be65\transformed\ui-geometry-release\AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.ui:ui-geometry-android:1.7.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\cb4b9f7095a5b63a20af10dd3ea9be65\transformed\ui-geometry-release\AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.ui:ui-graphics-android:1.7.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\85a1fcb26b4a4703939ced55a26c7fe4\transformed\ui-graphics-release\AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.ui:ui-graphics-android:1.7.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\85a1fcb26b4a4703939ced55a26c7fe4\transformed\ui-graphics-release\AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.ui:ui-unit-android:1.7.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\dec820bd31335e6828cf5c66136022cd\transformed\ui-unit-release\AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.ui:ui-unit-android:1.7.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\dec820bd31335e6828cf5c66136022cd\transformed\ui-unit-release\AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.ui:ui-util-android:1.7.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\9f446fe31fe600de70cd72d7dfd3f551\transformed\ui-util-release\AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.ui:ui-util-android:1.7.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\9f446fe31fe600de70cd72d7dfd3f551\transformed\ui-util-release\AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.ui:ui-text-android:1.7.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\aff49356b6b347b0cfc4c7c425a306cb\transformed\ui-text-release\AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.ui:ui-text-android:1.7.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\aff49356b6b347b0cfc4c7c425a306cb\transformed\ui-text-release\AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.ui:ui-test-manifest:1.7.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\9bfb81bf07b13a43a5c24f50e5d98f9e\transformed\ui-test-manifest-1.7.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.compose.ui:ui-test-manifest:1.7.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\9bfb81bf07b13a43a5c24f50e5d98f9e\transformed\ui-test-manifest-1.7.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.compose.material:material-icons-core-android:1.7.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\46d9a87a5b5882ede1fa3a81eaecdf93\transformed\material-icons-core-release\AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.material:material-icons-core-android:1.7.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\46d9a87a5b5882ede1fa3a81eaecdf93\transformed\material-icons-core-release\AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.gms:play-services-games:23.2.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\2d8556054b6bc9c91c7f3a04852409f6\transformed\play-services-games-23.2.0\AndroidManifest.xml:4:5-44
+MERGED from [com.google.android.gms:play-services-games:23.2.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\2d8556054b6bc9c91c7f3a04852409f6\transformed\play-services-games-23.2.0\AndroidManifest.xml:4:5-44
+MERGED from [com.google.android.gms:play-services-drive:17.0.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\e592049eb437f9c3363b1102a4f6287a\transformed\play-services-drive-17.0.0\AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-drive:17.0.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\e592049eb437f9c3363b1102a4f6287a\transformed\play-services-drive-17.0.0\AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-base:18.5.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\64984f9fc3a4da34d7cdf6c77a69a0f8\transformed\play-services-base-18.5.0\AndroidManifest.xml:3:5-44
+MERGED from [com.google.android.gms:play-services-base:18.5.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\64984f9fc3a4da34d7cdf6c77a69a0f8\transformed\play-services-base-18.5.0\AndroidManifest.xml:3:5-44
+MERGED from [com.google.android.gms:play-services-tasks:18.2.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\710c213ddbed0e603b7fda493053688a\transformed\play-services-tasks-18.2.0\AndroidManifest.xml:3:5-44
+MERGED from [com.google.android.gms:play-services-tasks:18.2.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\710c213ddbed0e603b7fda493053688a\transformed\play-services-tasks-18.2.0\AndroidManifest.xml:3:5-44
+MERGED from [com.google.android.gms:play-services-basement:18.4.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\a74b555f688daa4f69cf44696f76beff\transformed\play-services-basement-18.4.0\AndroidManifest.xml:3:5-44
+MERGED from [com.google.android.gms:play-services-basement:18.4.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\a74b555f688daa4f69cf44696f76beff\transformed\play-services-basement-18.4.0\AndroidManifest.xml:3:5-44
+MERGED from [androidx.fragment:fragment:1.1.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\cbd5b44803dcafc4303433f52449d92b\transformed\fragment-1.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.fragment:fragment:1.1.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\cbd5b44803dcafc4303433f52449d92b\transformed\fragment-1.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.loader:loader:1.0.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\996d77807f0ff34850bcfc6d98da2b55\transformed\loader-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.loader:loader:1.0.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\996d77807f0ff34850bcfc6d98da2b55\transformed\loader-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.emoji2:emoji2:1.3.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\b0a02b88b4c0110fca76690b6e2a7adc\transformed\emoji2-1.3.0\AndroidManifest.xml:21:5-44
+MERGED from [androidx.emoji2:emoji2:1.3.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\b0a02b88b4c0110fca76690b6e2a7adc\transformed\emoji2-1.3.0\AndroidManifest.xml:21:5-44
+MERGED from [androidx.viewpager:viewpager:1.0.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\ee0b07bdb37f08094efa6e0ee80e1564\transformed\viewpager-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.viewpager:viewpager:1.0.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\ee0b07bdb37f08094efa6e0ee80e1564\transformed\viewpager-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.autofill:autofill:1.0.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\1c990ba63db06d32a6a2d46f3fbcc72c\transformed\autofill-1.0.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.autofill:autofill:1.0.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\1c990ba63db06d32a6a2d46f3fbcc72c\transformed\autofill-1.0.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.customview:customview-poolingcontainer:1.0.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\0d8548bea48962efa7b705d96039a66e\transformed\customview-poolingcontainer-1.0.0\AndroidManifest.xml:20:5-21:38
+MERGED from [androidx.customview:customview-poolingcontainer:1.0.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\0d8548bea48962efa7b705d96039a66e\transformed\customview-poolingcontainer-1.0.0\AndroidManifest.xml:20:5-21:38
+MERGED from [androidx.core:core-ktx:1.13.1] C:\Users\cotad\.gradle\caches\8.10.2\transforms\6cd2532ef3f6d815fc9f86baf3711f7a\transformed\core-ktx-1.13.1\AndroidManifest.xml:5:5-44
+MERGED from [androidx.core:core-ktx:1.13.1] C:\Users\cotad\.gradle\caches\8.10.2\transforms\6cd2532ef3f6d815fc9f86baf3711f7a\transformed\core-ktx-1.13.1\AndroidManifest.xml:5:5-44
+MERGED from [androidx.customview:customview:1.0.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\004e3b8472522174afb694b618cfe082\transformed\customview-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.customview:customview:1.0.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\004e3b8472522174afb694b618cfe082\transformed\customview-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.graphics:graphics-path:1.0.1] C:\Users\cotad\.gradle\caches\8.10.2\transforms\b29bc63c4042366fce21c3666ddd75af\transformed\graphics-path-1.0.1\AndroidManifest.xml:5:5-44
+MERGED from [androidx.graphics:graphics-path:1.0.1] C:\Users\cotad\.gradle\caches\8.10.2\transforms\b29bc63c4042366fce21c3666ddd75af\transformed\graphics-path-1.0.1\AndroidManifest.xml:5:5-44
+MERGED from [androidx.core:core:1.13.1] C:\Users\cotad\.gradle\caches\8.10.2\transforms\023b3d9e2bd3c5c3ba41f194fba8e5af\transformed\core-1.13.1\AndroidManifest.xml:20:5-44
+MERGED from [androidx.core:core:1.13.1] C:\Users\cotad\.gradle\caches\8.10.2\transforms\023b3d9e2bd3c5c3ba41f194fba8e5af\transformed\core-1.13.1\AndroidManifest.xml:20:5-44
+MERGED from [androidx.savedstate:savedstate-ktx:1.2.1] C:\Users\cotad\.gradle\caches\8.10.2\transforms\2939c65a74f655fa81b397d0f092e5a2\transformed\savedstate-ktx-1.2.1\AndroidManifest.xml:20:5-44
+MERGED from [androidx.savedstate:savedstate-ktx:1.2.1] C:\Users\cotad\.gradle\caches\8.10.2\transforms\2939c65a74f655fa81b397d0f092e5a2\transformed\savedstate-ktx-1.2.1\AndroidManifest.xml:20:5-44
+MERGED from [androidx.savedstate:savedstate:1.2.1] C:\Users\cotad\.gradle\caches\8.10.2\transforms\27e29c1ae607bde9aebe767a8c69dcd6\transformed\savedstate-1.2.1\AndroidManifest.xml:20:5-44
+MERGED from [androidx.savedstate:savedstate:1.2.1] C:\Users\cotad\.gradle\caches\8.10.2\transforms\27e29c1ae607bde9aebe767a8c69dcd6\transformed\savedstate-1.2.1\AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.8.3] C:\Users\cotad\.gradle\caches\8.10.2\transforms\ab1edb36b0b8ba45b8c4211e6b3855f4\transformed\lifecycle-viewmodel-2.8.3\AndroidManifest.xml:4:5-43
+MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.8.3] C:\Users\cotad\.gradle\caches\8.10.2\transforms\ab1edb36b0b8ba45b8c4211e6b3855f4\transformed\lifecycle-viewmodel-2.8.3\AndroidManifest.xml:4:5-43
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-android:2.8.3] C:\Users\cotad\.gradle\caches\8.10.2\transforms\1143afc2942b7434e2c8967a446760de\transformed\lifecycle-viewmodel-release\AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-android:2.8.3] C:\Users\cotad\.gradle\caches\8.10.2\transforms\1143afc2942b7434e2c8967a446760de\transformed\lifecycle-viewmodel-release\AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata-core-ktx:2.8.3] C:\Users\cotad\.gradle\caches\8.10.2\transforms\95f04df7cefb46429067f5aee3ad3b92\transformed\lifecycle-livedata-core-ktx-2.8.3\AndroidManifest.xml:5:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata-core-ktx:2.8.3] C:\Users\cotad\.gradle\caches\8.10.2\transforms\95f04df7cefb46429067f5aee3ad3b92\transformed\lifecycle-livedata-core-ktx-2.8.3\AndroidManifest.xml:5:5-44
+MERGED from [androidx.lifecycle:lifecycle-runtime-ktx-android:2.8.3] C:\Users\cotad\.gradle\caches\8.10.2\transforms\99f3bce5562528eb112eb9d1c2822413\transformed\lifecycle-runtime-ktx-release\AndroidManifest.xml:5:5-44
+MERGED from [androidx.lifecycle:lifecycle-runtime-ktx-android:2.8.3] C:\Users\cotad\.gradle\caches\8.10.2\transforms\99f3bce5562528eb112eb9d1c2822413\transformed\lifecycle-runtime-ktx-release\AndroidManifest.xml:5:5-44
+MERGED from [androidx.lifecycle:lifecycle-runtime-android:2.8.3] C:\Users\cotad\.gradle\caches\8.10.2\transforms\4d7294362ee76053211c450dfd9beef0\transformed\lifecycle-runtime-release\AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-runtime-android:2.8.3] C:\Users\cotad\.gradle\caches\8.10.2\transforms\4d7294362ee76053211c450dfd9beef0\transformed\lifecycle-runtime-release\AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.3] C:\Users\cotad\.gradle\caches\8.10.2\transforms\dc8315de9727903dfe6e2d7d953d50e9\transformed\lifecycle-viewmodel-ktx-2.8.3\AndroidManifest.xml:5:5-44
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.3] C:\Users\cotad\.gradle\caches\8.10.2\transforms\dc8315de9727903dfe6e2d7d953d50e9\transformed\lifecycle-viewmodel-ktx-2.8.3\AndroidManifest.xml:5:5-44
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-savedstate:2.8.3] C:\Users\cotad\.gradle\caches\8.10.2\transforms\4eec2cefb9bb8e8912f69c6a3a62c19a\transformed\lifecycle-viewmodel-savedstate-2.8.3\AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-savedstate:2.8.3] C:\Users\cotad\.gradle\caches\8.10.2\transforms\4eec2cefb9bb8e8912f69c6a3a62c19a\transformed\lifecycle-viewmodel-savedstate-2.8.3\AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-process:2.8.3] C:\Users\cotad\.gradle\caches\8.10.2\transforms\5206a028ce0bb97565cd50f973b85c6b\transformed\lifecycle-process-2.8.3\AndroidManifest.xml:21:5-44
+MERGED from [androidx.lifecycle:lifecycle-process:2.8.3] C:\Users\cotad\.gradle\caches\8.10.2\transforms\5206a028ce0bb97565cd50f973b85c6b\transformed\lifecycle-process-2.8.3\AndroidManifest.xml:21:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.8.3] C:\Users\cotad\.gradle\caches\8.10.2\transforms\96245a451dcf5676436c3bd4993d10be\transformed\lifecycle-livedata-core-2.8.3\AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.8.3] C:\Users\cotad\.gradle\caches\8.10.2\transforms\96245a451dcf5676436c3bd4993d10be\transformed\lifecycle-livedata-core-2.8.3\AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata:2.8.3] C:\Users\cotad\.gradle\caches\8.10.2\transforms\d5ada758de729f2714fb99adf52d6f02\transformed\lifecycle-livedata-2.8.3\AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata:2.8.3] C:\Users\cotad\.gradle\caches\8.10.2\transforms\d5ada758de729f2714fb99adf52d6f02\transformed\lifecycle-livedata-2.8.3\AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-runtime-compose-android:2.8.3] C:\Users\cotad\.gradle\caches\8.10.2\transforms\fb8ad70cd2542dfdbce3c33c29b2bc23\transformed\lifecycle-runtime-compose-release\AndroidManifest.xml:5:5-44
+MERGED from [androidx.lifecycle:lifecycle-runtime-compose-android:2.8.3] C:\Users\cotad\.gradle\caches\8.10.2\transforms\fb8ad70cd2542dfdbce3c33c29b2bc23\transformed\lifecycle-runtime-compose-release\AndroidManifest.xml:5:5-44
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-compose-android:2.8.3] C:\Users\cotad\.gradle\caches\8.10.2\transforms\6fcfc356a7cf34a5063f85ab1969ac22\transformed\lifecycle-viewmodel-compose-release\AndroidManifest.xml:5:5-44
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-compose-android:2.8.3] C:\Users\cotad\.gradle\caches\8.10.2\transforms\6fcfc356a7cf34a5063f85ab1969ac22\transformed\lifecycle-viewmodel-compose-release\AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.ui:ui-android:1.7.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\eef64ddde80f28f2ed6282d259d23772\transformed\ui-release\AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.ui:ui-android:1.7.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\eef64ddde80f28f2ed6282d259d23772\transformed\ui-release\AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.ui:ui-tooling-android:1.7.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\5aaec9dbf419672f2f981091bc6a66b2\transformed\ui-tooling-release\AndroidManifest.xml:20:5-44
+MERGED from [androidx.compose.ui:ui-tooling-android:1.7.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\5aaec9dbf419672f2f981091bc6a66b2\transformed\ui-tooling-release\AndroidManifest.xml:20:5-44
+MERGED from [androidx.activity:activity-compose:1.8.2] C:\Users\cotad\.gradle\caches\8.10.2\transforms\b0c762dbb16ac22fdcfab45822caffd0\transformed\activity-compose-1.8.2\AndroidManifest.xml:5:5-44
+MERGED from [androidx.activity:activity-compose:1.8.2] C:\Users\cotad\.gradle\caches\8.10.2\transforms\b0c762dbb16ac22fdcfab45822caffd0\transformed\activity-compose-1.8.2\AndroidManifest.xml:5:5-44
+MERGED from [androidx.activity:activity-ktx:1.8.2] C:\Users\cotad\.gradle\caches\8.10.2\transforms\30508a25eda4a9e1e0d72f6f7e13ead2\transformed\activity-ktx-1.8.2\AndroidManifest.xml:5:5-44
+MERGED from [androidx.activity:activity-ktx:1.8.2] C:\Users\cotad\.gradle\caches\8.10.2\transforms\30508a25eda4a9e1e0d72f6f7e13ead2\transformed\activity-ktx-1.8.2\AndroidManifest.xml:5:5-44
+MERGED from [androidx.activity:activity:1.8.2] C:\Users\cotad\.gradle\caches\8.10.2\transforms\f4d05600be9529244ecc72a76eaefe0a\transformed\activity-1.8.2\AndroidManifest.xml:20:5-44
+MERGED from [androidx.activity:activity:1.8.2] C:\Users\cotad\.gradle\caches\8.10.2\transforms\f4d05600be9529244ecc72a76eaefe0a\transformed\activity-1.8.2\AndroidManifest.xml:20:5-44
+MERGED from [androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\cotad\.gradle\caches\8.10.2\transforms\00bf976b0a66db2bcf3caf7a45ef2b63\transformed\profileinstaller-1.3.1\AndroidManifest.xml:21:5-44
+MERGED from [androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\cotad\.gradle\caches\8.10.2\transforms\00bf976b0a66db2bcf3caf7a45ef2b63\transformed\profileinstaller-1.3.1\AndroidManifest.xml:21:5-44
+MERGED from [androidx.compose.runtime:runtime-saveable-android:1.7.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\3e644562783a02b3d938e497b0449701\transformed\runtime-saveable-release\AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.runtime:runtime-saveable-android:1.7.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\3e644562783a02b3d938e497b0449701\transformed\runtime-saveable-release\AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.runtime:runtime-android:1.7.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\eb660a8eac94b1828f91edce8a5bbaa7\transformed\runtime-release\AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.runtime:runtime-android:1.7.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\eb660a8eac94b1828f91edce8a5bbaa7\transformed\runtime-release\AndroidManifest.xml:5:5-44
+MERGED from [androidx.sqlite:sqlite:2.4.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\760d831337b329f575b28df90a4b8e28\transformed\sqlite-2.4.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.sqlite:sqlite:2.4.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\760d831337b329f575b28df90a4b8e28\transformed\sqlite-2.4.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.annotation:annotation-experimental:1.4.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\2e271f5ee39261ccf61ac4d9a3229b81\transformed\annotation-experimental-1.4.0\AndroidManifest.xml:5:5-44
+MERGED from [androidx.annotation:annotation-experimental:1.4.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\2e271f5ee39261ccf61ac4d9a3229b81\transformed\annotation-experimental-1.4.0\AndroidManifest.xml:5:5-44
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\cotad\.gradle\caches\8.10.2\transforms\51534a50ed13b2e88a22c107f6179bcc\transformed\versionedparcelable-1.1.1\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\cotad\.gradle\caches\8.10.2\transforms\51534a50ed13b2e88a22c107f6179bcc\transformed\versionedparcelable-1.1.1\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.startup:startup-runtime:1.1.1] C:\Users\cotad\.gradle\caches\8.10.2\transforms\347c757e5d95848b9f3531e1b97fe2ca\transformed\startup-runtime-1.1.1\AndroidManifest.xml:21:5-23:41
+MERGED from [androidx.startup:startup-runtime:1.1.1] C:\Users\cotad\.gradle\caches\8.10.2\transforms\347c757e5d95848b9f3531e1b97fe2ca\transformed\startup-runtime-1.1.1\AndroidManifest.xml:21:5-23:41
+MERGED from [androidx.tracing:tracing:1.0.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\7042d893d9bffd6a41435ab2dff67e43\transformed\tracing-1.0.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.tracing:tracing:1.0.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\7042d893d9bffd6a41435ab2dff67e43\transformed\tracing-1.0.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.interpolator:interpolator:1.0.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\76a55d71920f5832d4ff116322ae7b32\transformed\interpolator-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.interpolator:interpolator:1.0.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\76a55d71920f5832d4ff116322ae7b32\transformed\interpolator-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.arch.core:core-runtime:2.2.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\1c8b04429d8d6083b6c8402088ec2565\transformed\core-runtime-2.2.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.arch.core:core-runtime:2.2.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\1c8b04429d8d6083b6c8402088ec2565\transformed\core-runtime-2.2.0\AndroidManifest.xml:20:5-44
+	tools:overrideLibrary
+		ADDED from C:\Users\cotad\AndroidStudioProjects\HockeyAPPLive\app\src\main\AndroidManifest.xml:6:15-74
 	android:targetSdkVersion
 		INJECTED from C:\Users\cotad\AndroidStudioProjects\HockeyAPPLive\app\src\main\AndroidManifest.xml
 	android:minSdkVersion
 		INJECTED from C:\Users\cotad\AndroidStudioProjects\HockeyAPPLive\app\src\main\AndroidManifest.xml
-activity#com.google.android.gms.common.api.GoogleApiActivity
-ADDED from [com.google.android.gms:play-services-base:18.5.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\a113bdf225fd0d3e4f70548f96d0533e\transformed\play-services-base-18.5.0\AndroidManifest.xml:5:9-173
-	android:exported
-		ADDED from [com.google.android.gms:play-services-base:18.5.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\a113bdf225fd0d3e4f70548f96d0533e\transformed\play-services-base-18.5.0\AndroidManifest.xml:5:146-170
+uses-permission#android.permission.INTERNET
+ADDED from C:\Users\cotad\AndroidStudioProjects\HockeyAPPLive\app\src\main\AndroidManifest.xml:7:5-67
+MERGED from [com.google.ai.client.generativeai:generativeai:0.9.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\d93b328af3d45b38c34f53522e5ead92\transformed\generativeai-0.9.0\AndroidManifest.xml:22:5-67
+MERGED from [com.google.ai.client.generativeai:generativeai:0.9.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\d93b328af3d45b38c34f53522e5ead92\transformed\generativeai-0.9.0\AndroidManifest.xml:22:5-67
+MERGED from [com.google.ai.client.generativeai:common:0.8.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\7b147ebf960ae928c0b2942c4c03b6cb\transformed\common-0.8.0\AndroidManifest.xml:22:5-67
+MERGED from [com.google.ai.client.generativeai:common:0.8.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\7b147ebf960ae928c0b2942c4c03b6cb\transformed\common-0.8.0\AndroidManifest.xml:22:5-67
+	android:name
+		ADDED from C:\Users\cotad\AndroidStudioProjects\HockeyAPPLive\app\src\main\AndroidManifest.xml:7:22-64
+application
+ADDED from C:\Users\cotad\AndroidStudioProjects\HockeyAPPLive\app\src\main\AndroidManifest.xml:9:5-29:19
+INJECTED from C:\Users\cotad\AndroidStudioProjects\HockeyAPPLive\app\src\main\AndroidManifest.xml:9:5-29:19
+MERGED from [androidx.wear.compose:compose-foundation:1.4.1] C:\Users\cotad\.gradle\caches\8.10.2\transforms\dd633abfcfbb33ac3c9a4a94a724ce69\transformed\compose-foundation-1.4.1\AndroidManifest.xml:22:5-26:19
+MERGED from [androidx.wear.compose:compose-foundation:1.4.1] C:\Users\cotad\.gradle\caches\8.10.2\transforms\dd633abfcfbb33ac3c9a4a94a724ce69\transformed\compose-foundation-1.4.1\AndroidManifest.xml:22:5-26:19
+MERGED from [androidx.compose.ui:ui-test-manifest:1.7.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\9bfb81bf07b13a43a5c24f50e5d98f9e\transformed\ui-test-manifest-1.7.0\AndroidManifest.xml:22:5-26:19
+MERGED from [androidx.compose.ui:ui-test-manifest:1.7.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\9bfb81bf07b13a43a5c24f50e5d98f9e\transformed\ui-test-manifest-1.7.0\AndroidManifest.xml:22:5-26:19
+MERGED from [com.google.android.gms:play-services-games:23.2.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\2d8556054b6bc9c91c7f3a04852409f6\transformed\play-services-games-23.2.0\AndroidManifest.xml:6:5-20
+MERGED from [com.google.android.gms:play-services-games:23.2.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\2d8556054b6bc9c91c7f3a04852409f6\transformed\play-services-games-23.2.0\AndroidManifest.xml:6:5-20
+MERGED from [com.google.android.gms:play-services-drive:17.0.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\e592049eb437f9c3363b1102a4f6287a\transformed\play-services-drive-17.0.0\AndroidManifest.xml:22:5-20
+MERGED from [com.google.android.gms:play-services-drive:17.0.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\e592049eb437f9c3363b1102a4f6287a\transformed\play-services-drive-17.0.0\AndroidManifest.xml:22:5-20
+MERGED from [com.google.android.gms:play-services-base:18.5.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\64984f9fc3a4da34d7cdf6c77a69a0f8\transformed\play-services-base-18.5.0\AndroidManifest.xml:4:5-6:19
+MERGED from [com.google.android.gms:play-services-base:18.5.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\64984f9fc3a4da34d7cdf6c77a69a0f8\transformed\play-services-base-18.5.0\AndroidManifest.xml:4:5-6:19
+MERGED from [com.google.android.gms:play-services-tasks:18.2.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\710c213ddbed0e603b7fda493053688a\transformed\play-services-tasks-18.2.0\AndroidManifest.xml:4:5-20
+MERGED from [com.google.android.gms:play-services-tasks:18.2.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\710c213ddbed0e603b7fda493053688a\transformed\play-services-tasks-18.2.0\AndroidManifest.xml:4:5-20
+MERGED from [com.google.android.gms:play-services-basement:18.4.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\a74b555f688daa4f69cf44696f76beff\transformed\play-services-basement-18.4.0\AndroidManifest.xml:5:5-7:19
+MERGED from [com.google.android.gms:play-services-basement:18.4.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\a74b555f688daa4f69cf44696f76beff\transformed\play-services-basement-18.4.0\AndroidManifest.xml:5:5-7:19
+MERGED from [androidx.emoji2:emoji2:1.3.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\b0a02b88b4c0110fca76690b6e2a7adc\transformed\emoji2-1.3.0\AndroidManifest.xml:23:5-33:19
+MERGED from [androidx.emoji2:emoji2:1.3.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\b0a02b88b4c0110fca76690b6e2a7adc\transformed\emoji2-1.3.0\AndroidManifest.xml:23:5-33:19
+MERGED from [androidx.core:core:1.13.1] C:\Users\cotad\.gradle\caches\8.10.2\transforms\023b3d9e2bd3c5c3ba41f194fba8e5af\transformed\core-1.13.1\AndroidManifest.xml:28:5-89
+MERGED from [androidx.core:core:1.13.1] C:\Users\cotad\.gradle\caches\8.10.2\transforms\023b3d9e2bd3c5c3ba41f194fba8e5af\transformed\core-1.13.1\AndroidManifest.xml:28:5-89
+MERGED from [androidx.lifecycle:lifecycle-process:2.8.3] C:\Users\cotad\.gradle\caches\8.10.2\transforms\5206a028ce0bb97565cd50f973b85c6b\transformed\lifecycle-process-2.8.3\AndroidManifest.xml:23:5-33:19
+MERGED from [androidx.lifecycle:lifecycle-process:2.8.3] C:\Users\cotad\.gradle\caches\8.10.2\transforms\5206a028ce0bb97565cd50f973b85c6b\transformed\lifecycle-process-2.8.3\AndroidManifest.xml:23:5-33:19
+MERGED from [androidx.compose.ui:ui-tooling-android:1.7.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\5aaec9dbf419672f2f981091bc6a66b2\transformed\ui-tooling-release\AndroidManifest.xml:22:5-26:19
+MERGED from [androidx.compose.ui:ui-tooling-android:1.7.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\5aaec9dbf419672f2f981091bc6a66b2\transformed\ui-tooling-release\AndroidManifest.xml:22:5-26:19
+MERGED from [androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\cotad\.gradle\caches\8.10.2\transforms\00bf976b0a66db2bcf3caf7a45ef2b63\transformed\profileinstaller-1.3.1\AndroidManifest.xml:23:5-53:19
+MERGED from [androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\cotad\.gradle\caches\8.10.2\transforms\00bf976b0a66db2bcf3caf7a45ef2b63\transformed\profileinstaller-1.3.1\AndroidManifest.xml:23:5-53:19
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\cotad\.gradle\caches\8.10.2\transforms\51534a50ed13b2e88a22c107f6179bcc\transformed\versionedparcelable-1.1.1\AndroidManifest.xml:24:5-25:19
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\cotad\.gradle\caches\8.10.2\transforms\51534a50ed13b2e88a22c107f6179bcc\transformed\versionedparcelable-1.1.1\AndroidManifest.xml:24:5-25:19
+MERGED from [androidx.startup:startup-runtime:1.1.1] C:\Users\cotad\.gradle\caches\8.10.2\transforms\347c757e5d95848b9f3531e1b97fe2ca\transformed\startup-runtime-1.1.1\AndroidManifest.xml:25:5-31:19
+MERGED from [androidx.startup:startup-runtime:1.1.1] C:\Users\cotad\.gradle\caches\8.10.2\transforms\347c757e5d95848b9f3531e1b97fe2ca\transformed\startup-runtime-1.1.1\AndroidManifest.xml:25:5-31:19
+	android:extractNativeLibs
+		INJECTED from C:\Users\cotad\AndroidStudioProjects\HockeyAPPLive\app\src\main\AndroidManifest.xml
+	android:appComponentFactory
+		ADDED from [androidx.core:core:1.13.1] C:\Users\cotad\.gradle\caches\8.10.2\transforms\023b3d9e2bd3c5c3ba41f194fba8e5af\transformed\core-1.13.1\AndroidManifest.xml:28:18-86
+	android:supportsRtl
+		ADDED from C:\Users\cotad\AndroidStudioProjects\HockeyAPPLive\app\src\main\AndroidManifest.xml:16:9-35
+	android:label
+		ADDED from C:\Users\cotad\AndroidStudioProjects\HockeyAPPLive\app\src\main\AndroidManifest.xml:14:9-41
+	android:fullBackupContent
+		ADDED from C:\Users\cotad\AndroidStudioProjects\HockeyAPPLive\app\src\main\AndroidManifest.xml:12:9-54
+	android:roundIcon
+		ADDED from C:\Users\cotad\AndroidStudioProjects\HockeyAPPLive\app\src\main\AndroidManifest.xml:15:9-48
+	tools:targetApi
+		ADDED from C:\Users\cotad\AndroidStudioProjects\HockeyAPPLive\app\src\main\AndroidManifest.xml:18:9-29
+	android:icon
+		ADDED from C:\Users\cotad\AndroidStudioProjects\HockeyAPPLive\app\src\main\AndroidManifest.xml:13:9-43
+	android:allowBackup
+		ADDED from C:\Users\cotad\AndroidStudioProjects\HockeyAPPLive\app\src\main\AndroidManifest.xml:10:9-35
 	android:theme
-		ADDED from [com.google.android.gms:play-services-base:18.5.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\a113bdf225fd0d3e4f70548f96d0533e\transformed\play-services-base-18.5.0\AndroidManifest.xml:5:86-145
+		ADDED from C:\Users\cotad\AndroidStudioProjects\HockeyAPPLive\app\src\main\AndroidManifest.xml:17:9-51
+	android:dataExtractionRules
+		ADDED from C:\Users\cotad\AndroidStudioProjects\HockeyAPPLive\app\src\main\AndroidManifest.xml:11:9-65
+activity#com.example.hockeyapplive.MainActivity
+ADDED from C:\Users\cotad\AndroidStudioProjects\HockeyAPPLive\app\src\main\AndroidManifest.xml:19:9-28:20
+	android:label
+		ADDED from C:\Users\cotad\AndroidStudioProjects\HockeyAPPLive\app\src\main\AndroidManifest.xml:22:13-45
+	android:exported
+		ADDED from C:\Users\cotad\AndroidStudioProjects\HockeyAPPLive\app\src\main\AndroidManifest.xml:21:13-36
+	android:theme
+		ADDED from C:\Users\cotad\AndroidStudioProjects\HockeyAPPLive\app\src\main\AndroidManifest.xml:23:13-55
 	android:name
-		ADDED from [com.google.android.gms:play-services-base:18.5.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\a113bdf225fd0d3e4f70548f96d0533e\transformed\play-services-base-18.5.0\AndroidManifest.xml:5:19-85
-meta-data#com.google.android.gms.version
-ADDED from [com.google.android.gms:play-services-basement:18.4.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\f6aedf5a1b407cb8128943c08dc25e3f\transformed\play-services-basement-18.4.0\AndroidManifest.xml:6:9-122
-	android:value
-		ADDED from [com.google.android.gms:play-services-basement:18.4.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\f6aedf5a1b407cb8128943c08dc25e3f\transformed\play-services-basement-18.4.0\AndroidManifest.xml:6:66-119
+		ADDED from C:\Users\cotad\AndroidStudioProjects\HockeyAPPLive\app\src\main\AndroidManifest.xml:20:13-41
+intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
+ADDED from C:\Users\cotad\AndroidStudioProjects\HockeyAPPLive\app\src\main\AndroidManifest.xml:24:13-27:29
+action#android.intent.action.MAIN
+ADDED from C:\Users\cotad\AndroidStudioProjects\HockeyAPPLive\app\src\main\AndroidManifest.xml:25:17-69
 	android:name
-		ADDED from [com.google.android.gms:play-services-basement:18.4.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\f6aedf5a1b407cb8128943c08dc25e3f\transformed\play-services-basement-18.4.0\AndroidManifest.xml:6:20-65
+		ADDED from C:\Users\cotad\AndroidStudioProjects\HockeyAPPLive\app\src\main\AndroidManifest.xml:25:25-66
+category#android.intent.category.LAUNCHER
+ADDED from C:\Users\cotad\AndroidStudioProjects\HockeyAPPLive\app\src\main\AndroidManifest.xml:26:17-77
+	android:name
+		ADDED from C:\Users\cotad\AndroidStudioProjects\HockeyAPPLive\app\src\main\AndroidManifest.xml:26:27-74
+uses-library#wear-sdk
+ADDED from [androidx.wear.compose:compose-foundation:1.4.1] C:\Users\cotad\.gradle\caches\8.10.2\transforms\dd633abfcfbb33ac3c9a4a94a724ce69\transformed\compose-foundation-1.4.1\AndroidManifest.xml:23:9-25:40
+	android:required
+		ADDED from [androidx.wear.compose:compose-foundation:1.4.1] C:\Users\cotad\.gradle\caches\8.10.2\transforms\dd633abfcfbb33ac3c9a4a94a724ce69\transformed\compose-foundation-1.4.1\AndroidManifest.xml:25:13-37
+	android:name
+		ADDED from [androidx.wear.compose:compose-foundation:1.4.1] C:\Users\cotad\.gradle\caches\8.10.2\transforms\dd633abfcfbb33ac3c9a4a94a724ce69\transformed\compose-foundation-1.4.1\AndroidManifest.xml:24:13-36
 activity#androidx.activity.ComponentActivity
-ADDED from [androidx.compose.ui:ui-test-manifest:1.7.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\583ab9fa3ea07d210c134f3701142b7c\transformed\ui-test-manifest-1.7.0\AndroidManifest.xml:23:9-25:39
+ADDED from [androidx.compose.ui:ui-test-manifest:1.7.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\9bfb81bf07b13a43a5c24f50e5d98f9e\transformed\ui-test-manifest-1.7.0\AndroidManifest.xml:23:9-25:39
 	android:exported
-		ADDED from [androidx.compose.ui:ui-test-manifest:1.7.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\583ab9fa3ea07d210c134f3701142b7c\transformed\ui-test-manifest-1.7.0\AndroidManifest.xml:25:13-36
+		ADDED from [androidx.compose.ui:ui-test-manifest:1.7.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\9bfb81bf07b13a43a5c24f50e5d98f9e\transformed\ui-test-manifest-1.7.0\AndroidManifest.xml:25:13-36
 	android:name
-		ADDED from [androidx.compose.ui:ui-test-manifest:1.7.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\583ab9fa3ea07d210c134f3701142b7c\transformed\ui-test-manifest-1.7.0\AndroidManifest.xml:24:13-63
+		ADDED from [androidx.compose.ui:ui-test-manifest:1.7.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\9bfb81bf07b13a43a5c24f50e5d98f9e\transformed\ui-test-manifest-1.7.0\AndroidManifest.xml:24:13-63
+activity#com.google.android.gms.common.api.GoogleApiActivity
+ADDED from [com.google.android.gms:play-services-base:18.5.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\64984f9fc3a4da34d7cdf6c77a69a0f8\transformed\play-services-base-18.5.0\AndroidManifest.xml:5:9-173
+	android:exported
+		ADDED from [com.google.android.gms:play-services-base:18.5.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\64984f9fc3a4da34d7cdf6c77a69a0f8\transformed\play-services-base-18.5.0\AndroidManifest.xml:5:146-170
+	android:theme
+		ADDED from [com.google.android.gms:play-services-base:18.5.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\64984f9fc3a4da34d7cdf6c77a69a0f8\transformed\play-services-base-18.5.0\AndroidManifest.xml:5:86-145
+	android:name
+		ADDED from [com.google.android.gms:play-services-base:18.5.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\64984f9fc3a4da34d7cdf6c77a69a0f8\transformed\play-services-base-18.5.0\AndroidManifest.xml:5:19-85
+meta-data#com.google.android.gms.version
+ADDED from [com.google.android.gms:play-services-basement:18.4.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\a74b555f688daa4f69cf44696f76beff\transformed\play-services-basement-18.4.0\AndroidManifest.xml:6:9-122
+	android:value
+		ADDED from [com.google.android.gms:play-services-basement:18.4.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\a74b555f688daa4f69cf44696f76beff\transformed\play-services-basement-18.4.0\AndroidManifest.xml:6:66-119
+	android:name
+		ADDED from [com.google.android.gms:play-services-basement:18.4.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\a74b555f688daa4f69cf44696f76beff\transformed\play-services-basement-18.4.0\AndroidManifest.xml:6:20-65
 provider#androidx.startup.InitializationProvider
-ADDED from [androidx.emoji2:emoji2:1.3.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\e400760b959edfdfc60090ff30fa9d3a\transformed\emoji2-1.3.0\AndroidManifest.xml:24:9-32:20
-MERGED from [androidx.lifecycle:lifecycle-process:2.8.3] C:\Users\cotad\.gradle\caches\8.10.2\transforms\90091b77c74b9b2cefa30767887ab073\transformed\lifecycle-process-2.8.3\AndroidManifest.xml:24:9-32:20
-MERGED from [androidx.lifecycle:lifecycle-process:2.8.3] C:\Users\cotad\.gradle\caches\8.10.2\transforms\90091b77c74b9b2cefa30767887ab073\transformed\lifecycle-process-2.8.3\AndroidManifest.xml:24:9-32:20
-MERGED from [androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\cotad\.gradle\caches\8.10.2\transforms\02a1164e7d223a9a223f0fdd0f4085d1\transformed\profileinstaller-1.3.1\AndroidManifest.xml:24:9-32:20
-MERGED from [androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\cotad\.gradle\caches\8.10.2\transforms\02a1164e7d223a9a223f0fdd0f4085d1\transformed\profileinstaller-1.3.1\AndroidManifest.xml:24:9-32:20
-MERGED from [androidx.startup:startup-runtime:1.1.1] C:\Users\cotad\.gradle\caches\8.10.2\transforms\f816a24fc4ddcb0812ce24c7284294bb\transformed\startup-runtime-1.1.1\AndroidManifest.xml:26:9-30:34
-MERGED from [androidx.startup:startup-runtime:1.1.1] C:\Users\cotad\.gradle\caches\8.10.2\transforms\f816a24fc4ddcb0812ce24c7284294bb\transformed\startup-runtime-1.1.1\AndroidManifest.xml:26:9-30:34
+ADDED from [androidx.emoji2:emoji2:1.3.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\b0a02b88b4c0110fca76690b6e2a7adc\transformed\emoji2-1.3.0\AndroidManifest.xml:24:9-32:20
+MERGED from [androidx.lifecycle:lifecycle-process:2.8.3] C:\Users\cotad\.gradle\caches\8.10.2\transforms\5206a028ce0bb97565cd50f973b85c6b\transformed\lifecycle-process-2.8.3\AndroidManifest.xml:24:9-32:20
+MERGED from [androidx.lifecycle:lifecycle-process:2.8.3] C:\Users\cotad\.gradle\caches\8.10.2\transforms\5206a028ce0bb97565cd50f973b85c6b\transformed\lifecycle-process-2.8.3\AndroidManifest.xml:24:9-32:20
+MERGED from [androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\cotad\.gradle\caches\8.10.2\transforms\00bf976b0a66db2bcf3caf7a45ef2b63\transformed\profileinstaller-1.3.1\AndroidManifest.xml:24:9-32:20
+MERGED from [androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\cotad\.gradle\caches\8.10.2\transforms\00bf976b0a66db2bcf3caf7a45ef2b63\transformed\profileinstaller-1.3.1\AndroidManifest.xml:24:9-32:20
+MERGED from [androidx.startup:startup-runtime:1.1.1] C:\Users\cotad\.gradle\caches\8.10.2\transforms\347c757e5d95848b9f3531e1b97fe2ca\transformed\startup-runtime-1.1.1\AndroidManifest.xml:26:9-30:34
+MERGED from [androidx.startup:startup-runtime:1.1.1] C:\Users\cotad\.gradle\caches\8.10.2\transforms\347c757e5d95848b9f3531e1b97fe2ca\transformed\startup-runtime-1.1.1\AndroidManifest.xml:26:9-30:34
 	tools:node
-		ADDED from [androidx.emoji2:emoji2:1.3.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\e400760b959edfdfc60090ff30fa9d3a\transformed\emoji2-1.3.0\AndroidManifest.xml:28:13-31
+		ADDED from [androidx.emoji2:emoji2:1.3.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\b0a02b88b4c0110fca76690b6e2a7adc\transformed\emoji2-1.3.0\AndroidManifest.xml:28:13-31
 	android:authorities
-		ADDED from [androidx.emoji2:emoji2:1.3.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\e400760b959edfdfc60090ff30fa9d3a\transformed\emoji2-1.3.0\AndroidManifest.xml:26:13-68
+		ADDED from [androidx.emoji2:emoji2:1.3.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\b0a02b88b4c0110fca76690b6e2a7adc\transformed\emoji2-1.3.0\AndroidManifest.xml:26:13-68
 	android:exported
-		ADDED from [androidx.emoji2:emoji2:1.3.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\e400760b959edfdfc60090ff30fa9d3a\transformed\emoji2-1.3.0\AndroidManifest.xml:27:13-37
+		ADDED from [androidx.emoji2:emoji2:1.3.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\b0a02b88b4c0110fca76690b6e2a7adc\transformed\emoji2-1.3.0\AndroidManifest.xml:27:13-37
 	android:name
-		ADDED from [androidx.emoji2:emoji2:1.3.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\e400760b959edfdfc60090ff30fa9d3a\transformed\emoji2-1.3.0\AndroidManifest.xml:25:13-67
+		ADDED from [androidx.emoji2:emoji2:1.3.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\b0a02b88b4c0110fca76690b6e2a7adc\transformed\emoji2-1.3.0\AndroidManifest.xml:25:13-67
 meta-data#androidx.emoji2.text.EmojiCompatInitializer
-ADDED from [androidx.emoji2:emoji2:1.3.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\e400760b959edfdfc60090ff30fa9d3a\transformed\emoji2-1.3.0\AndroidManifest.xml:29:13-31:52
+ADDED from [androidx.emoji2:emoji2:1.3.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\b0a02b88b4c0110fca76690b6e2a7adc\transformed\emoji2-1.3.0\AndroidManifest.xml:29:13-31:52
 	android:value
-		ADDED from [androidx.emoji2:emoji2:1.3.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\e400760b959edfdfc60090ff30fa9d3a\transformed\emoji2-1.3.0\AndroidManifest.xml:31:17-49
+		ADDED from [androidx.emoji2:emoji2:1.3.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\b0a02b88b4c0110fca76690b6e2a7adc\transformed\emoji2-1.3.0\AndroidManifest.xml:31:17-49
 	android:name
-		ADDED from [androidx.emoji2:emoji2:1.3.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\e400760b959edfdfc60090ff30fa9d3a\transformed\emoji2-1.3.0\AndroidManifest.xml:30:17-75
-meta-data#androidx.lifecycle.ProcessLifecycleInitializer
-ADDED from [androidx.lifecycle:lifecycle-process:2.8.3] C:\Users\cotad\.gradle\caches\8.10.2\transforms\90091b77c74b9b2cefa30767887ab073\transformed\lifecycle-process-2.8.3\AndroidManifest.xml:29:13-31:52
-	android:value
-		ADDED from [androidx.lifecycle:lifecycle-process:2.8.3] C:\Users\cotad\.gradle\caches\8.10.2\transforms\90091b77c74b9b2cefa30767887ab073\transformed\lifecycle-process-2.8.3\AndroidManifest.xml:31:17-49
-	android:name
-		ADDED from [androidx.lifecycle:lifecycle-process:2.8.3] C:\Users\cotad\.gradle\caches\8.10.2\transforms\90091b77c74b9b2cefa30767887ab073\transformed\lifecycle-process-2.8.3\AndroidManifest.xml:30:17-78
-activity#androidx.compose.ui.tooling.PreviewActivity
-ADDED from [androidx.compose.ui:ui-tooling-android:1.7.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\f4149c21731fe21ceef988c847e58986\transformed\ui-tooling-release\AndroidManifest.xml:23:9-25:39
-	android:exported
-		ADDED from [androidx.compose.ui:ui-tooling-android:1.7.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\f4149c21731fe21ceef988c847e58986\transformed\ui-tooling-release\AndroidManifest.xml:25:13-36
-	android:name
-		ADDED from [androidx.compose.ui:ui-tooling-android:1.7.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\f4149c21731fe21ceef988c847e58986\transformed\ui-tooling-release\AndroidManifest.xml:24:13-71
+		ADDED from [androidx.emoji2:emoji2:1.3.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\b0a02b88b4c0110fca76690b6e2a7adc\transformed\emoji2-1.3.0\AndroidManifest.xml:30:17-75
 permission#${applicationId}.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION
-ADDED from [androidx.core:core:1.13.1] C:\Users\cotad\.gradle\caches\8.10.2\transforms\1e50e9b05d9bd82a8046b64a9941a0bb\transformed\core-1.13.1\AndroidManifest.xml:22:5-24:47
+ADDED from [androidx.core:core:1.13.1] C:\Users\cotad\.gradle\caches\8.10.2\transforms\023b3d9e2bd3c5c3ba41f194fba8e5af\transformed\core-1.13.1\AndroidManifest.xml:22:5-24:47
 	android:protectionLevel
-		ADDED from [androidx.core:core:1.13.1] C:\Users\cotad\.gradle\caches\8.10.2\transforms\1e50e9b05d9bd82a8046b64a9941a0bb\transformed\core-1.13.1\AndroidManifest.xml:24:9-44
+		ADDED from [androidx.core:core:1.13.1] C:\Users\cotad\.gradle\caches\8.10.2\transforms\023b3d9e2bd3c5c3ba41f194fba8e5af\transformed\core-1.13.1\AndroidManifest.xml:24:9-44
 	android:name
-		ADDED from [androidx.core:core:1.13.1] C:\Users\cotad\.gradle\caches\8.10.2\transforms\1e50e9b05d9bd82a8046b64a9941a0bb\transformed\core-1.13.1\AndroidManifest.xml:23:9-81
+		ADDED from [androidx.core:core:1.13.1] C:\Users\cotad\.gradle\caches\8.10.2\transforms\023b3d9e2bd3c5c3ba41f194fba8e5af\transformed\core-1.13.1\AndroidManifest.xml:23:9-81
 permission#com.example.hockeyapplive.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION
-ADDED from [androidx.core:core:1.13.1] C:\Users\cotad\.gradle\caches\8.10.2\transforms\1e50e9b05d9bd82a8046b64a9941a0bb\transformed\core-1.13.1\AndroidManifest.xml:22:5-24:47
+ADDED from [androidx.core:core:1.13.1] C:\Users\cotad\.gradle\caches\8.10.2\transforms\023b3d9e2bd3c5c3ba41f194fba8e5af\transformed\core-1.13.1\AndroidManifest.xml:22:5-24:47
 	android:protectionLevel
-		ADDED from [androidx.core:core:1.13.1] C:\Users\cotad\.gradle\caches\8.10.2\transforms\1e50e9b05d9bd82a8046b64a9941a0bb\transformed\core-1.13.1\AndroidManifest.xml:24:9-44
+		ADDED from [androidx.core:core:1.13.1] C:\Users\cotad\.gradle\caches\8.10.2\transforms\023b3d9e2bd3c5c3ba41f194fba8e5af\transformed\core-1.13.1\AndroidManifest.xml:24:9-44
 	android:name
-		ADDED from [androidx.core:core:1.13.1] C:\Users\cotad\.gradle\caches\8.10.2\transforms\1e50e9b05d9bd82a8046b64a9941a0bb\transformed\core-1.13.1\AndroidManifest.xml:23:9-81
+		ADDED from [androidx.core:core:1.13.1] C:\Users\cotad\.gradle\caches\8.10.2\transforms\023b3d9e2bd3c5c3ba41f194fba8e5af\transformed\core-1.13.1\AndroidManifest.xml:23:9-81
 uses-permission#${applicationId}.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION
-ADDED from [androidx.core:core:1.13.1] C:\Users\cotad\.gradle\caches\8.10.2\transforms\1e50e9b05d9bd82a8046b64a9941a0bb\transformed\core-1.13.1\AndroidManifest.xml:26:5-97
+ADDED from [androidx.core:core:1.13.1] C:\Users\cotad\.gradle\caches\8.10.2\transforms\023b3d9e2bd3c5c3ba41f194fba8e5af\transformed\core-1.13.1\AndroidManifest.xml:26:5-97
 	android:name
-		ADDED from [androidx.core:core:1.13.1] C:\Users\cotad\.gradle\caches\8.10.2\transforms\1e50e9b05d9bd82a8046b64a9941a0bb\transformed\core-1.13.1\AndroidManifest.xml:26:22-94
+		ADDED from [androidx.core:core:1.13.1] C:\Users\cotad\.gradle\caches\8.10.2\transforms\023b3d9e2bd3c5c3ba41f194fba8e5af\transformed\core-1.13.1\AndroidManifest.xml:26:22-94
 uses-permission#com.example.hockeyapplive.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION
-ADDED from [androidx.core:core:1.13.1] C:\Users\cotad\.gradle\caches\8.10.2\transforms\1e50e9b05d9bd82a8046b64a9941a0bb\transformed\core-1.13.1\AndroidManifest.xml:26:5-97
+ADDED from [androidx.core:core:1.13.1] C:\Users\cotad\.gradle\caches\8.10.2\transforms\023b3d9e2bd3c5c3ba41f194fba8e5af\transformed\core-1.13.1\AndroidManifest.xml:26:5-97
 	android:name
-		ADDED from [androidx.core:core:1.13.1] C:\Users\cotad\.gradle\caches\8.10.2\transforms\1e50e9b05d9bd82a8046b64a9941a0bb\transformed\core-1.13.1\AndroidManifest.xml:26:22-94
-meta-data#androidx.profileinstaller.ProfileInstallerInitializer
-ADDED from [androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\cotad\.gradle\caches\8.10.2\transforms\02a1164e7d223a9a223f0fdd0f4085d1\transformed\profileinstaller-1.3.1\AndroidManifest.xml:29:13-31:52
+		ADDED from [androidx.core:core:1.13.1] C:\Users\cotad\.gradle\caches\8.10.2\transforms\023b3d9e2bd3c5c3ba41f194fba8e5af\transformed\core-1.13.1\AndroidManifest.xml:26:22-94
+meta-data#androidx.lifecycle.ProcessLifecycleInitializer
+ADDED from [androidx.lifecycle:lifecycle-process:2.8.3] C:\Users\cotad\.gradle\caches\8.10.2\transforms\5206a028ce0bb97565cd50f973b85c6b\transformed\lifecycle-process-2.8.3\AndroidManifest.xml:29:13-31:52
 	android:value
-		ADDED from [androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\cotad\.gradle\caches\8.10.2\transforms\02a1164e7d223a9a223f0fdd0f4085d1\transformed\profileinstaller-1.3.1\AndroidManifest.xml:31:17-49
+		ADDED from [androidx.lifecycle:lifecycle-process:2.8.3] C:\Users\cotad\.gradle\caches\8.10.2\transforms\5206a028ce0bb97565cd50f973b85c6b\transformed\lifecycle-process-2.8.3\AndroidManifest.xml:31:17-49
 	android:name
-		ADDED from [androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\cotad\.gradle\caches\8.10.2\transforms\02a1164e7d223a9a223f0fdd0f4085d1\transformed\profileinstaller-1.3.1\AndroidManifest.xml:30:17-85
-receiver#androidx.profileinstaller.ProfileInstallReceiver
-ADDED from [androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\cotad\.gradle\caches\8.10.2\transforms\02a1164e7d223a9a223f0fdd0f4085d1\transformed\profileinstaller-1.3.1\AndroidManifest.xml:34:9-52:20
-	android:enabled
-		ADDED from [androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\cotad\.gradle\caches\8.10.2\transforms\02a1164e7d223a9a223f0fdd0f4085d1\transformed\profileinstaller-1.3.1\AndroidManifest.xml:37:13-35
+		ADDED from [androidx.lifecycle:lifecycle-process:2.8.3] C:\Users\cotad\.gradle\caches\8.10.2\transforms\5206a028ce0bb97565cd50f973b85c6b\transformed\lifecycle-process-2.8.3\AndroidManifest.xml:30:17-78
+activity#androidx.compose.ui.tooling.PreviewActivity
+ADDED from [androidx.compose.ui:ui-tooling-android:1.7.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\5aaec9dbf419672f2f981091bc6a66b2\transformed\ui-tooling-release\AndroidManifest.xml:23:9-25:39
 	android:exported
-		ADDED from [androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\cotad\.gradle\caches\8.10.2\transforms\02a1164e7d223a9a223f0fdd0f4085d1\transformed\profileinstaller-1.3.1\AndroidManifest.xml:38:13-36
+		ADDED from [androidx.compose.ui:ui-tooling-android:1.7.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\5aaec9dbf419672f2f981091bc6a66b2\transformed\ui-tooling-release\AndroidManifest.xml:25:13-36
+	android:name
+		ADDED from [androidx.compose.ui:ui-tooling-android:1.7.0] C:\Users\cotad\.gradle\caches\8.10.2\transforms\5aaec9dbf419672f2f981091bc6a66b2\transformed\ui-tooling-release\AndroidManifest.xml:24:13-71
+meta-data#androidx.profileinstaller.ProfileInstallerInitializer
+ADDED from [androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\cotad\.gradle\caches\8.10.2\transforms\00bf976b0a66db2bcf3caf7a45ef2b63\transformed\profileinstaller-1.3.1\AndroidManifest.xml:29:13-31:52
+	android:value
+		ADDED from [androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\cotad\.gradle\caches\8.10.2\transforms\00bf976b0a66db2bcf3caf7a45ef2b63\transformed\profileinstaller-1.3.1\AndroidManifest.xml:31:17-49
+	android:name
+		ADDED from [androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\cotad\.gradle\caches\8.10.2\transforms\00bf976b0a66db2bcf3caf7a45ef2b63\transformed\profileinstaller-1.3.1\AndroidManifest.xml:30:17-85
+receiver#androidx.profileinstaller.ProfileInstallReceiver
+ADDED from [androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\cotad\.gradle\caches\8.10.2\transforms\00bf976b0a66db2bcf3caf7a45ef2b63\transformed\profileinstaller-1.3.1\AndroidManifest.xml:34:9-52:20
+	android:enabled
+		ADDED from [androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\cotad\.gradle\caches\8.10.2\transforms\00bf976b0a66db2bcf3caf7a45ef2b63\transformed\profileinstaller-1.3.1\AndroidManifest.xml:37:13-35
+	android:exported
+		ADDED from [androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\cotad\.gradle\caches\8.10.2\transforms\00bf976b0a66db2bcf3caf7a45ef2b63\transformed\profileinstaller-1.3.1\AndroidManifest.xml:38:13-36
 	android:permission
-		ADDED from [androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\cotad\.gradle\caches\8.10.2\transforms\02a1164e7d223a9a223f0fdd0f4085d1\transformed\profileinstaller-1.3.1\AndroidManifest.xml:39:13-57
+		ADDED from [androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\cotad\.gradle\caches\8.10.2\transforms\00bf976b0a66db2bcf3caf7a45ef2b63\transformed\profileinstaller-1.3.1\AndroidManifest.xml:39:13-57
 	android:directBootAware
-		ADDED from [androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\cotad\.gradle\caches\8.10.2\transforms\02a1164e7d223a9a223f0fdd0f4085d1\transformed\profileinstaller-1.3.1\AndroidManifest.xml:36:13-44
+		ADDED from [androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\cotad\.gradle\caches\8.10.2\transforms\00bf976b0a66db2bcf3caf7a45ef2b63\transformed\profileinstaller-1.3.1\AndroidManifest.xml:36:13-44
 	android:name
-		ADDED from [androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\cotad\.gradle\caches\8.10.2\transforms\02a1164e7d223a9a223f0fdd0f4085d1\transformed\profileinstaller-1.3.1\AndroidManifest.xml:35:13-76
+		ADDED from [androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\cotad\.gradle\caches\8.10.2\transforms\00bf976b0a66db2bcf3caf7a45ef2b63\transformed\profileinstaller-1.3.1\AndroidManifest.xml:35:13-76
 intent-filter#action:name:androidx.profileinstaller.action.INSTALL_PROFILE
-ADDED from [androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\cotad\.gradle\caches\8.10.2\transforms\02a1164e7d223a9a223f0fdd0f4085d1\transformed\profileinstaller-1.3.1\AndroidManifest.xml:40:13-42:29
+ADDED from [androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\cotad\.gradle\caches\8.10.2\transforms\00bf976b0a66db2bcf3caf7a45ef2b63\transformed\profileinstaller-1.3.1\AndroidManifest.xml:40:13-42:29
 action#androidx.profileinstaller.action.INSTALL_PROFILE
-ADDED from [androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\cotad\.gradle\caches\8.10.2\transforms\02a1164e7d223a9a223f0fdd0f4085d1\transformed\profileinstaller-1.3.1\AndroidManifest.xml:41:17-91
+ADDED from [androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\cotad\.gradle\caches\8.10.2\transforms\00bf976b0a66db2bcf3caf7a45ef2b63\transformed\profileinstaller-1.3.1\AndroidManifest.xml:41:17-91
 	android:name
-		ADDED from [androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\cotad\.gradle\caches\8.10.2\transforms\02a1164e7d223a9a223f0fdd0f4085d1\transformed\profileinstaller-1.3.1\AndroidManifest.xml:41:25-88
+		ADDED from [androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\cotad\.gradle\caches\8.10.2\transforms\00bf976b0a66db2bcf3caf7a45ef2b63\transformed\profileinstaller-1.3.1\AndroidManifest.xml:41:25-88
 intent-filter#action:name:androidx.profileinstaller.action.SKIP_FILE
-ADDED from [androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\cotad\.gradle\caches\8.10.2\transforms\02a1164e7d223a9a223f0fdd0f4085d1\transformed\profileinstaller-1.3.1\AndroidManifest.xml:43:13-45:29
+ADDED from [androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\cotad\.gradle\caches\8.10.2\transforms\00bf976b0a66db2bcf3caf7a45ef2b63\transformed\profileinstaller-1.3.1\AndroidManifest.xml:43:13-45:29
 action#androidx.profileinstaller.action.SKIP_FILE
-ADDED from [androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\cotad\.gradle\caches\8.10.2\transforms\02a1164e7d223a9a223f0fdd0f4085d1\transformed\profileinstaller-1.3.1\AndroidManifest.xml:44:17-85
+ADDED from [androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\cotad\.gradle\caches\8.10.2\transforms\00bf976b0a66db2bcf3caf7a45ef2b63\transformed\profileinstaller-1.3.1\AndroidManifest.xml:44:17-85
 	android:name
-		ADDED from [androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\cotad\.gradle\caches\8.10.2\transforms\02a1164e7d223a9a223f0fdd0f4085d1\transformed\profileinstaller-1.3.1\AndroidManifest.xml:44:25-82
+		ADDED from [androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\cotad\.gradle\caches\8.10.2\transforms\00bf976b0a66db2bcf3caf7a45ef2b63\transformed\profileinstaller-1.3.1\AndroidManifest.xml:44:25-82
 intent-filter#action:name:androidx.profileinstaller.action.SAVE_PROFILE
-ADDED from [androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\cotad\.gradle\caches\8.10.2\transforms\02a1164e7d223a9a223f0fdd0f4085d1\transformed\profileinstaller-1.3.1\AndroidManifest.xml:46:13-48:29
+ADDED from [androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\cotad\.gradle\caches\8.10.2\transforms\00bf976b0a66db2bcf3caf7a45ef2b63\transformed\profileinstaller-1.3.1\AndroidManifest.xml:46:13-48:29
 action#androidx.profileinstaller.action.SAVE_PROFILE
-ADDED from [androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\cotad\.gradle\caches\8.10.2\transforms\02a1164e7d223a9a223f0fdd0f4085d1\transformed\profileinstaller-1.3.1\AndroidManifest.xml:47:17-88
+ADDED from [androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\cotad\.gradle\caches\8.10.2\transforms\00bf976b0a66db2bcf3caf7a45ef2b63\transformed\profileinstaller-1.3.1\AndroidManifest.xml:47:17-88
 	android:name
-		ADDED from [androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\cotad\.gradle\caches\8.10.2\transforms\02a1164e7d223a9a223f0fdd0f4085d1\transformed\profileinstaller-1.3.1\AndroidManifest.xml:47:25-85
+		ADDED from [androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\cotad\.gradle\caches\8.10.2\transforms\00bf976b0a66db2bcf3caf7a45ef2b63\transformed\profileinstaller-1.3.1\AndroidManifest.xml:47:25-85
 intent-filter#action:name:androidx.profileinstaller.action.BENCHMARK_OPERATION
-ADDED from [androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\cotad\.gradle\caches\8.10.2\transforms\02a1164e7d223a9a223f0fdd0f4085d1\transformed\profileinstaller-1.3.1\AndroidManifest.xml:49:13-51:29
+ADDED from [androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\cotad\.gradle\caches\8.10.2\transforms\00bf976b0a66db2bcf3caf7a45ef2b63\transformed\profileinstaller-1.3.1\AndroidManifest.xml:49:13-51:29
 action#androidx.profileinstaller.action.BENCHMARK_OPERATION
-ADDED from [androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\cotad\.gradle\caches\8.10.2\transforms\02a1164e7d223a9a223f0fdd0f4085d1\transformed\profileinstaller-1.3.1\AndroidManifest.xml:50:17-95
+ADDED from [androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\cotad\.gradle\caches\8.10.2\transforms\00bf976b0a66db2bcf3caf7a45ef2b63\transformed\profileinstaller-1.3.1\AndroidManifest.xml:50:17-95
 	android:name
-		ADDED from [androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\cotad\.gradle\caches\8.10.2\transforms\02a1164e7d223a9a223f0fdd0f4085d1\transformed\profileinstaller-1.3.1\AndroidManifest.xml:50:25-92
+		ADDED from [androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\cotad\.gradle\caches\8.10.2\transforms\00bf976b0a66db2bcf3caf7a45ef2b63\transformed\profileinstaller-1.3.1\AndroidManifest.xml:50:25-92

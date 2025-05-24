@@ -1,102 +1,106 @@
 [
     {
-        "merged": "com.example.hockeyapplive.app-debug-60:/drawable_ic_launcher_background.xml.flat",
-        "source": "com.example.hockeyapplive.app-main-62:/drawable/ic_launcher_background.xml"
+        "merged": "com.example.hockeyapplive.app-debug-64:/mipmap-xhdpi_ic_launcher_round.webp.flat",
+        "source": "com.example.hockeyapplive.app-main-66:/mipmap-xhdpi/ic_launcher_round.webp"
     },
     {
-        "merged": "com.example.hockeyapplive.app-debug-60:/mipmap-mdpi_ic_launcher_round.webp.flat",
-        "source": "com.example.hockeyapplive.app-main-62:/mipmap-mdpi/ic_launcher_round.webp"
+        "merged": "com.example.hockeyapplive.app-debug-64:/mipmap-anydpi-v26_ic_launcher.xml.flat",
+        "source": "com.example.hockeyapplive.app-main-66:/mipmap-anydpi-v26/ic_launcher.xml"
     },
     {
-        "merged": "com.example.hockeyapplive.app-debug-60:/drawable_image1.png.flat",
-        "source": "com.example.hockeyapplive.app-main-62:/drawable/image1.png"
+        "merged": "com.example.hockeyapplive.app-debug-64:/mipmap-mdpi_ic_launcher_round.webp.flat",
+        "source": "com.example.hockeyapplive.app-main-66:/mipmap-mdpi/ic_launcher_round.webp"
     },
     {
-        "merged": "com.example.hockeyapplive.app-debug-60:/drawable_image.png.flat",
-        "source": "com.example.hockeyapplive.app-main-62:/drawable/image.png"
+        "merged": "com.example.hockeyapplive.app-debug-64:/mipmap-xxxhdpi_ic_launcher.webp.flat",
+        "source": "com.example.hockeyapplive.app-main-66:/mipmap-xxxhdpi/ic_launcher.webp"
     },
     {
-        "merged": "com.example.hockeyapplive.app-debug-60:/mipmap-xxxhdpi_ic_launcher.webp.flat",
-        "source": "com.example.hockeyapplive.app-main-62:/mipmap-xxxhdpi/ic_launcher.webp"
+        "merged": "com.example.hockeyapplive.app-debug-64:/mipmap-mdpi_ic_launcher.webp.flat",
+        "source": "com.example.hockeyapplive.app-main-66:/mipmap-mdpi/ic_launcher.webp"
     },
     {
-        "merged": "com.example.hockeyapplive.app-debug-60:/drawable_profile.png.flat",
-        "source": "com.example.hockeyapplive.app-main-62:/drawable/profile.png"
+        "merged": "com.example.hockeyapplive.app-debug-64:/drawable_ic_launcher_background.xml.flat",
+        "source": "com.example.hockeyapplive.app-main-66:/drawable/ic_launcher_background.xml"
     },
     {
-        "merged": "com.example.hockeyapplive.app-debug-60:/drawable_image3.png.flat",
-        "source": "com.example.hockeyapplive.app-main-62:/drawable/image3.png"
+        "merged": "com.example.hockeyapplive.app-debug-64:/drawable_ic_launcher_foreground.xml.flat",
+        "source": "com.example.hockeyapplive.app-main-66:/drawable/ic_launcher_foreground.xml"
     },
     {
-        "merged": "com.example.hockeyapplive.app-debug-60:/drawable_ic_image_placeholder.xml.flat",
-        "source": "com.example.hockeyapplive.app-main-62:/drawable/ic_image_placeholder.xml"
+        "merged": "com.example.hockeyapplive.app-debug-64:/drawable_image2.png.flat",
+        "source": "com.example.hockeyapplive.app-main-66:/drawable/image2.png"
     },
     {
-        "merged": "com.example.hockeyapplive.app-debug-60:/mipmap-xhdpi_ic_launcher.webp.flat",
-        "source": "com.example.hockeyapplive.app-main-62:/mipmap-xhdpi/ic_launcher.webp"
+        "merged": "com.example.hockeyapplive.app-debug-64:/mipmap-xxxhdpi_ic_launcher_round.webp.flat",
+        "source": "com.example.hockeyapplive.app-main-66:/mipmap-xxxhdpi/ic_launcher_round.webp"
     },
     {
-        "merged": "com.example.hockeyapplive.app-debug-60:/mipmap-anydpi-v26_ic_launcher.xml.flat",
-        "source": "com.example.hockeyapplive.app-main-62:/mipmap-anydpi-v26/ic_launcher.xml"
+        "merged": "com.example.hockeyapplive.app-debug-64:/mipmap-xhdpi_ic_launcher.webp.flat",
+        "source": "com.example.hockeyapplive.app-main-66:/mipmap-xhdpi/ic_launcher.webp"
     },
     {
-        "merged": "com.example.hockeyapplive.app-debug-60:/drawable_image2.png.flat",
-        "source": "com.example.hockeyapplive.app-main-62:/drawable/image2.png"
+        "merged": "com.example.hockeyapplive.app-debug-64:/drawable_image3.png.flat",
+        "source": "com.example.hockeyapplive.app-main-66:/drawable/image3.png"
     },
     {
-        "merged": "com.example.hockeyapplive.app-debug-60:/mipmap-hdpi_ic_launcher.webp.flat",
-        "source": "com.example.hockeyapplive.app-main-62:/mipmap-hdpi/ic_launcher.webp"
+        "merged": "com.example.hockeyapplive.app-debug-64:/mipmap-hdpi_ic_launcher.webp.flat",
+        "source": "com.example.hockeyapplive.app-main-66:/mipmap-hdpi/ic_launcher.webp"
     },
     {
-        "merged": "com.example.hockeyapplive.app-debug-60:/mipmap-xxhdpi_ic_launcher_round.webp.flat",
-        "source": "com.example.hockeyapplive.app-main-62:/mipmap-xxhdpi/ic_launcher_round.webp"
+        "merged": "com.example.hockeyapplive.app-debug-64:/mipmap-hdpi_ic_launcher_round.webp.flat",
+        "source": "com.example.hockeyapplive.app-main-66:/mipmap-hdpi/ic_launcher_round.webp"
     },
     {
-        "merged": "com.example.hockeyapplive.app-debug-60:/drawable_hockey.png.flat",
-        "source": "com.example.hockeyapplive.app-main-62:/drawable/hockey.png"
+        "merged": "com.example.hockeyapplive.app-debug-64:/mipmap-anydpi-v26_ic_launcher_round.xml.flat",
+        "source": "com.example.hockeyapplive.app-main-66:/mipmap-anydpi-v26/ic_launcher_round.xml"
     },
     {
-        "merged": "com.example.hockeyapplive.app-debug-60:/xml_data_extraction_rules.xml.flat",
-        "source": "com.example.hockeyapplive.app-main-62:/xml/data_extraction_rules.xml"
+        "merged": "com.example.hockeyapplive.app-debug-64:/mipmap-xxhdpi_ic_launcher_round.webp.flat",
+        "source": "com.example.hockeyapplive.app-main-66:/mipmap-xxhdpi/ic_launcher_round.webp"
     },
     {
-        "merged": "com.example.hockeyapplive.app-debug-60:/mipmap-mdpi_ic_launcher.webp.flat",
-        "source": "com.example.hockeyapplive.app-main-62:/mipmap-mdpi/ic_launcher.webp"
+        "merged": "com.example.hockeyapplive.app-debug-64:/mipmap-xxxhdpi_logo11.png.flat",
+        "source": "com.example.hockeyapplive.app-main-66:/mipmap-xxxhdpi/logo11.png"
     },
     {
-        "merged": "com.example.hockeyapplive.app-debug-60:/mipmap-hdpi_ic_launcher_round.webp.flat",
-        "source": "com.example.hockeyapplive.app-main-62:/mipmap-hdpi/ic_launcher_round.webp"
+        "merged": "com.example.hockeyapplive.app-debug-64:/drawable_profile.png.flat",
+        "source": "com.example.hockeyapplive.app-main-66:/drawable/profile.png"
     },
     {
-        "merged": "com.example.hockeyapplive.app-debug-60:/drawable_image4.png.flat",
-        "source": "com.example.hockeyapplive.app-main-62:/drawable/image4.png"
+        "merged": "com.example.hockeyapplive.app-debug-64:/drawable_hockey.png.flat",
+        "source": "com.example.hockeyapplive.app-main-66:/drawable/hockey.png"
     },
     {
-        "merged": "com.example.hockeyapplive.app-debug-60:/mipmap-xxxhdpi_ic_launcher_round.webp.flat",
-        "source": "com.example.hockeyapplive.app-main-62:/mipmap-xxxhdpi/ic_launcher_round.webp"
+        "merged": "com.example.hockeyapplive.app-debug-64:/mipmap-xxhdpi_ic_launcher.webp.flat",
+        "source": "com.example.hockeyapplive.app-main-66:/mipmap-xxhdpi/ic_launcher.webp"
     },
     {
-        "merged": "com.example.hockeyapplive.app-debug-60:/xml_backup_rules.xml.flat",
-        "source": "com.example.hockeyapplive.app-main-62:/xml/backup_rules.xml"
+        "merged": "com.example.hockeyapplive.app-debug-64:/xml_backup_rules.xml.flat",
+        "source": "com.example.hockeyapplive.app-main-66:/xml/backup_rules.xml"
     },
     {
-        "merged": "com.example.hockeyapplive.app-debug-60:/mipmap-anydpi-v26_ic_launcher_round.xml.flat",
-        "source": "com.example.hockeyapplive.app-main-62:/mipmap-anydpi-v26/ic_launcher_round.xml"
+        "merged": "com.example.hockeyapplive.app-debug-64:/drawable_ic_image_placeholder.xml.flat",
+        "source": "com.example.hockeyapplive.app-main-66:/drawable/ic_image_placeholder.xml"
     },
     {
-        "merged": "com.example.hockeyapplive.app-debug-60:/mipmap-xhdpi_ic_launcher_round.webp.flat",
-        "source": "com.example.hockeyapplive.app-main-62:/mipmap-xhdpi/ic_launcher_round.webp"
+        "merged": "com.example.hockeyapplive.app-debug-64:/xml_data_extraction_rules.xml.flat",
+        "source": "com.example.hockeyapplive.app-main-66:/xml/data_extraction_rules.xml"
     },
     {
-        "merged": "com.example.hockeyapplive.app-debug-60:/drawable_ic_launcher_foreground.xml.flat",
-        "source": "com.example.hockeyapplive.app-main-62:/drawable/ic_launcher_foreground.xml"
+        "merged": "com.example.hockeyapplive.app-debug-64:/drawable_image1.png.flat",
+        "source": "com.example.hockeyapplive.app-main-66:/drawable/image1.png"
     },
     {
-        "merged": "com.example.hockeyapplive.app-debug-60:/mipmap-xxhdpi_ic_launcher.webp.flat",
-        "source": "com.example.hockeyapplive.app-main-62:/mipmap-xxhdpi/ic_launcher.webp"
+        "merged": "com.example.hockeyapplive.app-debug-64:/drawable_image4.png.flat",
+        "source": "com.example.hockeyapplive.app-main-66:/drawable/image4.png"
     },
     {
-        "merged": "com.example.hockeyapplive.app-debug-60:/drawable_logo11.png.flat",
-        "source": "com.example.hockeyapplive.app-main-62:/drawable/logo11.png"
+        "merged": "com.example.hockeyapplive.app-debug-64:/drawable_image.png.flat",
+        "source": "com.example.hockeyapplive.app-main-66:/drawable/image.png"
+    },
+    {
+        "merged": "com.example.hockeyapplive.app-debug-64:/drawable_logo11.png.flat",
+        "source": "com.example.hockeyapplive.app-main-66:/drawable/logo11.png"
     }
 ]

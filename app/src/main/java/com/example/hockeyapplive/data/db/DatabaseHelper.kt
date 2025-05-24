@@ -18,7 +18,7 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME
 
     companion object {
         const val DATABASE_NAME = "HockeyApp.db"
-        const val DATABASE_VERSION = 8 // Incremented for contact_number change to Int
+        const val DATABASE_VERSION = 10 // Current version
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
@@ -38,7 +38,7 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME
             )
         """)
 
-        // TeamRegistrations table
+        // TeamRegistrations table with additional fields
         db.execSQL("""
             CREATE TABLE TeamRegistrations (
                 registrationID INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -48,6 +48,12 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME
                 created_at TEXT DEFAULT (datetime('now')),
                 status TEXT DEFAULT 'Pending' CHECK(status IN ('Pending', 'Approved', 'Rejected')),
                 coach_userID INTEGER,
+                years_of_existence INTEGER,
+                field_address TEXT,
+                games_played INTEGER,
+                coach_reference TEXT,
+                coach_id_no TEXT,
+                coach_experience_years INTEGER,
                 FOREIGN KEY (coach_userID) REFERENCES Users(userID) ON DELETE SET NULL
             )
         """)
@@ -159,9 +165,9 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME
             )
         """)
 
-        // Insert demo data with consistent timestamp format and Int contact numbers
+        // Insert demo data with current timestamp (10:44 AM CAT, May 23, 2025)
         val timestampFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")
-        val now = LocalDateTime.now().format(timestampFormatter) // Current time: 2025-05-22 20:12:00 (UTC)
+        val now = LocalDateTime.now().format(timestampFormatter) // 2025-05-23 10:44:00
 
         // Users
         db.execSQL("""
@@ -178,7 +184,7 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME
         """)
         db.execSQL("""
             INSERT INTO Users (fullName, email, userPassword, created_at, last_login, user_type, isVerified, contact_number)
-            VALUES ('Jane Coach', 'jane.coach@example.com', 'jane123', '$now', NULL, 'Coach', 1, 8176543210)
+            VALUES ('Jane Coach', 'jane.coach@example.com', 'jane123', '$now', NULL, 'Coach', 0, 8176543210)
         """)
         db.execSQL("""
             INSERT INTO Users (fullName, email, userPassword, created_at, last_login, user_type, isVerified, contact_number)
@@ -201,16 +207,16 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME
 
         // TeamRegistrations
         db.execSQL("""
-            INSERT INTO TeamRegistrations (team_name, coachName, contact_email, created_at, status, coach_userID)
-            VALUES ('Windhoek HC', 'Demo Coach', 'coach@example.com', '$now', 'Approved', 1)
+            INSERT INTO TeamRegistrations (team_name, coachName, contact_email, created_at, status, coach_userID, years_of_existence, field_address, games_played, coach_reference, coach_id_no, coach_experience_years)
+            VALUES ('Windhoek HC', 'Demo Coach', 'coach@example.com', '$now', 'Approved', 1, 5, '123 Main St, Windhoek', 20, 'Coach John, 2024 Tournament', 'ID123456', 10)
         """)
         db.execSQL("""
-            INSERT INTO TeamRegistrations (team_name, coachName, contact_email, created_at, status, coach_userID)
-            VALUES ('Odibo HC', 'Jane Coach', 'jane.coach@example.com', '$now', 'Pending', 4)
+            INSERT INTO TeamRegistrations (team_name, coachName, contact_email, created_at, status, coach_userID, years_of_existence, field_address, games_played, coach_reference, coach_id_no, coach_experience_years)
+            VALUES ('Odibo HC', 'Jane Coach', 'jane.coach@example.com', '$now', 'Pending', 4, 3, '456 North Rd, Odibo', 15, 'Coach Jane, 2023 Match', 'ID789012', 8)
         """)
         db.execSQL("""
-            INSERT INTO TeamRegistrations (team_name, coachName, contact_email, created_at, status, coach_userID)
-            VALUES ('Rundu HC', 'Demo Coach', 'coach@example.com', '$now', 'Rejected', 1)
+            INSERT INTO TeamRegistrations (team_name, coachName, contact_email, created_at, status, coach_userID, years_of_existence, field_address, games_played, coach_reference, coach_id_no, coach_experience_years)
+            VALUES ('Rundu HC', 'Demo Coach', 'coach@example.com', '$now', 'Rejected', 1, 2, '789 South Ave, Rundu', 10, 'Coach Mike, 2022 Friendly', 'ID345678', 5)
         """)
 
         // Events
@@ -337,7 +343,6 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME
             db.execSQL("ALTER TABLE Players ADD COLUMN emergency_contact TEXT")
         }
         if (oldVersion < 5) {
-            // Update timestamp columns to TEXT and use ISO format
             db.execSQL("ALTER TABLE Users RENAME TO Users_old")
             db.execSQL("""
                 CREATE TABLE Users (
@@ -488,7 +493,6 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME
             db.execSQL("UPDATE Users SET contact_number = 8155555550 WHERE user_type = 'Admin'")
         }
         if (oldVersion < 7) {
-            // Fix Games table data by updating timestamps to yyyy-MM-dd HH:mm:ss
             db.execSQL("ALTER TABLE Games RENAME TO Games_old")
             db.execSQL("""
                 CREATE TABLE Games (
@@ -514,7 +518,6 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME
             db.execSQL("DROP TABLE Games_old")
         }
         if (oldVersion < 8) {
-            // Truncate contact_number to fit within Int range (max 2147483647)
             db.execSQL("""
                 UPDATE Users SET contact_number = 
                     CASE 
@@ -522,6 +525,37 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME
                         WHEN contact_number < -2147483648 THEN -2147483648
                         ELSE contact_number
                     END
+            """)
+        }
+        if (oldVersion < 9) {
+            db.execSQL("""
+                UPDATE Users SET isVerified = 0 WHERE email = 'jane.coach@example.com' AND user_type = 'Coach'
+            """)
+        }
+        if (oldVersion < 10) {
+            db.execSQL("ALTER TABLE TeamRegistrations ADD COLUMN years_of_existence INTEGER")
+            db.execSQL("ALTER TABLE TeamRegistrations ADD COLUMN field_address TEXT")
+            db.execSQL("ALTER TABLE TeamRegistrations ADD COLUMN games_played INTEGER")
+            db.execSQL("ALTER TABLE TeamRegistrations ADD COLUMN coach_reference TEXT")
+            db.execSQL("ALTER TABLE TeamRegistrations ADD COLUMN coach_id_no TEXT")
+            db.execSQL("ALTER TABLE TeamRegistrations ADD COLUMN coach_experience_years INTEGER")
+            db.execSQL("""
+                UPDATE TeamRegistrations 
+                SET years_of_existence = 5, field_address = '123 Main St, Windhoek', games_played = 20, 
+                    coach_reference = 'Coach John, 2024 Tournament', coach_id_no = 'ID123456', coach_experience_years = 10
+                WHERE team_name = 'Windhoek HC'
+            """)
+            db.execSQL("""
+                UPDATE TeamRegistrations 
+                SET years_of_existence = 3, field_address = '456 North Rd, Odibo', games_played = 15, 
+                    coach_reference = 'Coach Jane, 2023 Match', coach_id_no = 'ID789012', coach_experience_years = 8
+                WHERE team_name = 'Odibo HC'
+            """)
+            db.execSQL("""
+                UPDATE TeamRegistrations 
+                SET years_of_existence = 2, field_address = '789 South Ave, Rundu', games_played = 10, 
+                    coach_reference = 'Coach Mike, 2022 Friendly', coach_id_no = 'ID345678', coach_experience_years = 5
+                WHERE team_name = 'Rundu HC'
             """)
         }
     }
@@ -543,8 +577,8 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME
                     lastLogin = cursor.getString(cursor.getColumnIndexOrThrow("last_login")),
                     userType = cursor.getString(cursor.getColumnIndexOrThrow("user_type")),
                     isVerified = cursor.getInt(cursor.getColumnIndexOrThrow("isVerified")) == 1,
-                    contactNumber = if (cursor.isNull(cursor.getColumnIndexOrThrow("contact_number"))) 0
-                    else cursor.getInt(cursor.getColumnIndexOrThrow("contact_number"))
+                    contactNumber = if (cursor.isNull(cursor.getColumnIndexOrThrow("contact_number"))) 0L
+                    else cursor.getInt(cursor.getColumnIndexOrThrow("contact_number")).toLong()
                 )
             }
         } finally {
@@ -570,8 +604,8 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME
                     lastLogin = cursor.getString(cursor.getColumnIndexOrThrow("last_login")),
                     userType = cursor.getString(cursor.getColumnIndexOrThrow("user_type")),
                     isVerified = cursor.getInt(cursor.getColumnIndexOrThrow("isVerified")) == 1,
-                    contactNumber = if (cursor.isNull(cursor.getColumnIndexOrThrow("contact_number"))) 0
-                    else cursor.getInt(cursor.getColumnIndexOrThrow("contact_number"))
+                    contactNumber = if (cursor.isNull(cursor.getColumnIndexOrThrow("contact_number"))) 0L
+                    else cursor.getInt(cursor.getColumnIndexOrThrow("contact_number")).toLong()
                 )
             }
         } finally {
@@ -597,14 +631,77 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME
                     lastLogin = cursor.getString(cursor.getColumnIndexOrThrow("last_login")),
                     userType = cursor.getString(cursor.getColumnIndexOrThrow("user_type")),
                     isVerified = cursor.getInt(cursor.getColumnIndexOrThrow("isVerified")) == 1,
-                    contactNumber = if (cursor.isNull(cursor.getColumnIndexOrThrow("contact_number"))) 0
-                    else cursor.getInt(cursor.getColumnIndexOrThrow("contact_number"))
+                    contactNumber = if (cursor.isNull(cursor.getColumnIndexOrThrow("contact_number"))) 0L
+                    else cursor.getInt(cursor.getColumnIndexOrThrow("contact_number")).toLong()
                 )
             }
         } finally {
             cursor.close()
         }
         return null
+    }
+
+    fun setUserVerified(userId: Int, isVerified: Boolean): Boolean {
+        val db = writableDatabase
+        db.beginTransaction()
+        try {
+            val cursor = db.rawQuery(
+                "SELECT COUNT(*) FROM Users WHERE userID = ? AND user_type = 'Coach'",
+                arrayOf(userId.toString())
+            )
+            val userExists = cursor.use { c ->
+                c.moveToFirst() && c.getInt(0) > 0
+            }
+            if (!userExists) throw IllegalArgumentException("Coach with ID $userId does not exist")
+
+            val values = ContentValues().apply {
+                put("isVerified", if (isVerified) 1 else 0)
+            }
+            val rowsAffected = db.update("Users", values, "userID = ?", arrayOf(userId.toString()))
+            if (rowsAffected == 0) throw IllegalArgumentException("Failed to update verification status for user ID $userId")
+
+            db.setTransactionSuccessful()
+            return true
+        } finally {
+            db.endTransaction()
+        }
+    }
+
+    fun insertNotification(userId: Int, title: String, content: String, notificationType: String): Long {
+        if (title.isBlank()) throw IllegalArgumentException("Notification title cannot be empty")
+        if (content.isBlank()) throw IllegalArgumentException("Notification content cannot be empty")
+        if (notificationType !in listOf("Event", "Message", "Team", "Registration", "System")) {
+            throw IllegalArgumentException("Invalid notification type")
+        }
+
+        val db = writableDatabase
+        db.beginTransaction()
+        try {
+            val cursor = db.rawQuery(
+                "SELECT COUNT(*) FROM Users WHERE userID = ?",
+                arrayOf(userId.toString())
+            )
+            val userExists = cursor.use { c ->
+                c.moveToFirst() && c.getInt(0) > 0
+            }
+            if (!userExists) throw IllegalArgumentException("User with ID $userId does not exist")
+
+            val values = ContentValues().apply {
+                put("user_id", userId)
+                put("title", title)
+                put("content", content)
+                put("notification_type", notificationType)
+                put("is_read", 0)
+                put("created_at", LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")))
+            }
+            val notificationId = db.insert("Notifications", null, values)
+            if (notificationId == -1L) throw IllegalArgumentException("Failed to insert notification")
+
+            db.setTransactionSuccessful()
+            return notificationId
+        } finally {
+            db.endTransaction()
+        }
     }
 
     fun updateUser(userId: Int, fullName: String, email: String, contactNumber: Int): Boolean {
@@ -639,17 +736,67 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME
         }
     }
 
+    fun insertUser(user: User): Int {
+        if (user.fullName.isBlank()) throw IllegalArgumentException("Full name cannot be empty")
+        if (user.email.isBlank() || !user.email.contains("@")) throw IllegalArgumentException("Invalid email")
+        if (user.userPassword.isBlank()) throw IllegalArgumentException("Password cannot be empty")
+        if (user.userType !in listOf("Player", "Coach", "Admin")) throw IllegalArgumentException("Invalid user type")
+        if (user.contactNumber != null && (user.contactNumber < 1000000000 || user.contactNumber > 9999999999)) {
+            throw IllegalArgumentException("Contact number must be a 10-digit integer")
+        }
+
+        val db = writableDatabase
+        db.beginTransaction()
+        try {
+            val cursor = db.rawQuery(
+                "SELECT COUNT(*) FROM Users WHERE email = ?",
+                arrayOf(user.email)
+            )
+            val emailExists = cursor.use { c ->
+                c.moveToFirst() && c.getInt(0) > 0
+            }
+            if (emailExists) throw IllegalArgumentException("Email is already in use")
+
+            val values = ContentValues().apply {
+                put("fullName", user.fullName)
+                put("email", user.email)
+                put("userPassword", user.userPassword)
+                put("created_at", user.createdAt ?: LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")))
+                put("last_login", user.lastLogin)
+                put("user_type", user.userType)
+                put("isVerified", if (user.isVerified) 1 else 0)
+                if (user.contactNumber != null) put("contact_number", user.contactNumber)
+            }
+            val newRowId = db.insert("Users", null, values)
+            if (newRowId == -1L) throw IllegalArgumentException("Failed to insert user")
+
+            db.setTransactionSuccessful()
+            return newRowId.toInt()
+        } finally {
+            db.endTransaction()
+        }
+    }
+
     fun insertTeamRegistration(
         teamName: String,
         coachName: String,
         contactEmail: String,
         status: String,
-        coachUserId: Int? = null
+        coachUserId: Int? = null,
+        yearsOfExistence: Int? = null,
+        fieldAddress: String? = null,
+        gamesPlayed: Int? = null,
+        coachReference: String? = null,
+        coachIdNo: String? = null,
+        coachExperienceYears: Int? = null
     ): Long {
         if (teamName.isBlank()) throw IllegalArgumentException("Team name cannot be empty")
         if (coachName.isBlank()) throw IllegalArgumentException("Coach name cannot be empty")
         if (contactEmail.isBlank() || !contactEmail.contains("@")) throw IllegalArgumentException("Invalid contact email")
         if (status !in listOf("Pending", "Approved", "Rejected")) throw IllegalArgumentException("Invalid status")
+        if (yearsOfExistence != null && yearsOfExistence < 0) throw IllegalArgumentException("Years of existence cannot be negative")
+        if (gamesPlayed != null && gamesPlayed < 0) throw IllegalArgumentException("Games played cannot be negative")
+        if (coachExperienceYears != null && coachExperienceYears < 0) throw IllegalArgumentException("Coach experience years cannot be negative")
 
         val db = writableDatabase
         val values = ContentValues().apply {
@@ -657,6 +804,12 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME
             put("coachName", coachName)
             put("contact_email", contactEmail)
             put("status", status)
+            put("years_of_existence", yearsOfExistence)
+            put("field_address", fieldAddress)
+            put("games_played", gamesPlayed)
+            put("coach_reference", coachReference)
+            put("coach_id_no", coachIdNo)
+            put("coach_experience_years", coachExperienceYears)
             if (coachUserId != null) {
                 put("coach_userID", coachUserId)
             }
@@ -682,7 +835,16 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME
                             createdAt = cursor.getString(cursor.getColumnIndexOrThrow("created_at")),
                             status = cursor.getString(cursor.getColumnIndexOrThrow("status")),
                             coachUserID = if (cursor.isNull(cursor.getColumnIndexOrThrow("coach_userID"))) null
-                            else cursor.getInt(cursor.getColumnIndexOrThrow("coach_userID"))
+                            else cursor.getInt(cursor.getColumnIndexOrThrow("coach_userID")),
+                            yearsOfExistence = if (cursor.isNull(cursor.getColumnIndexOrThrow("years_of_existence"))) null
+                            else cursor.getInt(cursor.getColumnIndexOrThrow("years_of_existence")),
+                            fieldAddress = cursor.getString(cursor.getColumnIndexOrThrow("field_address")),
+                            gamesPlayed = if (cursor.isNull(cursor.getColumnIndexOrThrow("games_played"))) null
+                            else cursor.getInt(cursor.getColumnIndexOrThrow("games_played")),
+                            coachReference = cursor.getString(cursor.getColumnIndexOrThrow("coach_reference")),
+                            coachIdNo = cursor.getString(cursor.getColumnIndexOrThrow("coach_id_no")),
+                            coachExperienceYears = if (cursor.isNull(cursor.getColumnIndexOrThrow("coach_experience_years"))) null
+                            else cursor.getInt(cursor.getColumnIndexOrThrow("coach_experience_years"))
                         )
                     )
                 } while (cursor.moveToNext())
@@ -740,6 +902,44 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME
             cursor.close()
         }
         return teams
+    }
+
+    fun getTeamByCoachId(coachId: Int): Team? {
+        val db = readableDatabase
+        val cursor = db.rawQuery(
+            "SELECT t.team_id, t.team_name, t.created_at, t.coach_id, t.contact_email, " +
+                    "t.years_of_existence, t.field_address, t.games_played, t.coach_reference, " +
+                    "t.coach_id_no, t.coach_experience_years, u.fullName AS coachName " +
+                    "FROM Teams t LEFT JOIN Users u ON t.coach_id = u.userID WHERE t.coach_id = ?",
+            arrayOf(coachId.toString())
+        )
+        try {
+            if (cursor.moveToFirst()) {
+                return Team(
+                    teamId = cursor.getInt(cursor.getColumnIndexOrThrow("team_id")),
+                    teamName = cursor.getString(cursor.getColumnIndexOrThrow("team_name")),
+                    coachId = if (cursor.isNull(cursor.getColumnIndexOrThrow("coach_id"))) null
+                    else cursor.getInt(cursor.getColumnIndexOrThrow("coach_id")),
+                    contactEmail = cursor.getString(cursor.getColumnIndexOrThrow("contact_email")),
+                    yearsOfExistence = if (cursor.isNull(cursor.getColumnIndexOrThrow("years_of_existence"))) null
+                    else cursor.getInt(cursor.getColumnIndexOrThrow("years_of_existence")),
+                    fieldAddress = cursor.getString(cursor.getColumnIndexOrThrow("field_address")),
+                    gamesPlayed = if (cursor.isNull(cursor.getColumnIndexOrThrow("games_played"))) null
+                    else cursor.getInt(cursor.getColumnIndexOrThrow("games_played")),
+                    coachReference = cursor.getString(cursor.getColumnIndexOrThrow("coach_reference")),
+                    coachIdNo = cursor.getString(cursor.getColumnIndexOrThrow("coach_id_no")),
+                    coachExperienceYears = if (cursor.isNull(cursor.getColumnIndexOrThrow("coach_experience_years"))) null
+                    else cursor.getInt(cursor.getColumnIndexOrThrow("coach_experience_years")),
+                    coachName = cursor.getString(cursor.getColumnIndexOrThrow("coachName")),
+                    createdAt = cursor.getString(cursor.getColumnIndexOrThrow("created_at"))?.let {
+                        LocalDateTime.parse(it, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"))
+                    }
+                )
+            }
+        } finally {
+            cursor.close()
+        }
+        return null
     }
 
     fun insertTeam(
@@ -855,7 +1055,8 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME
         eventDescription: String?,
         eventDateTime: String,
         eventType: String,
-        createdBy: Int? = null
+        createdBy: Int? = null,
+        createdAt: String
     ): Long {
         if (eventName.isBlank()) throw IllegalArgumentException("Event name cannot be empty")
         if (eventDateTime.isBlank()) throw IllegalArgumentException("Event date and time cannot be empty")
@@ -931,6 +1132,112 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME
     }
 
     fun insertPlayer(
+        userId: Int?,
+        teamId: Int,
+        fullName: String,
+        jerseyNumber: Int,
+        position: String,
+        age: Int,
+        height: Float,
+        emergencyContact: String,
+        dateOfBirth: String,
+        joinDate: String
+    ): Int {
+        if (fullName.isBlank()) throw IllegalArgumentException("Player name cannot be empty")
+        if (jerseyNumber <= 0) throw IllegalArgumentException("Jersey number must be positive")
+        if (position.isBlank()) throw IllegalArgumentException("Position cannot be empty")
+        if (age <= 0) throw IllegalArgumentException("Age must be positive")
+        if (height <= 0) throw IllegalArgumentException("Height must be positive")
+        if (emergencyContact.isBlank()) throw IllegalArgumentException("Emergency contact cannot be empty")
+        if (dateOfBirth.isBlank()) throw IllegalArgumentException("Date of birth cannot be empty")
+        if (joinDate.isBlank()) throw IllegalArgumentException("Join date cannot be empty")
+
+        val db = writableDatabase
+        db.beginTransaction()
+        try {
+            val teamCursor = db.rawQuery(
+                "SELECT COUNT(*) FROM Teams WHERE team_id = ?",
+                arrayOf(teamId.toString())
+            )
+            val teamExists = teamCursor.use { c ->
+                c.moveToFirst() && c.getInt(0) > 0
+            }
+            if (!teamExists) throw IllegalArgumentException("Team with ID $teamId does not exist")
+
+            if (userId != null) {
+                val userCursor = db.rawQuery(
+                    "SELECT COUNT(*) FROM Users WHERE userID = ?",
+                    arrayOf(userId.toString())
+                )
+                val userExists = userCursor.use { c ->
+                    c.moveToFirst() && c.getInt(0) > 0
+                }
+                if (!userExists) throw IllegalArgumentException("User with ID $userId does not exist")
+            }
+
+            if (userId != null) {
+                val newEmail = "${fullName.replace(" ", "").lowercase()}@hockeyapp.com"
+                val emailCursor = db.rawQuery(
+                    "SELECT COUNT(*) FROM Users WHERE email = ? AND userID != ?",
+                    arrayOf(newEmail, userId.toString())
+                )
+                val emailExists = emailCursor.use { c ->
+                    c.moveToFirst() && c.getInt(0) > 0
+                }
+                if (emailExists) throw IllegalArgumentException("Player with this name already exists")
+
+                val userValues = ContentValues().apply {
+                    put("fullName", fullName)
+                    put("email", newEmail)
+                }
+                val userRowsAffected = db.update("Users", userValues, "userID = ?", arrayOf(userId.toString()))
+                if (userRowsAffected == 0) throw IllegalArgumentException("Failed to update user details for user ID $userId")
+            } else {
+                val newEmail = "${fullName.replace(" ", "").lowercase()}@hockeyapp.com"
+                val userValues = ContentValues().apply {
+                    put("fullName", fullName)
+                    put("email", newEmail)
+                    put("userPassword", "default123")
+                    put("user_type", "Player")
+                    put("isVerified", 1)
+                    put("contact_number", 8100000000) // Default 10-digit Int
+                }
+                val newUserId = db.insert("Users", null, userValues)
+                if (newUserId == -1L) throw IllegalArgumentException("Failed to create user")
+            }
+
+            val playerValues = ContentValues().apply {
+                if (userId != null) put("user_id", userId)
+                else {
+                    val newUserId = db.rawQuery(
+                        "SELECT userID FROM Users WHERE email = ?",
+                        arrayOf("${fullName.replace(" ", "").lowercase()}@hockeyapp.com")
+                    ).use { c ->
+                        if (c.moveToFirst()) c.getInt(c.getColumnIndexOrThrow("userID"))
+                        else throw IllegalArgumentException("Failed to retrieve newly created user ID")
+                    }
+                    put("user_id", newUserId)
+                }
+                put("team_id", teamId)
+                put("jersey_number", jerseyNumber)
+                put("position", position)
+                put("age", age)
+                put("height", height)
+                put("emergency_contact", emergencyContact)
+                put("date_of_birth", dateOfBirth)
+                put("join_date", joinDate)
+            }
+            val playerId = db.insert("Players", null, playerValues)
+            if (playerId == -1L) throw IllegalArgumentException("Failed to insert player")
+
+            db.setTransactionSuccessful()
+            return playerId.toInt()
+        } finally {
+            db.endTransaction()
+        }
+    }
+
+    fun insertPlayerWithUser(
         fullName: String,
         teamId: Int,
         jerseyNumber: Int,

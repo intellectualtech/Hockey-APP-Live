@@ -2,6 +2,8 @@ package com.example.hockeyapplive.screens.admin
 
 import android.content.Context
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.*
 import androidx.compose.material3.*
@@ -14,6 +16,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import androidx.wear.compose.navigation.currentBackStackEntryAsState
 import com.example.hockeyapplive.R
 import com.example.hockeyapplive.data.db.DatabaseHelper
 import com.example.hockeyapplive.data.model.TeamRegistration
@@ -70,9 +73,9 @@ fun AdminDashboardScreen(navController: NavController, context: Context) {
         totalTeams = if (teamsCursor.moveToFirst()) teamsCursor.getInt(0) else 0
         teamsCursor.close()
 
-        // Fetch total coaches
+        // Fetch total verified coaches
         val coachesCursor = dbHelper.readableDatabase.rawQuery(
-            "SELECT COUNT(*) FROM Users WHERE user_type = 'Coach'",
+            "SELECT COUNT(*) FROM Users WHERE user_type = 'Coach' AND isVerified = 1",
             null
         )
         totalCoaches = if (coachesCursor.moveToFirst()) coachesCursor.getInt(0) else 0
@@ -80,7 +83,7 @@ fun AdminDashboardScreen(navController: NavController, context: Context) {
 
         // Fetch total players
         val playersCursor = dbHelper.readableDatabase.rawQuery(
-            "SELECT COUNT(*) FROM Users WHERE user_type = 'Player'",
+            "SELECT COUNT(*) FROM Players",
             null
         )
         totalPlayers = if (playersCursor.moveToFirst()) playersCursor.getInt(0) else 0
@@ -88,12 +91,13 @@ fun AdminDashboardScreen(navController: NavController, context: Context) {
     }
 
     val drawerState = rememberDrawerState(initialValue = DrawerValue.Closed)
+    val currentRoute = navController.currentBackStackEntryAsState().value?.destination?.route
     val navigationItems = listOf(
-        Triple("Home", android.R.drawable.ic_menu_today) { navController.navigate("admin_dashboard") },
-        Triple("Teams", android.R.drawable.ic_menu_preferences) { navController.navigate("manage_teams") },
-        Triple("Players", android.R.drawable.ic_menu_myplaces) { navController.navigate("players") },
-        Triple("Events", android.R.drawable.ic_menu_agenda) { navController.navigate("manage_events") },
-        Triple("Admin Settings", android.R.drawable.ic_menu_manage) { navController.navigate("admin_settings_screen") }
+        Triple("Home", android.R.drawable.ic_menu_today, "admin_dashboard"),
+        Triple("Teams", android.R.drawable.ic_menu_preferences, "manage_teams"),
+        Triple("Players", android.R.drawable.ic_menu_myplaces, "players"),
+        Triple("Events", android.R.drawable.ic_menu_agenda, "manage_events"),
+        Triple("Admin Settings", android.R.drawable.ic_menu_manage, "admin_settings_screen")
     )
 
     // Popup Dialog for Submitted Details
@@ -111,17 +115,31 @@ fun AdminDashboardScreen(navController: NavController, context: Context) {
             title = { Text("Registration Details for ${selectedRegistration?.teamName}", fontWeight = FontWeight.Bold) },
             text = {
                 Column(
-                    modifier = Modifier.padding(top = 8.dp)
+                    modifier = Modifier
+                        .padding(top = 8.dp)
+                        .fillMaxWidth()
                 ) {
-                    Text("Team Name: ${selectedRegistration?.teamName}")
+                    Text("Team Name: ${selectedRegistration?.teamName ?: "N/A"}")
                     Spacer(modifier = Modifier.height(4.dp))
-                    Text("Coach Name: ${selectedRegistration?.coachName}")
+                    Text("Coach Name: ${selectedRegistration?.coachName ?: "N/A"}")
                     Spacer(modifier = Modifier.height(4.dp))
-                    Text("Email: ${selectedRegistration?.contactEmail}")
+                    Text("Contact Email: ${selectedRegistration?.contactEmail ?: "N/A"}")
                     Spacer(modifier = Modifier.height(4.dp))
-                    Text("Status: ${selectedRegistration?.status}")
+                    Text("Status: ${selectedRegistration?.status ?: "N/A"}")
                     Spacer(modifier = Modifier.height(4.dp))
-                    Text("Created At: ${selectedRegistration?.createdAt}")
+                    Text("Created At: ${selectedRegistration?.createdAt ?: "N/A"}")
+                    Spacer(modifier = Modifier.height(4.dp))
+                    Text("Years of Existence: ${selectedRegistration?.yearsOfExistence?.toString() ?: "N/A"}")
+                    Spacer(modifier = Modifier.height(4.dp))
+                    Text("Field Address: ${selectedRegistration?.fieldAddress ?: "N/A"}")
+                    Spacer(modifier = Modifier.height(4.dp))
+                    Text("Games Played: ${selectedRegistration?.gamesPlayed?.toString() ?: "N/A"}")
+                    Spacer(modifier = Modifier.height(4.dp))
+                    Text("Coach Reference: ${selectedRegistration?.coachReference ?: "N/A"}")
+                    Spacer(modifier = Modifier.height(4.dp))
+                    Text("Coach ID Number: ${selectedRegistration?.coachIdNo ?: "N/A"}")
+                    Spacer(modifier = Modifier.height(4.dp))
+                    Text("Coach Experience (Years): ${selectedRegistration?.coachExperienceYears?.toString() ?: "N/A"}")
                 }
             },
             confirmButton = {
@@ -196,7 +214,7 @@ fun AdminDashboardScreen(navController: NavController, context: Context) {
                 }
                 Divider(color = NavyBlueLight, thickness = 1.dp)
                 Spacer(modifier = Modifier.height(16.dp))
-                navigationItems.forEach { (label, icon, onClick) ->
+                navigationItems.forEach { (label, icon, route) ->
                     NavigationDrawerItem(
                         icon = {
                             Icon(
@@ -206,14 +224,24 @@ fun AdminDashboardScreen(navController: NavController, context: Context) {
                             )
                         },
                         label = { Text(label, color = WhiteText) },
-                        selected = false,
+                        selected = currentRoute == route,
                         onClick = {
-                            onClick()
+                            navController.navigate(route) {
+                                popUpTo(navController.graph.startDestinationId) {
+                                    saveState = true
+                                }
+                                launchSingleTop = true
+                                restoreState = true
+                            }
                             scope.launch { drawerState.close() }
                         },
                         colors = NavigationDrawerItemDefaults.colors(
                             unselectedContainerColor = NavyBlueDark,
-                            selectedContainerColor = NavyBlueSecondary
+                            selectedContainerColor = NavyBlueSecondary,
+                            unselectedTextColor = WhiteText,
+                            selectedTextColor = WhiteText,
+                            unselectedIconColor = WhiteText,
+                            selectedIconColor = AccentBlue
                         ),
                         modifier = Modifier.padding(NavigationDrawerItemDefaults.ItemPadding)
                     )
@@ -227,10 +255,16 @@ fun AdminDashboardScreen(navController: NavController, context: Context) {
                         )
                     },
                     label = { Text("Profile", color = WhiteText) },
-                    selected = false,
+                    selected = currentRoute?.startsWith("admin_profile") == true,
                     onClick = {
                         adminUserId?.let { userId ->
-                            navController.navigate("admin_profile/$userId")
+                            navController.navigate("admin_profile/$userId") {
+                                popUpTo(navController.graph.startDestinationId) {
+                                    saveState = true
+                                }
+                                launchSingleTop = true
+                                restoreState = true
+                            }
                             scope.launch { drawerState.close() }
                         } ?: scope.launch {
                             snackbarHostState.showSnackbar("Error: Admin user not found")
@@ -238,7 +272,11 @@ fun AdminDashboardScreen(navController: NavController, context: Context) {
                     },
                     colors = NavigationDrawerItemDefaults.colors(
                         unselectedContainerColor = NavyBlueDark,
-                        selectedContainerColor = NavyBlueSecondary
+                        selectedContainerColor = NavyBlueSecondary,
+                        unselectedTextColor = WhiteText,
+                        selectedTextColor = WhiteText,
+                        unselectedIconColor = WhiteText,
+                        selectedIconColor = AccentBlue
                     ),
                     modifier = Modifier.padding(NavigationDrawerItemDefaults.ItemPadding)
                 )
@@ -257,7 +295,7 @@ fun AdminDashboardScreen(navController: NavController, context: Context) {
                     NavigationBarItem(
                         icon = { Icon(Icons.Filled.Dashboard, contentDescription = "Dashboard") },
                         label = { Text("Dashboard") },
-                        selected = true,
+                        selected = currentRoute == "admin_dashboard",
                         onClick = { navController.navigate("admin_dashboard") },
                         colors = NavigationBarItemDefaults.colors(
                             selectedIconColor = AccentBlue,
@@ -270,7 +308,7 @@ fun AdminDashboardScreen(navController: NavController, context: Context) {
                     NavigationBarItem(
                         icon = { Icon(Icons.Filled.Groups, contentDescription = "Teams") },
                         label = { Text("Teams") },
-                        selected = false,
+                        selected = currentRoute == "manage_teams",
                         onClick = { navController.navigate("manage_teams") },
                         colors = NavigationBarItemDefaults.colors(
                             selectedIconColor = AccentBlue,
@@ -283,7 +321,7 @@ fun AdminDashboardScreen(navController: NavController, context: Context) {
                     NavigationBarItem(
                         icon = { Icon(Icons.Filled.SportsHockey, contentDescription = "Players") },
                         label = { Text("Players") },
-                        selected = false,
+                        selected = currentRoute == "players",
                         onClick = { navController.navigate("manage_players?teamName=") },
                         colors = NavigationBarItemDefaults.colors(
                             selectedIconColor = AccentBlue,
@@ -296,7 +334,7 @@ fun AdminDashboardScreen(navController: NavController, context: Context) {
                     NavigationBarItem(
                         icon = { Icon(Icons.Filled.EventNote, contentDescription = "Events") },
                         label = { Text("Events") },
-                        selected = false,
+                        selected = currentRoute == "manage_events",
                         onClick = { navController.navigate("manage_events") },
                         colors = NavigationBarItemDefaults.colors(
                             selectedIconColor = AccentBlue,
@@ -309,7 +347,7 @@ fun AdminDashboardScreen(navController: NavController, context: Context) {
                     NavigationBarItem(
                         icon = { Icon(Icons.Filled.AccountCircle, contentDescription = "Profile") },
                         label = { Text("Profile") },
-                        selected = false,
+                        selected = currentRoute?.startsWith("admin_profile") == true,
                         onClick = {
                             adminUserId?.let { userId ->
                                 navController.navigate("admin_profile/$userId")
@@ -335,7 +373,7 @@ fun AdminDashboardScreen(navController: NavController, context: Context) {
                     Row(
                         modifier = Modifier
                             .fillMaxWidth()
-                            .padding(8.dp),
+                            .padding(horizontal = 8.dp, vertical = 16.dp),
                         horizontalArrangement = Arrangement.SpaceBetween,
                         verticalAlignment = Alignment.CenterVertically
                     ) {
@@ -357,254 +395,306 @@ fun AdminDashboardScreen(navController: NavController, context: Context) {
                 }
             }
         ) { paddingValues ->
-            Column(
+            LazyColumn(
                 modifier = Modifier
                     .fillMaxSize()
                     .padding(paddingValues)
-                    .padding(16.dp),
+                    .padding(horizontal = 16.dp),
                 verticalArrangement = Arrangement.Top,
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
-                Icon(
-                    painter = painterResource(id = R.drawable.logo11),
-                    contentDescription = "Admin Dashboard Image",
-                    modifier = Modifier
-                        .width(100.dp)
-                        .padding(vertical = 8.dp),
-                    tint = NavyBluePrimary
-                )
+                item {
+                    Icon(
+                        painter = painterResource(id = R.drawable.logo11),
+                        contentDescription = "Admin Dashboard Image",
+                        modifier = Modifier
+                            .width(100.dp)
+                            .padding(vertical = 8.dp),
+                        tint = NavyBluePrimary
+                    )
 
-                Spacer(modifier = Modifier.height(16.dp))
+                    Spacer(modifier = Modifier.height(16.dp))
 
-                // Cards for Totals
-                Row(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(vertical = 8.dp),
-                    horizontalArrangement = Arrangement.SpaceBetween
-                ) {
-                    Card(
+                    // Cards for Totals
+                    Row(
                         modifier = Modifier
-                            .weight(1f)
-                            .height(100.dp)
-                            .padding(horizontal = 4.dp),
-                        colors = CardDefaults.cardColors(containerColor = NavyBluePrimary),
-                        elevation = CardDefaults.cardElevation(defaultElevation = 4.dp)
+                            .fillMaxWidth()
+                            .padding(vertical = 8.dp),
+                        horizontalArrangement = Arrangement.SpaceBetween
                     ) {
-                        Column(
+                        Card(
                             modifier = Modifier
-                                .fillMaxSize()
-                                .padding(16.dp),
-                            verticalArrangement = Arrangement.Center,
-                            horizontalAlignment = Alignment.CenterHorizontally
+                                .weight(1f)
+                                .height(100.dp)
+                                .padding(horizontal = 4.dp),
+                            colors = CardDefaults.cardColors(containerColor = NavyBluePrimary),
+                            elevation = CardDefaults.cardElevation(defaultElevation = 4.dp)
                         ) {
-                            Text(
-                                text = totalTeams.toString(),
-                                color = WhiteText,
-                                style = MaterialTheme.typography.headlineMedium,
-                                fontWeight = FontWeight.Bold
-                            )
-                            Spacer(modifier = Modifier.height(4.dp))
-                            Text(
-                                text = "Total Teams",
-                                color = WhiteText,
-                                style = MaterialTheme.typography.bodyMedium
-                            )
+                            Column(
+                                modifier = Modifier
+                                    .fillMaxSize()
+                                    .padding(16.dp),
+                                verticalArrangement = Arrangement.Center,
+                                horizontalAlignment = Alignment.CenterHorizontally
+                            ) {
+                                Text(
+                                    text = totalTeams.toString(),
+                                    color = WhiteText,
+                                    style = MaterialTheme.typography.headlineMedium,
+                                    fontWeight = FontWeight.Bold
+                                )
+                                Spacer(modifier = Modifier.height(4.dp))
+                                Text(
+                                    text = "Total Teams",
+                                    color = WhiteText,
+                                    style = MaterialTheme.typography.bodyMedium
+                                )
+                            }
                         }
-                    }
-                    Card(
-                        modifier = Modifier
-                            .weight(1f)
-                            .height(100.dp)
-                            .padding(horizontal = 4.dp),
-                        colors = CardDefaults.cardColors(containerColor = NavyBlueSecondary),
-                        elevation = CardDefaults.cardElevation(defaultElevation = 4.dp)
-                    ) {
-                        Column(
+                        Card(
                             modifier = Modifier
-                                .fillMaxSize()
-                                .padding(16.dp),
-                            verticalArrangement = Arrangement.Center,
-                            horizontalAlignment = Alignment.CenterHorizontally
+                                .weight(1f)
+                                .height(100.dp)
+                                .padding(horizontal = 4.dp),
+                            colors = CardDefaults.cardColors(containerColor = NavyBlueSecondary),
+                            elevation = CardDefaults.cardElevation(defaultElevation = 4.dp)
                         ) {
-                            Text(
-                                text = totalCoaches.toString(),
-                                color = WhiteText,
-                                style = MaterialTheme.typography.headlineMedium,
-                                fontWeight = FontWeight.Bold
-                            )
-                            Spacer(modifier = Modifier.height(4.dp))
-                            Text(
-                                text = "Coaches",
-                                color = WhiteText,
-                                style = MaterialTheme.typography.bodyMedium
-                            )
+                            Column(
+                                modifier = Modifier
+                                    .fillMaxSize()
+                                    .padding(16.dp),
+                                verticalArrangement = Arrangement.Center,
+                                horizontalAlignment = Alignment.CenterHorizontally
+                            ) {
+                                Text(
+                                    text = totalCoaches.toString(),
+                                    color = WhiteText,
+                                    style = MaterialTheme.typography.headlineMedium,
+                                    fontWeight = FontWeight.Bold
+                                )
+                                Spacer(modifier = Modifier.height(4.dp))
+                                Text(
+                                    text = "Coaches",
+                                    color = WhiteText,
+                                    style = MaterialTheme.typography.bodyMedium
+                                )
+                            }
                         }
-                    }
-                    Card(
-                        modifier = Modifier
-                            .weight(1f)
-                            .height(100.dp)
-                            .padding(horizontal = 4.dp),
-                        colors = CardDefaults.cardColors(containerColor = NavyBlueLight),
-                        elevation = CardDefaults.cardElevation(defaultElevation = 4.dp)
-                    ) {
-                        Column(
+                        Card(
                             modifier = Modifier
-                                .fillMaxSize()
-                                .padding(16.dp),
-                            verticalArrangement = Arrangement.Center,
-                            horizontalAlignment = Alignment.CenterHorizontally
+                                .weight(1f)
+                                .height(100.dp)
+                                .padding(horizontal = 4.dp),
+                            colors = CardDefaults.cardColors(containerColor = NavyBlueLight),
+                            elevation = CardDefaults.cardElevation(defaultElevation = 4.dp)
                         ) {
-                            Text(
-                                text = totalPlayers.toString(),
-                                color = WhiteText,
-                                style = MaterialTheme.typography.headlineMedium,
-                                fontWeight = FontWeight.Bold
-                            )
-                            Spacer(modifier = Modifier.height(4.dp))
-                            Text(
-                                text = "Total Players",
-                                color = WhiteText,
-                                style = MaterialTheme.typography.bodyMedium
-                            )
+                            Column(
+                                modifier = Modifier
+                                    .fillMaxSize()
+                                    .padding(16.dp),
+                                verticalArrangement = Arrangement.Center,
+                                horizontalAlignment = Alignment.CenterHorizontally
+                            ) {
+                                Text(
+                                    text = totalPlayers.toString(),
+                                    color = WhiteText,
+                                    style = MaterialTheme.typography.headlineMedium,
+                                    fontWeight = FontWeight.Bold
+                                )
+                                Spacer(modifier = Modifier.height(4.dp))
+                                Text(
+                                    text = "Total Players",
+                                    color = WhiteText,
+                                    style = MaterialTheme.typography.bodyMedium
+                                )
+                            }
                         }
                     }
                 }
 
                 // Pending Registrations Section
-                Card(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(top = 16.dp),
-                    colors = CardDefaults.cardColors(containerColor = Color.White),
-                    elevation = CardDefaults.cardElevation(defaultElevation = 2.dp)
-                ) {
-                    Column(
-                        modifier = Modifier.padding(16.dp)
+                item {
+                    Card(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(top = 16.dp),
+                        colors = CardDefaults.cardColors(containerColor = Color.White),
+                        elevation = CardDefaults.cardElevation(defaultElevation = 2.dp)
                     ) {
-                        Text(
-                            text = "Pending Registrations",
-                            style = MaterialTheme.typography.titleLarge,
-                            color = NavyBluePrimary,
-                            fontWeight = FontWeight.Bold
-                        )
-                        Divider(
-                            color = NavyBlueLight.copy(alpha = 0.3f),
-                            thickness = 1.dp,
-                            modifier = Modifier.padding(vertical = 8.dp)
-                        )
+                        Column(
+                            modifier = Modifier.padding(16.dp)
+                        ) {
+                            Text(
+                                text = "Pending Registrations",
+                                style = MaterialTheme.typography.titleLarge,
+                                color = NavyBluePrimary,
+                                fontWeight = FontWeight.Bold
+                            )
+                            Divider(
+                                color = NavyBlueLight.copy(alpha = 0.3f),
+                                thickness = 1.dp,
+                                modifier = Modifier.padding(vertical = 8.dp)
+                            )
 
-                        if (pendingRegistrations.isEmpty()) {
-                            Box(
-                                modifier = Modifier
-                                    .fillMaxWidth()
-                                    .padding(vertical = 16.dp),
-                                contentAlignment = Alignment.Center
-                            ) {
-                                Text(
-                                    text = "No pending registrations",
-                                    style = MaterialTheme.typography.bodyLarge,
-                                    color = Color.Gray
-                                )
-                            }
-                        } else {
-                            pendingRegistrations.forEach { registration ->
-                                Card(
+                            if (pendingRegistrations.isEmpty()) {
+                                Box(
                                     modifier = Modifier
                                         .fillMaxWidth()
-                                        .padding(vertical = 4.dp),
-                                    colors = CardDefaults.cardColors(
-                                        containerColor = if (viewedRegistrations.contains(registration.registrationID))
-                                            Color(0xFFEEF5FF) else Color(0xFFF9F9F9)
-                                    ),
-                                    elevation = CardDefaults.cardElevation(defaultElevation = 1.dp)
+                                        .padding(vertical = 16.dp),
+                                    contentAlignment = Alignment.Center
                                 ) {
-                                    Row(
+                                    Text(
+                                        text = "No pending registrations",
+                                        style = MaterialTheme.typography.bodyLarge,
+                                        color = Color.Gray
+                                    )
+                                }
+                            } else {
+                                pendingRegistrations.forEach { registration ->
+                                    Card(
                                         modifier = Modifier
                                             .fillMaxWidth()
-                                            .padding(8.dp),
-                                        horizontalArrangement = Arrangement.SpaceBetween,
-                                        verticalAlignment = Alignment.CenterVertically
+                                            .padding(vertical = 4.dp),
+                                        colors = CardDefaults.cardColors(
+                                            containerColor = if (viewedRegistrations.contains(registration.registrationID))
+                                                Color(0xFFEEF5FF) else Color(0xFFF9F9F9)
+                                        ),
+                                        elevation = CardDefaults.cardElevation(defaultElevation = 1.dp)
                                     ) {
-                                        Button(
-                                            onClick = { selectedRegistration = registration },
-                                            colors = ButtonDefaults.buttonColors(
-                                                containerColor = NavyBluePrimary,
-                                                contentColor = WhiteText
-                                            ),
-                                            modifier = Modifier.weight(1.2f)
+                                        Row(
+                                            modifier = Modifier
+                                                .fillMaxWidth()
+                                                .padding(8.dp),
+                                            horizontalArrangement = Arrangement.SpaceBetween,
+                                            verticalAlignment = Alignment.CenterVertically
                                         ) {
-                                            Text(text = registration.teamName)
-                                        }
-                                        Spacer(modifier = Modifier.width(8.dp))
-                                        Button(
-                                            enabled = viewedRegistrations.contains(registration.registrationID),
-                                            onClick = {
-                                                if (viewedRegistrations.contains(registration.registrationID)) {
-                                                    // Update status to Approved
-                                                    val db = dbHelper.writableDatabase
-                                                    db.execSQL(
-                                                        "UPDATE TeamRegistrations SET status = 'Approved' WHERE registrationID = ?",
-                                                        arrayOf(registration.registrationID)
-                                                    )
-                                                    // Insert into Teams table
-                                                    db.execSQL(
-                                                        """
-                                                            INSERT INTO Teams (team_name, coach_id, contact_email)
-                                                            VALUES (?, ?, ?)
-                                                        """,
-                                                        arrayOf(
-                                                            registration.teamName,
-                                                            registration.coachUserID,
-                                                            registration.contactEmail
-                                                        )
-                                                    )
-                                                    // Refresh data
-                                                    pendingRegistrations = pendingRegistrations.filter { it.registrationID != registration.registrationID }
-                                                    approvedRegistrations = approvedRegistrations + registration.copy(status = "Approved")
-                                                    totalTeams += 1
-                                                } else {
-                                                    showErrorPopup = true
-                                                }
-                                            },
-                                            colors = ButtonDefaults.buttonColors(
-                                                containerColor = Color(0xFF0A8043),
-                                                contentColor = WhiteText,
-                                                disabledContainerColor = Color(0xFFCCDFD3),
-                                                disabledContentColor = Color.Gray
-                                            ),
-                                            modifier = Modifier.weight(0.9f)
-                                        ) {
-                                            Text("Approve")
-                                        }
-                                        Spacer(modifier = Modifier.width(8.dp))
-                                        Button(
-                                            enabled = viewedRegistrations.contains(registration.registrationID),
-                                            onClick = {
-                                                if (viewedRegistrations.contains(registration.registrationID)) {
-                                                    // Update status to Rejected
-                                                    val db = dbHelper.writableDatabase
-                                                    db.execSQL(
-                                                        "UPDATE TeamRegistrations SET status = 'Rejected' WHERE registrationID = ?",
-                                                        arrayOf(registration.registrationID)
-                                                    )
-                                                    // Refresh data
-                                                    pendingRegistrations = pendingRegistrations.filter { it.registrationID != registration.registrationID }
-                                                    rejectedRegistrations = rejectedRegistrations + registration.copy(status = "Rejected")
-                                                } else {
-                                                    showErrorPopup = true
-                                                }
-                                            },
-                                            colors = ButtonDefaults.buttonColors(
-                                                containerColor = Color(0xFFB71C1C),
-                                                contentColor = WhiteText,
-                                                disabledContainerColor = Color(0xFFEBD6D6),
-                                                disabledContentColor = Color.Gray
-                                            ),
-                                            modifier = Modifier.weight(0.9f)
-                                        ) {
-                                            Text("Reject")
+                                            Button(
+                                                onClick = { selectedRegistration = registration },
+                                                colors = ButtonDefaults.buttonColors(
+                                                    containerColor = NavyBluePrimary,
+                                                    contentColor = WhiteText
+                                                ),
+                                                modifier = Modifier.weight(1.2f)
+                                            ) {
+                                                Text(text = registration.teamName)
+                                            }
+                                            Spacer(modifier = Modifier.width(8.dp))
+                                            Button(
+                                                enabled = viewedRegistrations.contains(registration.registrationID),
+                                                onClick = {
+                                                    if (viewedRegistrations.contains(registration.registrationID)) {
+                                                        try {
+                                                            val db = dbHelper.writableDatabase
+                                                            db.beginTransaction()
+                                                            try {
+                                                                // Update TeamRegistrations status to Approved
+                                                                db.execSQL(
+                                                                    "UPDATE TeamRegistrations SET status = 'Approved' WHERE registrationID = ?",
+                                                                    arrayOf(registration.registrationID)
+                                                                )
+                                                                // Set the coach as verified
+                                                                registration.coachUserID?.let { coachId ->
+                                                                    dbHelper.setUserVerified(coachId, true)
+                                                                    // Insert notification for the coach
+                                                                    dbHelper.insertNotification(
+                                                                        userId = coachId,
+                                                                        title = "Account Verified",
+                                                                        content = "Your account has been verified. You can now log in to manage your team ${registration.teamName}.",
+                                                                        notificationType = "Registration"
+                                                                    )
+                                                                } ?: throw IllegalArgumentException("Coach user ID is null")
+                                                                // Insert into Teams table with all details
+                                                                db.execSQL(
+                                                                    """
+                                                                        INSERT INTO Teams (team_name, coach_id, contact_email, years_of_existence, field_address, games_played, coach_reference, coach_id_no, coach_experience_years)
+                                                                        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+                                                                    """,
+                                                                    arrayOf(
+                                                                        registration.teamName,
+                                                                        registration.coachUserID,
+                                                                        registration.contactEmail,
+                                                                        registration.yearsOfExistence,
+                                                                        registration.fieldAddress,
+                                                                        registration.gamesPlayed,
+                                                                        registration.coachReference,
+                                                                        registration.coachIdNo,
+                                                                        registration.coachExperienceYears
+                                                                    )
+                                                                )
+                                                                db.setTransactionSuccessful()
+                                                                // Refresh data
+                                                                pendingRegistrations = pendingRegistrations.filter { it.registrationID != registration.registrationID }
+                                                                approvedRegistrations = approvedRegistrations + registration.copy(status = "Approved")
+                                                                totalTeams += 1
+                                                                // Refresh total coaches (only verified ones)
+                                                                val coachesCursor = dbHelper.readableDatabase.rawQuery(
+                                                                    "SELECT COUNT(*) FROM Users WHERE user_type = 'Coach' AND isVerified = 1",
+                                                                    null
+                                                                )
+                                                                totalCoaches = if (coachesCursor.moveToFirst()) coachesCursor.getInt(0) else 0
+                                                                coachesCursor.close()
+                                                                scope.launch {
+                                                                    snackbarHostState.showSnackbar("Team approved successfully. Coach can now log in.")
+                                                                }
+                                                            } finally {
+                                                                db.endTransaction()
+                                                            }
+                                                        } catch (e: Exception) {
+                                                            scope.launch {
+                                                                snackbarHostState.showSnackbar("Error approving team: ${e.message}")
+                                                            }
+                                                        }
+                                                    } else {
+                                                        showErrorPopup = true
+                                                    }
+                                                },
+                                                colors = ButtonDefaults.buttonColors(
+                                                    containerColor = Color(0xFF0A8043),
+                                                    contentColor = WhiteText,
+                                                    disabledContainerColor = Color(0xFFCCDFD3),
+                                                    disabledContentColor = Color.Gray
+                                                ),
+                                                modifier = Modifier.weight(0.9f)
+                                            ) {
+                                                Text("Approve")
+                                            }
+                                            Spacer(modifier = Modifier.width(8.dp))
+                                            Button(
+                                                enabled = viewedRegistrations.contains(registration.registrationID),
+                                                onClick = {
+                                                    if (viewedRegistrations.contains(registration.registrationID)) {
+                                                        try {
+                                                            val db = dbHelper.writableDatabase
+                                                            // Update status to Rejected
+                                                            db.execSQL(
+                                                                "UPDATE TeamRegistrations SET status = 'Rejected' WHERE registrationID = ?",
+                                                                arrayOf(registration.registrationID)
+                                                            )
+                                                            // Refresh data
+                                                            pendingRegistrations = pendingRegistrations.filter { it.registrationID != registration.registrationID }
+                                                            rejectedRegistrations = rejectedRegistrations + registration.copy(status = "Rejected")
+                                                            scope.launch {
+                                                                snackbarHostState.showSnackbar("Team rejected successfully.")
+                                                            }
+                                                        } catch (e: Exception) {
+                                                            scope.launch {
+                                                                snackbarHostState.showSnackbar("Error rejecting team: ${e.message}")
+                                                            }
+                                                        }
+                                                    } else {
+                                                        showErrorPopup = true
+                                                    }
+                                                },
+                                                colors = ButtonDefaults.buttonColors(
+                                                    containerColor = Color(0xFFB71C1C),
+                                                    contentColor = WhiteText,
+                                                    disabledContainerColor = Color(0xFFEBD6D6),
+                                                    disabledContentColor = Color.Gray
+                                                ),
+                                                modifier = Modifier.weight(0.9f)
+                                            ) {
+                                                Text("Reject")
+                                            }
                                         }
                                     }
                                 }
@@ -614,121 +704,126 @@ fun AdminDashboardScreen(navController: NavController, context: Context) {
                 }
 
                 // Registration Status Summary
-                Card(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(top = 16.dp),
-                    colors = CardDefaults.cardColors(containerColor = Color.White),
-                    elevation = CardDefaults.cardElevation(defaultElevation = 2.dp)
-                ) {
-                    Column(
-                        modifier = Modifier.padding(16.dp)
+                item {
+                    Card(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(top = 16.dp),
+                        colors = CardDefaults.cardColors(containerColor = Color.White),
+                        elevation = CardDefaults.cardElevation(defaultElevation = 2.dp)
                     ) {
-                        Text(
-                            text = "Registration Status",
-                            style = MaterialTheme.typography.titleMedium,
-                            color = NavyBluePrimary,
-                            fontWeight = FontWeight.Bold
-                        )
-                        Divider(
-                            color = NavyBlueLight.copy(alpha = 0.3f),
-                            thickness = 1.dp,
-                            modifier = Modifier.padding(vertical = 8.dp)
-                        )
-                        Row(
-                            modifier = Modifier.fillMaxWidth(),
-                            horizontalArrangement = Arrangement.SpaceBetween
+                        Column(
+                            modifier = Modifier.padding(16.dp)
                         ) {
-                            Column {
-                                Text(
-                                    text = "Approved",
-                                    style = MaterialTheme.typography.bodyMedium,
-                                    fontWeight = FontWeight.Medium,
-                                    color = Color(0xFF0A8043)
-                                )
-                                Text(
-                                    text = if (approvedRegistrations.isEmpty()) "None" else approvedRegistrations.joinToString { it.teamName },
-                                    style = MaterialTheme.typography.bodySmall,
-                                    color = Color.DarkGray
-                                )
-                            }
-                            Column(horizontalAlignment = Alignment.End) {
-                                Text(
-                                    text = "Rejected",
-                                    style = MaterialTheme.typography.bodyMedium,
-                                    fontWeight = FontWeight.Medium,
-                                    color = Color(0xFFB71C1C)
-                                )
-                                Text(
-                                    text = if (rejectedRegistrations.isEmpty()) "None" else rejectedRegistrations.joinToString { it.teamName },
-                                    style = MaterialTheme.typography.bodySmall,
-                                    color = Color.DarkGray
-                                )
+                            Text(
+                                text = "Registration Status",
+                                style = MaterialTheme.typography.titleMedium,
+                                color = NavyBluePrimary,
+                                fontWeight = FontWeight.Bold
+                            )
+                            Divider(
+                                color = NavyBlueLight.copy(alpha = 0.3f),
+                                thickness = 1.dp,
+                                modifier = Modifier.padding(vertical = 8.dp)
+                            )
+                            Row(
+                                modifier = Modifier.fillMaxWidth(),
+                                horizontalArrangement = Arrangement.SpaceBetween
+                            ) {
+                                Column {
+                                    Text(
+                                        text = "Approved",
+                                        style = MaterialTheme.typography.bodyMedium,
+                                        fontWeight = FontWeight.Medium,
+                                        color = Color(0xFF0A8043)
+                                    )
+                                    Text(
+                                        text = if (approvedRegistrations.isEmpty()) "None" else approvedRegistrations.joinToString { it.teamName },
+                                        style = MaterialTheme.typography.bodySmall,
+                                        color = Color.DarkGray
+                                    )
+                                }
+                                Column(horizontalAlignment = Alignment.End) {
+                                    Text(
+                                        text = "Rejected",
+                                        style = MaterialTheme.typography.bodyMedium,
+                                        fontWeight = FontWeight.Medium,
+                                        color = Color(0xFFB71C1C)
+                                    )
+                                    Text(
+                                        text = if (rejectedRegistrations.isEmpty()) "None" else rejectedRegistrations.joinToString { it.teamName },
+                                        style = MaterialTheme.typography.bodySmall,
+                                        color = Color.DarkGray
+                                    )
+                                }
                             }
                         }
                     }
                 }
 
                 // Quick Action Buttons
-                Card(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(top = 16.dp),
-                    colors = CardDefaults.cardColors(containerColor = Color.White),
-                    elevation = CardDefaults.cardElevation(defaultElevation = 2.dp)
-                ) {
-                    Column(
-                        modifier = Modifier.padding(16.dp)
+                item {
+                    Card(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(top = 16.dp)
+                            .padding(bottom = 16.dp),
+                        colors = CardDefaults.cardColors(containerColor = Color.White),
+                        elevation = CardDefaults.cardElevation(defaultElevation = 2.dp)
                     ) {
-                        Text(
-                            text = "Quick Actions",
-                            style = MaterialTheme.typography.titleMedium,
-                            color = NavyBluePrimary,
-                            fontWeight = FontWeight.Bold
-                        )
-                        Divider(
-                            color = NavyBlueLight.copy(alpha = 0.3f),
-                            thickness = 1.dp,
-                            modifier = Modifier.padding(vertical = 8.dp)
-                        )
-
-                        Button(
-                            onClick = { navController.navigate("manage_teams") },
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .padding(vertical = 4.dp),
-                            colors = ButtonDefaults.buttonColors(
-                                containerColor = NavyBluePrimary,
-                                contentColor = WhiteText
-                            )
+                        Column(
+                            modifier = Modifier.padding(16.dp)
                         ) {
-                            Text("Manage Teams")
-                        }
-
-                        Button(
-                            onClick = { navController.navigate("manage_events") },
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .padding(vertical = 4.dp),
-                            colors = ButtonDefaults.buttonColors(
-                                containerColor = NavyBlueSecondary,
-                                contentColor = WhiteText
+                            Text(
+                                text = "Quick Actions",
+                                style = MaterialTheme.typography.titleMedium,
+                                color = NavyBluePrimary,
+                                fontWeight = FontWeight.Bold
                             )
-                        ) {
-                            Text("Manage Events")
-                        }
-
-                        Button(
-                            onClick = { navController.navigate("manage_feedback") },
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .padding(vertical = 4.dp),
-                            colors = ButtonDefaults.buttonColors(
-                                containerColor = NavyBlueLight,
-                                contentColor = WhiteText
+                            Divider(
+                                color = NavyBlueLight.copy(alpha = 0.3f),
+                                thickness = 1.dp,
+                                modifier = Modifier.padding(vertical = 8.dp)
                             )
-                        ) {
-                            Text("Manage Feedback")
+
+                            Button(
+                                onClick = { navController.navigate("manage_teams") },
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .padding(vertical = 4.dp),
+                                colors = ButtonDefaults.buttonColors(
+                                    containerColor = NavyBluePrimary,
+                                    contentColor = WhiteText
+                                )
+                            ) {
+                                Text("Manage Teams")
+                            }
+
+                            Button(
+                                onClick = { navController.navigate("manage_events") },
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .padding(vertical = 4.dp),
+                                colors = ButtonDefaults.buttonColors(
+                                    containerColor = NavyBlueSecondary,
+                                    contentColor = WhiteText
+                                )
+                            ) {
+                                Text("Manage Events")
+                            }
+
+                            Button(
+                                onClick = { navController.navigate("manage_feedback") },
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .padding(vertical = 4.dp),
+                                colors = ButtonDefaults.buttonColors(
+                                    containerColor = NavyBlueLight,
+                                    contentColor = WhiteText
+                                )
+                            ) {
+                                Text("Manage Feedback")
+                            }
                         }
                     }
                 }

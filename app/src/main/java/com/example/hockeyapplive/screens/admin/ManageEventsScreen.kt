@@ -47,6 +47,7 @@ fun ManageEventsScreen(navController: NavController, context: Context) {
     var newDescription by remember { mutableStateOf("") }
     var selectedDate by remember { mutableStateOf("") }
     var selectedTime by remember { mutableStateOf("") }
+    var selectedEventType by remember { mutableStateOf("Match") } // Default event type
     var errorMessage by remember { mutableStateOf<String?>(null) }
     var successMessage by remember { mutableStateOf<String?>(null) }
 
@@ -68,6 +69,7 @@ fun ManageEventsScreen(navController: NavController, context: Context) {
     val timeFormat = SimpleDateFormat("HH:mm", Locale.getDefault())
     val displayDateFormat = SimpleDateFormat("MMM dd, yyyy", Locale.getDefault())
     val displayTimeFormat = SimpleDateFormat("hh:mm a", Locale.getDefault())
+    val dbDateTimeFormat = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault())
 
     // Custom theme colors for this screen
     val customColorScheme = darkColorScheme(
@@ -328,6 +330,55 @@ fun ManageEventsScreen(navController: NavController, context: Context) {
                             )
                         }
 
+                        Spacer(modifier = Modifier.height(12.dp))
+
+                        // Event Type Dropdown
+                        var expanded by remember { mutableStateOf(false) }
+                        val eventTypes = listOf("Match", "Practice", "Social", "Other")
+                        ExposedDropdownMenuBox(
+                            expanded = expanded,
+                            onExpandedChange = { expanded = it },
+                            modifier = Modifier.fillMaxWidth()
+                        ) {
+                            OutlinedTextField(
+                                value = selectedEventType,
+                                onValueChange = {},
+                                label = { Text("Event Type") },
+                                readOnly = true,
+                                trailingIcon = {
+                                    Icon(
+                                        Icons.Filled.ArrowDropDown,
+                                        contentDescription = "Select Event Type",
+                                        tint = AccentBlue
+                                    )
+                                },
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .menuAnchor(),
+                                colors = OutlinedTextFieldDefaults.colors(
+                                    focusedBorderColor = AccentBlue,
+                                    unfocusedBorderColor = NavyBlue.copy(alpha = 0.5f),
+                                    focusedLabelColor = AccentBlue,
+                                    unfocusedLabelColor = NavyBlue
+                                ),
+                                shape = RoundedCornerShape(8.dp)
+                            )
+                            ExposedDropdownMenu(
+                                expanded = expanded,
+                                onDismissRequest = { expanded = false }
+                            ) {
+                                eventTypes.forEach { type ->
+                                    DropdownMenuItem(
+                                        text = { Text(type) },
+                                        onClick = {
+                                            selectedEventType = type
+                                            expanded = false
+                                        }
+                                    )
+                                }
+                            }
+                        }
+
                         Spacer(modifier = Modifier.height(20.dp))
 
                         Button(
@@ -338,12 +389,21 @@ fun ManageEventsScreen(navController: NavController, context: Context) {
                                     try {
                                         val dateTime = "$selectedDate $selectedTime:00"
                                         val currentUserId = 1 // Assuming admin user ID
-                                        dbHelper.insertEvent(newTitle, newDescription, dateTime, "Other", currentUserId)
+                                        val createdAt = "2025-05-23 05:54:00" // Updated to current time
+                                        dbHelper.insertEvent(
+                                            newTitle,
+                                            newDescription,
+                                            dateTime,
+                                            selectedEventType,
+                                            currentUserId,
+                                            createdAt
+                                        )
                                         events = dbHelper.getAllEvents()
                                         newTitle = ""
                                         newDescription = ""
                                         selectedDate = ""
                                         selectedTime = ""
+                                        selectedEventType = "Match" // Reset to default
                                         successMessage = "Event added successfully!"
                                         errorMessage = null
                                     } catch (e: Exception) {

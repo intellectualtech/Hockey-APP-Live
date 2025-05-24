@@ -2,18 +2,18 @@ package com.example.hockeyapplive.data.datasource
 
 import android.content.ContentValues
 import android.content.Context
-import android.os.Build
-import androidx.annotation.RequiresApi
 import com.example.hockeyapplive.data.db.DatabaseHelper
 import com.example.hockeyapplive.data.model.CoachTeamDetails
 import com.example.hockeyapplive.data.model.Game
 import com.example.hockeyapplive.data.model.User
-import java.time.OffsetDateTime
+import java.text.SimpleDateFormat
 import java.time.format.DateTimeFormatter
+import java.util.*
 
 class DataSource(context: Context) {
 
     private val dbHelper: DatabaseHelper = DatabaseHelper(context)
+    private val dateFormat = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault())
 
     fun authenticateUser(email: String, password: String): User? {
         val db = dbHelper.readableDatabase
@@ -33,7 +33,7 @@ class DataSource(context: Context) {
                     userType = cursor.getString(cursor.getColumnIndexOrThrow("user_type")),
                     isVerified = cursor.getInt(cursor.getColumnIndexOrThrow("isVerified")) == 1,
                     contactNumber = if (cursor.isNull(cursor.getColumnIndexOrThrow("contact_number"))) 0
-                    else cursor.getInt(cursor.getColumnIndexOrThrow("contact_number"))
+                    else cursor.getInt(cursor.getColumnIndexOrThrow("contact_number")).toLong()
                 )
             }
         } finally {
@@ -42,17 +42,22 @@ class DataSource(context: Context) {
         return null
     }
 
-    @RequiresApi(Build.VERSION_CODES.O)
     fun updateLastLogin(userId: Int) {
         val db = dbHelper.writableDatabase
         val values = ContentValues().apply {
-            put("last_login", OffsetDateTime.now().toLocalDateTime().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")))
+            put("last_login", dateFormat.format(Date()))
         }
         db.update("Users", values, "userID = ?", arrayOf(userId.toString()))
     }
 
-    @RequiresApi(Build.VERSION_CODES.O)
-    fun registerUser(fullName: String, email: String, password: String, userType: String, isVerified: Boolean = false, contactNumber: Long? = null): Result<Int> {
+    fun registerUser(
+        fullName: String,
+        email: String,
+        password: String,
+        userType: String,
+        isVerified: Boolean = false,
+        contactNumber: Long? = null
+    ): Result<Int> {
         if (fullName.isBlank()) return Result.failure(Exception("Full name cannot be empty"))
         if (!email.contains("@")) return Result.failure(Exception("Invalid email format"))
         if (password.isBlank()) return Result.failure(Exception("Password cannot be empty"))
@@ -77,7 +82,7 @@ class DataSource(context: Context) {
                 put("userPassword", password)
                 put("user_type", userType)
                 put("isVerified", if (isVerified) 1 else 0)
-                put("created_at", OffsetDateTime.now().toLocalDateTime().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")))
+                put("created_at", dateFormat.format(Date()))
                 putNull("last_login")
                 if (contactNumber != null) {
                     put("contact_number", contactNumber)
@@ -118,13 +123,23 @@ class DataSource(context: Context) {
         teamName: String,
         coachName: String,
         contactEmail: String,
+        createdAt: String,
         status: String,
-        coachUserId: Int? = null
+        coachUserId: Int? = null,
+        yearsOfExistence: Int? = null,
+        fieldAddress: String? = null,
+        gamesPlayed: Int? = null,
+        coachReference: String? = null,
+        coachIdNo: String? = null,
+        coachExperienceYears: Int? = null
     ): Result<Unit> {
         if (teamName.isBlank()) return Result.failure(Exception("Team name cannot be empty"))
         if (coachName.isBlank()) return Result.failure(Exception("Coach name cannot be empty"))
         if (!contactEmail.contains("@")) return Result.failure(Exception("Invalid contact email"))
         if (status !in listOf("Pending", "Approved", "Rejected")) return Result.failure(Exception("Invalid status"))
+        if (yearsOfExistence != null && yearsOfExistence < 0) return Result.failure(Exception("Years of existence cannot be negative"))
+        if (gamesPlayed != null && gamesPlayed < 0) return Result.failure(Exception("Games played cannot be negative"))
+        if (coachExperienceYears != null && coachExperienceYears < 0) return Result.failure(Exception("Coach experience years cannot be negative"))
 
         return try {
             val db = dbHelper.writableDatabase
@@ -132,9 +147,42 @@ class DataSource(context: Context) {
                 put("team_name", teamName)
                 put("coachName", coachName)
                 put("contact_email", contactEmail)
+                put("created_at", createdAt)
                 put("status", status)
                 if (coachUserId != null) {
                     put("coach_userID", coachUserId)
+                } else {
+                    putNull("coach_userID")
+                }
+                if (yearsOfExistence != null) {
+                    put("years_of_existence", yearsOfExistence)
+                } else {
+                    putNull("years_of_existence")
+                }
+                if (fieldAddress != null) {
+                    put("field_address", fieldAddress)
+                } else {
+                    putNull("field_address")
+                }
+                if (gamesPlayed != null) {
+                    put("games_played", gamesPlayed)
+                } else {
+                    putNull("games_played")
+                }
+                if (coachReference != null) {
+                    put("coach_reference", coachReference)
+                } else {
+                    putNull("coach_reference")
+                }
+                if (coachIdNo != null) {
+                    put("coach_id_no", coachIdNo)
+                } else {
+                    putNull("coach_id_no")
+                }
+                if (coachExperienceYears != null) {
+                    put("coach_experience_years", coachExperienceYears)
+                } else {
+                    putNull("coach_experience_years")
                 }
             }
             val result = db.insert("TeamRegistrations", null, values)
@@ -188,7 +236,6 @@ class DataSource(context: Context) {
         return games
     }
 
-    @RequiresApi(Build.VERSION_CODES.O)
     fun insertTeamWithCoachDetails(details: CoachTeamDetails): Result<Int> {
         if (details.teamName.isBlank()) return Result.failure(Exception("Team name cannot be empty"))
         if (!details.email.contains("@")) return Result.failure(Exception("Invalid email"))
@@ -210,7 +257,7 @@ class DataSource(context: Context) {
                     password = "default123",
                     userType = "Coach",
                     isVerified = true,
-                    contactNumber = 2648100000000
+                    contactNumber = 2648100000
                 )
                 if (userResult.isSuccess) {
                     coachId = userResult.getOrThrow()
@@ -234,6 +281,10 @@ class DataSource(context: Context) {
                 throw Exception("Team name already exists")
             }
 
+            // Format LocalDateTime to String for database insertion
+            val formatter = java.time.format.DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")
+            val createdAtString = details.createdAt.format(formatter)
+
             // Insert team with all details
             val teamValues = ContentValues().apply {
                 put("team_name", details.teamName)
@@ -245,7 +296,7 @@ class DataSource(context: Context) {
                 put("coach_reference", details.referenceOfCoachGame)
                 put("coach_id_no", details.idNo)
                 put("coach_experience_years", details.yearsOfExperience)
-                put("created_at", OffsetDateTime.now().toLocalDateTime().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")))
+                put("created_at", createdAtString)
             }
             val teamId = db.insert("Teams", null, teamValues)
             if (teamId == -1L) {

@@ -9,7 +9,7 @@ android {
 
     defaultConfig {
         applicationId = "com.example.hockeyapplive"
-        minSdk = 24
+        minSdk = 25
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
@@ -73,6 +73,7 @@ dependencies {
     implementation(libs.generativeai)
     implementation(libs.androidx.material3.android)
     implementation(libs.play.services.games)
+    implementation(libs.androidx.compose.navigation)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

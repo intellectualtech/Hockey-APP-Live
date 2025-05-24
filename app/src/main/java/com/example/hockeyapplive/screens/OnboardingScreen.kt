@@ -122,36 +122,8 @@ fun OnboardingScreen(navController: NavController, context: Context) {
                                 unselectedIconColor = HockeyAppTheme.TextColor.copy(alpha = 0.7f)
                             )
                         )
-                        NavigationDrawerItem(
-                            label = { Text("Teams") },
-                            selected = false,
-                            onClick = {
-                                scope.launch { drawerState.close() }
-                                navController.navigate("team_registration")
-                            },
-                            icon = { Icon(Icons.Filled.Group, contentDescription = "Teams") },
-                            colors = NavigationDrawerItemDefaults.colors(
-                                selectedContainerColor = HockeyAppTheme.LighterNavyBlue,
-                                unselectedContainerColor = HockeyAppTheme.White,
-                                selectedIconColor = HockeyAppTheme.TextColor,
-                                unselectedIconColor = HockeyAppTheme.TextColor.copy(alpha = 0.7f)
-                            )
-                        )
-                        NavigationDrawerItem(
-                            label = { Text("Players") },
-                            selected = false,
-                            onClick = {
-                                scope.launch { drawerState.close() }
-                                navController.navigate("teamName" )
-                            },
-                            icon = { Icon(Icons.Filled.Person, contentDescription = "Players") },
-                            colors = NavigationDrawerItemDefaults.colors(
-                                selectedContainerColor = HockeyAppTheme.LighterNavyBlue,
-                                unselectedContainerColor = HockeyAppTheme.White,
-                                selectedIconColor = HockeyAppTheme.TextColor,
-                                unselectedIconColor = HockeyAppTheme.TextColor.copy(alpha = 0.7f)
-                            )
-                        )
+
+
                         NavigationDrawerItem(
                             label = { Text("Events") },
                             selected = false,
@@ -167,36 +139,8 @@ fun OnboardingScreen(navController: NavController, context: Context) {
                                 unselectedIconColor = HockeyAppTheme.TextColor.copy(alpha = 0.7f)
                             )
                         )
-                        NavigationDrawerItem(
-                            label = { Text("Feedback") },
-                            selected = false,
-                            onClick = {
-                                scope.launch { drawerState.close() }
-                                navController.navigate("manage_feedback")
-                            },
-                            icon = { Icon(Icons.Filled.Feedback, contentDescription = "Feedback") },
-                            colors = NavigationDrawerItemDefaults.colors(
-                                selectedContainerColor = HockeyAppTheme.LighterNavyBlue,
-                                unselectedContainerColor = HockeyAppTheme.White,
-                                selectedIconColor = HockeyAppTheme.TextColor,
-                                unselectedIconColor = HockeyAppTheme.TextColor.copy(alpha = 0.7f)
-                            )
-                        )
-                        NavigationDrawerItem(
-                            label = { Text("Profile") },
-                            selected = false,
-                            onClick = {
-                                scope.launch { drawerState.close() }
-                                navController.navigate("settings")
-                            },
-                            icon = { Icon(Icons.Filled.AccountCircle, contentDescription = "Profile") },
-                            colors = NavigationDrawerItemDefaults.colors(
-                                selectedContainerColor = HockeyAppTheme.LighterNavyBlue,
-                                unselectedContainerColor = HockeyAppTheme.White,
-                                selectedIconColor = HockeyAppTheme.TextColor,
-                                unselectedIconColor = HockeyAppTheme.TextColor.copy(alpha = 0.7f)
-                            )
-                        )
+
+
                         NavigationDrawerItem(
                             label = { Text("Settings") },
                             selected = false,
@@ -269,32 +213,8 @@ fun OnboardingScreen(navController: NavController, context: Context) {
                                 unselectedTextColor = HockeyAppTheme.White.copy(alpha = 0.7f)
                             )
                         )
-                        NavigationBarItem(
-                            icon = { Icon(imageVector = Icons.Default.Group, contentDescription = "Teams", tint = HockeyAppTheme.White.copy(alpha = 0.7f)) },
-                            label = { Text("Teams", color = HockeyAppTheme.White.copy(alpha = 0.7f)) },
-                            selected = false,
-                            onClick = { navController.navigate("team_registration") },
-                            colors = NavigationBarItemDefaults.colors(
-                                selectedIconColor = HockeyAppTheme.White,
-                                selectedTextColor = HockeyAppTheme.White,
-                                indicatorColor = HockeyAppTheme.AccentBlue,
-                                unselectedIconColor = HockeyAppTheme.White.copy(alpha = 0.7f),
-                                unselectedTextColor = HockeyAppTheme.White.copy(alpha = 0.7f)
-                            )
-                        )
-                        NavigationBarItem(
-                            icon = { Icon(imageVector = Icons.Default.Person, contentDescription = "Players", tint = HockeyAppTheme.White.copy(alpha = 0.7f)) },
-                            label = { Text("Players", color = HockeyAppTheme.White.copy(alpha = 0.7f)) },
-                            selected = false,
-                            onClick = { navController.navigate("playerRegistration") },
-                            colors = NavigationBarItemDefaults.colors(
-                                selectedIconColor = HockeyAppTheme.White,
-                                selectedTextColor = HockeyAppTheme.White,
-                                indicatorColor = HockeyAppTheme.AccentBlue,
-                                unselectedIconColor = HockeyAppTheme.White.copy(alpha = 0.7f),
-                                unselectedTextColor = HockeyAppTheme.White.copy(alpha = 0.7f)
-                            )
-                        )
+
+
                         NavigationBarItem(
                             icon = { Icon(imageVector = Icons.Default.Event, contentDescription = "Events", tint = HockeyAppTheme.White.copy(alpha = 0.7f)) },
                             label = { Text("Events", color = HockeyAppTheme.White.copy(alpha = 0.7f)) },
@@ -308,24 +228,12 @@ fun OnboardingScreen(navController: NavController, context: Context) {
                                 unselectedTextColor = HockeyAppTheme.White.copy(alpha = 0.7f)
                             )
                         )
-                        NavigationBarItem(
-                            icon = { Icon(imageVector = Icons.Default.Feedback, contentDescription = "Feedback", tint = HockeyAppTheme.White.copy(alpha = 0.7f)) },
-                            label = { Text("Feedback", color = HockeyAppTheme.White.copy(alpha = 0.7f)) },
-                            selected = false,
-                            onClick = { navController.navigate("feedback") },
-                            colors = NavigationBarItemDefaults.colors(
-                                selectedIconColor = HockeyAppTheme.White,
-                                selectedTextColor = HockeyAppTheme.White,
-                                indicatorColor = HockeyAppTheme.AccentBlue,
-                                unselectedIconColor = HockeyAppTheme.White.copy(alpha = 0.7f),
-                                unselectedTextColor = HockeyAppTheme.White.copy(alpha = 0.7f)
-                            )
-                        )
+
                         NavigationBarItem(
                             icon = { Icon(imageVector = Icons.Default.AccountCircle, contentDescription = "Profile", tint = HockeyAppTheme.White.copy(alpha = 0.7f)) },
                             label = { Text("Profile", color = HockeyAppTheme.White.copy(alpha = 0.7f)) },
                             selected = false,
-                            onClick = { navController.navigate("login") },
+                            onClick = { navController.navigate("settings") },
                             colors = NavigationBarItemDefaults.colors(
                                 selectedIconColor = HockeyAppTheme.White,
                                 selectedTextColor = HockeyAppTheme.White,
@@ -353,7 +261,7 @@ fun OnboardingScreen(navController: NavController, context: Context) {
                         horizontalArrangement = Arrangement.SpaceEvenly
                     ) {
                         Button(
-                            onClick = { navController.navigate("playerRegistration") },
+                            onClick = { navController.navigate("playerRegistration/TeamA") },
                             colors = ButtonDefaults.buttonColors(
                                 containerColor = HockeyAppTheme.LightNavyBlue
                             ),

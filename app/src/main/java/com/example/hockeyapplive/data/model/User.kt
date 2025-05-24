@@ -8,7 +8,7 @@ data class User(
     val createdAt: String,
     val lastLogin: String?,
     val userType: String,
-    val  contactNumber: Int,
+    val contactNumber: Long,
     val isVerified: Boolean
 )
 

@@ -29,6 +29,7 @@ import androidx.navigation.NavController
 import com.example.hockeyapplive.data.db.DatabaseHelper
 import com.example.hockeyapplive.data.model.Player
 import com.example.hockeyapplive.data.model.Team
+import com.example.hockeyapplive.data.model.User
 import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
 import java.util.*
@@ -62,6 +63,19 @@ fun ManagePlayersScreen(
     var isLoading by remember { mutableStateOf(true) }
     val snackbarHostState = remember { SnackbarHostState() }
     val scope = rememberCoroutineScope()
+
+    // New state for registration dialog and multi-step form
+    var showRegistrationDialog by remember { mutableStateOf(false) }
+    var newPlayerName by remember { mutableStateOf("") }
+    var newJerseyNumber by remember { mutableStateOf("") }
+    var newPosition by remember { mutableStateOf("") }
+    var newAge by remember { mutableStateOf("") }
+    var newHeight by remember { mutableStateOf("") }
+    var newEmergencyContact by remember { mutableStateOf("") }
+    var newDateOfBirth by remember { mutableStateOf("") }
+    var newJoinDate by remember { mutableStateOf("") }
+    var registrationErrorMessage by remember { mutableStateOf<String?>(null) }
+    var registrationStep by remember { mutableStateOf(1) }
 
     // Enhanced Professional Color Palette
     val PrimaryNavy = Color(0xFF0B1426)
@@ -117,6 +131,16 @@ fun ManagePlayersScreen(
         false
     }
 
+    // Function to validate Step 1 fields
+    fun validateStep1(): Boolean {
+        return newPlayerName.isNotBlank() &&
+                newJerseyNumber.isNotBlank() &&
+                newPosition.isNotBlank() &&
+                newAge.isNotBlank() &&
+                newJerseyNumber.toIntOrNull() != null && newJerseyNumber.toInt() > 0 &&
+                newAge.toIntOrNull() != null && newAge.toInt() > 0
+    }
+
     // Fetch teamName from navigation argument
     val teamName = navBackStackEntry.arguments?.getString("teamName")
 
@@ -126,7 +150,6 @@ fun ManagePlayersScreen(
         isLoading = true
         try {
             teams = dbHelper.getAllTeams().map { team ->
-                // Ensure createdAt is properly handled as LocalDateTime
                 team.copy() // Create a copy to avoid modifying the original data
             }
             selectedTeam = teams.find { it.teamName == teamName }
@@ -137,10 +160,9 @@ fun ManagePlayersScreen(
                 teamSelectionError = "Team '$teamName' not found"
             }
         } catch (e: Exception) {
-            // Handle the specific parsing error and provide a fallback
             if (e.message?.contains("Unable to obtain OffsetDateTime") == true) {
                 snackbarHostState.showSnackbar("Failed to load data: Timestamp parsing error. Using default data.")
-                teams = emptyList() // Fallback to empty list to avoid crash
+                teams = emptyList()
                 players = emptyList()
             } else {
                 snackbarHostState.showSnackbar("Failed to load data: ${e.message}")
@@ -494,14 +516,23 @@ fun ManagePlayersScreen(
 
                                     Spacer(modifier = Modifier.height(24.dp))
 
-                                    // Enhanced Register Button
+                                    // Enhanced Register Button (now triggers dialog)
                                     Button(
                                         onClick = {
                                             if (selectedTeam == null) {
                                                 teamSelectionError = "Please select a team first"
                                             } else {
-                                                navController.navigate("playerRegistration?teamId=${selectedTeam!!.teamId}")
-                                                teamSelectionError = null
+                                                newPlayerName = ""
+                                                newJerseyNumber = ""
+                                                newPosition = ""
+                                                newAge = ""
+                                                newHeight = ""
+                                                newEmergencyContact = ""
+                                                newDateOfBirth = ""
+                                                newJoinDate = ""
+                                                registrationErrorMessage = null
+                                                registrationStep = 1
+                                                showRegistrationDialog = true
                                             }
                                         },
                                         modifier = Modifier
@@ -1309,7 +1340,6 @@ fun ManagePlayersScreen(
                                 if (isEditing) {
                                     Button(
                                         onClick = {
-                                            // Validation
                                             if (editedPlayerName.isBlank()) {
                                                 editErrorMessage = "Player name cannot be empty"
                                                 return@Button
@@ -1360,7 +1390,6 @@ fun ManagePlayersScreen(
                                                 return@Button
                                             }
 
-                                            // Date validation
                                             if (!isValidDate(editedDateOfBirth)) {
                                                 editErrorMessage = "Date of birth must be in YYYY-MM-DD format"
                                                 return@Button
@@ -1370,8 +1399,7 @@ fun ManagePlayersScreen(
                                                 return@Button
                                             }
 
-                                            // Validate dates are not in the future (relative to May 22, 2025)
-                                            val currentDate = dateFormat.parse("2025-05-22")
+                                            val currentDate = dateFormat.parse("2025-05-23")
                                             val dobDate = dateFormat.parse(editedDateOfBirth)
                                             val joinDate = dateFormat.parse(editedJoinDate)
 
@@ -1480,6 +1508,528 @@ fun ManagePlayersScreen(
                                         style = MaterialTheme.typography.titleMedium,
                                         fontWeight = FontWeight.SemiBold
                                     )
+                                }
+                            },
+                            containerColor = SurfaceWhite,
+                            shape = RoundedCornerShape(20.dp),
+                            modifier = Modifier.padding(vertical = 16.dp)
+                        )
+                    }
+
+                    // Enhanced Player Registration Dialog with Multi-Step Form
+                    if (showRegistrationDialog) {
+                        AlertDialog(
+                            onDismissRequest = {
+                                showRegistrationDialog = false
+                                registrationStep = 1
+                                registrationErrorMessage = null
+                            },
+                            title = {
+                                Row(verticalAlignment = Alignment.CenterVertically) {
+                                    Box(
+                                        modifier = Modifier
+                                            .size(48.dp)
+                                            .clip(RoundedCornerShape(14.dp))
+                                            .background(AccentBlue.copy(alpha = 0.1f)),
+                                        contentAlignment = Alignment.Center
+                                    ) {
+                                        Icon(
+                                            Icons.Filled.PersonAdd,
+                                            contentDescription = "Register",
+                                            tint = AccentBlue,
+                                            modifier = Modifier.size(24.dp)
+                                        )
+                                    }
+                                    Spacer(modifier = Modifier.width(16.dp))
+                                    Text(
+                                        text = "Register New Player",
+                                        style = MaterialTheme.typography.headlineSmall,
+                                        fontWeight = FontWeight.Bold,
+                                        color = TextPrimary
+                                    )
+                                }
+                            },
+                            text = {
+                                Column(
+                                    modifier = Modifier
+                                        .fillMaxWidth()
+                                        .padding(vertical = 8.dp),
+                                    verticalArrangement = Arrangement.spacedBy(16.dp)
+                                ) {
+                                    // Step Indicator
+                                    Row(
+                                        modifier = Modifier.fillMaxWidth(),
+                                        horizontalArrangement = Arrangement.SpaceBetween
+                                    ) {
+                                        Text(
+                                            text = "Step ${registrationStep} of 2",
+                                            style = MaterialTheme.typography.titleMedium,
+                                            color = TextPrimary,
+                                            fontWeight = FontWeight.Bold
+                                        )
+                                        Text(
+                                            text = if (registrationStep == 1) "Basic Info" else "Additional Info",
+                                            style = MaterialTheme.typography.bodyMedium,
+                                            color = TextSecondary
+                                        )
+                                    }
+
+                                    if (registrationStep == 1) {
+                                        // Player Name
+                                        OutlinedTextField(
+                                            value = newPlayerName,
+                                            onValueChange = { newPlayerName = it },
+                                            label = { Text("Player Name") },
+                                            modifier = Modifier.fillMaxWidth(),
+                                            isError = registrationErrorMessage != null,
+                                            colors = OutlinedTextFieldDefaults.colors(
+                                                focusedBorderColor = AccentBlue,
+                                                unfocusedBorderColor = BorderLight,
+                                                focusedLabelColor = AccentBlue,
+                                                unfocusedLabelColor = TextSecondary,
+                                                cursorColor = AccentBlue,
+                                                focusedTextColor = TextPrimary,
+                                                unfocusedTextColor = TextPrimary,
+                                                errorBorderColor = ErrorRed
+                                            ),
+                                            shape = RoundedCornerShape(12.dp),
+                                            textStyle = MaterialTheme.typography.bodyLarge.copy(
+                                                color = TextPrimary,
+                                                fontWeight = FontWeight.Medium
+                                            ),
+                                            keyboardOptions = KeyboardOptions(
+                                                keyboardType = KeyboardType.Text,
+                                                imeAction = ImeAction.Next
+                                            )
+                                        )
+
+                                        // Jersey Number
+                                        OutlinedTextField(
+                                            value = newJerseyNumber,
+                                            onValueChange = { if (it.all { char -> char.isDigit() }) newJerseyNumber = it },
+                                            label = { Text("Jersey Number") },
+                                            modifier = Modifier.fillMaxWidth(),
+                                            isError = registrationErrorMessage != null,
+                                            colors = OutlinedTextFieldDefaults.colors(
+                                                focusedBorderColor = AccentBlue,
+                                                unfocusedBorderColor = BorderLight,
+                                                focusedLabelColor = AccentBlue,
+                                                unfocusedLabelColor = TextSecondary,
+                                                cursorColor = AccentBlue,
+                                                focusedTextColor = TextPrimary,
+                                                unfocusedTextColor = TextPrimary,
+                                                errorBorderColor = ErrorRed
+                                            ),
+                                            shape = RoundedCornerShape(12.dp),
+                                            textStyle = MaterialTheme.typography.bodyLarge.copy(
+                                                color = TextPrimary,
+                                                fontWeight = FontWeight.Medium
+                                            ),
+                                            keyboardOptions = KeyboardOptions(
+                                                keyboardType = KeyboardType.Number,
+                                                imeAction = ImeAction.Next
+                                            )
+                                        )
+
+                                        // Position
+                                        OutlinedTextField(
+                                            value = newPosition,
+                                            onValueChange = { newPosition = it },
+                                            label = { Text("Position") },
+                                            modifier = Modifier.fillMaxWidth(),
+                                            isError = registrationErrorMessage != null,
+                                            colors = OutlinedTextFieldDefaults.colors(
+                                                focusedBorderColor = AccentBlue,
+                                                unfocusedBorderColor = BorderLight,
+                                                focusedLabelColor = AccentBlue,
+                                                unfocusedLabelColor = TextSecondary,
+                                                cursorColor = AccentBlue,
+                                                focusedTextColor = TextPrimary,
+                                                unfocusedTextColor = TextPrimary,
+                                                errorBorderColor = ErrorRed
+                                            ),
+                                            shape = RoundedCornerShape(12.dp),
+                                            textStyle = MaterialTheme.typography.bodyLarge.copy(
+                                                color = TextPrimary,
+                                                fontWeight = FontWeight.Medium
+                                            ),
+                                            keyboardOptions = KeyboardOptions(
+                                                keyboardType = KeyboardType.Text,
+                                                imeAction = ImeAction.Next
+                                            )
+                                        )
+
+                                        // Age
+                                        OutlinedTextField(
+                                            value = newAge,
+                                            onValueChange = { if (it.all { char -> char.isDigit() }) newAge = it },
+                                            label = { Text("Age") },
+                                            modifier = Modifier.fillMaxWidth(),
+                                            isError = registrationErrorMessage != null,
+                                            colors = OutlinedTextFieldDefaults.colors(
+                                                focusedBorderColor = AccentBlue,
+                                                unfocusedBorderColor = BorderLight,
+                                                focusedLabelColor = AccentBlue,
+                                                unfocusedLabelColor = TextSecondary,
+                                                cursorColor = AccentBlue,
+                                                focusedTextColor = TextPrimary,
+                                                unfocusedTextColor = TextPrimary,
+                                                errorBorderColor = ErrorRed
+                                            ),
+                                            shape = RoundedCornerShape(12.dp),
+                                            textStyle = MaterialTheme.typography.bodyLarge.copy(
+                                                color = TextPrimary,
+                                                fontWeight = FontWeight.Medium
+                                            ),
+                                            keyboardOptions = KeyboardOptions(
+                                                keyboardType = KeyboardType.Number,
+                                                imeAction = ImeAction.Done
+                                            )
+                                        )
+                                    } else {
+                                        // Height
+                                        OutlinedTextField(
+                                            value = newHeight,
+                                            onValueChange = { if (it.all { char -> char.isDigit() || char == '.' }) newHeight = it },
+                                            label = { Text("Height (cm)") },
+                                            modifier = Modifier.fillMaxWidth(),
+                                            isError = registrationErrorMessage != null,
+                                            colors = OutlinedTextFieldDefaults.colors(
+                                                focusedBorderColor = AccentBlue,
+                                                unfocusedBorderColor = BorderLight,
+                                                focusedLabelColor = AccentBlue,
+                                                unfocusedLabelColor = TextSecondary,
+                                                cursorColor = AccentBlue,
+                                                focusedTextColor = TextPrimary,
+                                                unfocusedTextColor = TextPrimary,
+                                                errorBorderColor = ErrorRed
+                                            ),
+                                            shape = RoundedCornerShape(12.dp),
+                                            textStyle = MaterialTheme.typography.bodyLarge.copy(
+                                                color = TextPrimary,
+                                                fontWeight = FontWeight.Medium
+                                            ),
+                                            keyboardOptions = KeyboardOptions(
+                                                keyboardType = KeyboardType.Number,
+                                                imeAction = ImeAction.Next
+                                            )
+                                        )
+
+                                        // Emergency Contact
+                                        OutlinedTextField(
+                                            value = newEmergencyContact,
+                                            onValueChange = { newEmergencyContact = it },
+                                            label = { Text("Emergency Contact") },
+                                            modifier = Modifier.fillMaxWidth(),
+                                            isError = registrationErrorMessage != null,
+                                            colors = OutlinedTextFieldDefaults.colors(
+                                                focusedBorderColor = AccentBlue,
+                                                unfocusedBorderColor = BorderLight,
+                                                focusedLabelColor = AccentBlue,
+                                                unfocusedLabelColor = TextSecondary,
+                                                cursorColor = AccentBlue,
+                                                focusedTextColor = TextPrimary,
+                                                unfocusedTextColor = TextPrimary,
+                                                errorBorderColor = ErrorRed
+                                            ),
+                                            shape = RoundedCornerShape(12.dp),
+                                            textStyle = MaterialTheme.typography.bodyLarge.copy(
+                                                color = TextPrimary,
+                                                fontWeight = FontWeight.Medium
+                                            ),
+                                            keyboardOptions = KeyboardOptions(
+                                                keyboardType = KeyboardType.Phone,
+                                                imeAction = ImeAction.Next
+                                            )
+                                        )
+
+                                        // Date of Birth
+                                        OutlinedTextField(
+                                            value = newDateOfBirth,
+                                            onValueChange = { newDateOfBirth = it },
+                                            label = { Text("Date of Birth (YYYY-MM-DD)") },
+                                            modifier = Modifier.fillMaxWidth(),
+                                            isError = registrationErrorMessage != null,
+                                            colors = OutlinedTextFieldDefaults.colors(
+                                                focusedBorderColor = AccentBlue,
+                                                unfocusedBorderColor = BorderLight,
+                                                focusedLabelColor = AccentBlue,
+                                                unfocusedLabelColor = TextSecondary,
+                                                cursorColor = AccentBlue,
+                                                focusedTextColor = TextPrimary,
+                                                unfocusedTextColor = TextPrimary,
+                                                errorBorderColor = ErrorRed
+                                            ),
+                                            shape = RoundedCornerShape(12.dp),
+                                            textStyle = MaterialTheme.typography.bodyLarge.copy(
+                                                color = TextPrimary,
+                                                fontWeight = FontWeight.Medium
+                                            ),
+                                            keyboardOptions = KeyboardOptions(
+                                                keyboardType = KeyboardType.Text,
+                                                imeAction = ImeAction.Next
+                                            )
+                                        )
+
+                                        // Join Date
+                                        OutlinedTextField(
+                                            value = newJoinDate,
+                                            onValueChange = { newJoinDate = it },
+                                            label = { Text("Join Date (YYYY-MM-DD)") },
+                                            modifier = Modifier.fillMaxWidth(),
+                                            isError = registrationErrorMessage != null,
+                                            colors = OutlinedTextFieldDefaults.colors(
+                                                focusedBorderColor = AccentBlue,
+                                                unfocusedBorderColor = BorderLight,
+                                                focusedLabelColor = AccentBlue,
+                                                unfocusedLabelColor = TextSecondary,
+                                                cursorColor = AccentBlue,
+                                                focusedTextColor = TextPrimary,
+                                                unfocusedTextColor = TextPrimary,
+                                                errorBorderColor = ErrorRed
+                                            ),
+                                            shape = RoundedCornerShape(12.dp),
+                                            textStyle = MaterialTheme.typography.bodyLarge.copy(
+                                                color = TextPrimary,
+                                                fontWeight = FontWeight.Medium
+                                            ),
+                                            keyboardOptions = KeyboardOptions(
+                                                keyboardType = KeyboardType.Text,
+                                                imeAction = ImeAction.Done
+                                            )
+                                        )
+                                    }
+
+                                    registrationErrorMessage?.let {
+                                        Row(
+                                            modifier = Modifier.padding(top = 8.dp),
+                                            verticalAlignment = Alignment.CenterVertically
+                                        ) {
+                                            Icon(
+                                                Icons.Filled.Error,
+                                                contentDescription = "Error",
+                                                tint = ErrorRed,
+                                                modifier = Modifier.size(16.dp)
+                                            )
+                                            Spacer(modifier = Modifier.width(6.dp))
+                                            Text(
+                                                text = it,
+                                                color = ErrorRed,
+                                                style = MaterialTheme.typography.bodySmall,
+                                                fontWeight = FontWeight.Medium
+                                            )
+                                        }
+                                    }
+                                }
+                            },
+                            confirmButton = {
+                                if (registrationStep == 1) {
+                                    Button(
+                                        onClick = {
+                                            if (validateStep1()) {
+                                                registrationStep = 2
+                                                registrationErrorMessage = null
+                                            } else {
+                                                registrationErrorMessage = "Please fill all fields with valid values"
+                                            }
+                                        },
+                                        colors = ButtonDefaults.buttonColors(
+                                            containerColor = AccentBlue,
+                                            contentColor = Color.White
+                                        ),
+                                        shape = RoundedCornerShape(12.dp),
+                                        modifier = Modifier
+                                            .height(48.dp)
+                                            .fillMaxWidth()
+                                    ) {
+                                        Text(
+                                            "Next",
+                                            style = MaterialTheme.typography.titleMedium,
+                                            fontWeight = FontWeight.SemiBold
+                                        )
+                                    }
+                                } else {
+                                    Button(
+                                        onClick = {
+                                            if (newPlayerName.isBlank()) {
+                                                registrationErrorMessage = "Player name cannot be empty"
+                                                return@Button
+                                            }
+                                            if (newJerseyNumber.isBlank()) {
+                                                registrationErrorMessage = "Jersey number cannot be empty"
+                                                return@Button
+                                            }
+                                            if (newPosition.isBlank()) {
+                                                registrationErrorMessage = "Position cannot be empty"
+                                                return@Button
+                                            }
+                                            if (newAge.isBlank()) {
+                                                registrationErrorMessage = "Age cannot be empty"
+                                                return@Button
+                                            }
+                                            if (newHeight.isBlank()) {
+                                                registrationErrorMessage = "Height cannot be empty"
+                                                return@Button
+                                            }
+                                            if (newEmergencyContact.isBlank()) {
+                                                registrationErrorMessage = "Emergency contact cannot be empty"
+                                                return@Button
+                                            }
+                                            if (newDateOfBirth.isBlank()) {
+                                                registrationErrorMessage = "Date of birth cannot be empty"
+                                                return@Button
+                                            }
+                                            if (newJoinDate.isBlank()) {
+                                                registrationErrorMessage = "Join date cannot be empty"
+                                                return@Button
+                                            }
+
+                                            val jerseyNum = newJerseyNumber.toIntOrNull()
+                                            val ageNum = newAge.toIntOrNull()
+                                            val heightNum = newHeight.toFloatOrNull()
+
+                                            if (jerseyNum == null || jerseyNum <= 0) {
+                                                registrationErrorMessage = "Invalid jersey number"
+                                                return@Button
+                                            }
+                                            if (ageNum == null || ageNum <= 0) {
+                                                registrationErrorMessage = "Invalid age"
+                                                return@Button
+                                            }
+                                            if (heightNum == null || heightNum <= 0) {
+                                                registrationErrorMessage = "Invalid height"
+                                                return@Button
+                                            }
+
+                                            if (!isValidDate(newDateOfBirth)) {
+                                                registrationErrorMessage = "Date of birth must be in YYYY-MM-DD format"
+                                                return@Button
+                                            }
+                                            if (!isValidDate(newJoinDate)) {
+                                                registrationErrorMessage = "Join date must be in YYYY-MM-DD format"
+                                                return@Button
+                                            }
+
+                                            val currentDate = dateFormat.parse("2025-05-23")
+                                            val dobDate = dateFormat.parse(newDateOfBirth)
+                                            val joinDate = dateFormat.parse(newJoinDate)
+
+                                            if (dobDate.after(currentDate)) {
+                                                registrationErrorMessage = "Date of birth cannot be in the future"
+                                                return@Button
+                                            }
+                                            if (joinDate.after(currentDate)) {
+                                                registrationErrorMessage = "Join date cannot be in the future"
+                                                return@Button
+                                            }
+
+                                            scope.launch {
+                                                try {
+                                                    if (selectedTeam != null) {
+                                                        // Insert into users table first to get userID
+                                                        val email = "${newPlayerName.replace(" ", "").lowercase()}@hockeyapp.com"
+                                                        val defaultPassword = "tempPass123" // Temporary password; user can reset later
+                                                        val newUser = User(
+                                                            userID = 0, // Auto-incremented by database
+                                                            fullName = newPlayerName,
+                                                            email = email,
+                                                            userPassword = defaultPassword,
+                                                            createdAt = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault()).format(Date()),
+                                                            lastLogin = null,
+                                                            userType = "Player",
+                                                            contactNumber = 8100000000, // Default 10-digit contact number
+                                                            isVerified = false
+                                                        )
+                                                        val userId = dbHelper.insertUser(newUser)
+
+                                                        // Insert into player table with the new userId
+                                                        dbHelper.insertPlayer(
+                                                            userId = userId,
+                                                            teamId = selectedTeam!!.teamId,
+                                                            fullName = newPlayerName,
+                                                            jerseyNumber = jerseyNum,
+                                                            position = newPosition,
+                                                            age = ageNum,
+                                                            height = heightNum,
+                                                            emergencyContact = newEmergencyContact,
+                                                            dateOfBirth = newDateOfBirth,
+                                                            joinDate = newJoinDate
+                                                        )
+                                                        fetchData()
+                                                        showRegistrationDialog = false
+                                                        registrationStep = 1
+                                                        registrationErrorMessage = null
+                                                        snackbarHostState.showSnackbar("Player registered successfully")
+                                                    }
+                                                } catch (e: Exception) {
+                                                    registrationErrorMessage = "Failed to register player: ${e.message}"
+                                                }
+                                            }
+                                        },
+                                        colors = ButtonDefaults.buttonColors(
+                                            containerColor = SuccessGreen,
+                                            contentColor = Color.White
+                                        ),
+                                        shape = RoundedCornerShape(12.dp),
+                                        modifier = Modifier
+                                            .height(48.dp)
+                                            .fillMaxWidth()
+                                    ) {
+                                        Text(
+                                            "Register Player",
+                                            style = MaterialTheme.typography.titleMedium,
+                                            fontWeight = FontWeight.SemiBold
+                                        )
+                                    }
+                                }
+                            },
+                            dismissButton = {
+                                if (registrationStep == 2) {
+                                    Button(
+                                        onClick = {
+                                            registrationStep = 1
+                                            registrationErrorMessage = null
+                                        },
+                                        colors = ButtonDefaults.buttonColors(
+                                            containerColor = SecondaryNavy.copy(alpha = 0.1f),
+                                            contentColor = SecondaryNavy
+                                        ),
+                                        shape = RoundedCornerShape(12.dp),
+                                        modifier = Modifier
+                                            .height(48.dp)
+                                            .fillMaxWidth()
+                                    ) {
+                                        Text(
+                                            "Back",
+                                            style = MaterialTheme.typography.titleMedium,
+                                            fontWeight = FontWeight.SemiBold
+                                        )
+                                    }
+                                } else {
+                                    OutlinedButton(
+                                        onClick = {
+                                            showRegistrationDialog = false
+                                            registrationStep = 1
+                                            registrationErrorMessage = null
+                                        },
+                                        colors = ButtonDefaults.outlinedButtonColors(
+                                            containerColor = SurfaceWhite,
+                                            contentColor = TextSecondary
+                                        ),
+                                        border = ButtonDefaults.outlinedButtonBorder.copy(
+                                            brush = SolidColor(BorderLight)
+                                        ),
+                                        shape = RoundedCornerShape(12.dp),
+                                        modifier = Modifier
+                                            .height(48.dp)
+                                            .fillMaxWidth()
+                                    ) {
+                                        Text(
+                                            "Cancel",
+                                            style = MaterialTheme.typography.titleMedium,
+                                            fontWeight = FontWeight.SemiBold
+                                        )
+                                    }
                                 }
                             },
                             containerColor = SurfaceWhite,
