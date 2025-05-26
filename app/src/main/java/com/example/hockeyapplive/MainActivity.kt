@@ -18,6 +18,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.example.hockeyapplive.screens.ChatScreen
+import com.example.hockeyapplive.screens.ManageTeamPlayerScreen
 import com.example.hockeyapplive.screens.EventsScreen
 import com.example.hockeyapplive.screens.LoginScreen
 import com.example.hockeyapplive.screens.OnboardingScreen
@@ -60,7 +61,7 @@ class MainActivity : ComponentActivity() {
         NavHost(navController = navController, startDestination = "splash") {
             composable("splash") { SplashScreen(navController) }
             composable("onboarding") { OnboardingScreen(navController, context = this@MainActivity) }
-            composable("login") { LoginScreen(navController, context = this@MainActivity) }
+            composable("login") { LoginScreen(navController) }
             composable("register") { RegisterScreen(navController, context = this@MainActivity) }
             composable("settings") { SettingsScreen(navController) }
             composable("chat") { ChatScreen(navController) }
@@ -98,6 +99,23 @@ class MainActivity : ComponentActivity() {
                     context = context
                 )
             }
+
+            composable(
+                "manage_team_players?teamId={teamId}",
+                arguments = listOf(
+                    navArgument("teamId") {
+                        type = NavType.IntType
+                        defaultValue = -1 // Default to -1 if not provided
+                    }
+                )
+            ) { backStackEntry ->
+                val teamId = backStackEntry.arguments?.getInt("teamId") ?: -1
+                ManageTeamPlayerScreen(
+                    navController = navController,
+                    //teamId = teamId
+                )
+            }
+
             composable(
                 "admin_profile/{userId}",
                 arguments = listOf(

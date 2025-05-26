@@ -11,6 +11,8 @@ import com.example.hockeyapplive.data.model.Player
 import com.example.hockeyapplive.data.model.Team
 import com.example.hockeyapplive.data.model.TeamRegistration
 import com.example.hockeyapplive.data.model.User
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 
@@ -904,14 +906,15 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME
         return teams
     }
 
-    fun getTeamByCoachId(coachId: Int): Team? {
+    fun getTeamByCoachId(coachId: Int, teamId: Int): Team? {
         val db = readableDatabase
         val cursor = db.rawQuery(
             "SELECT t.team_id, t.team_name, t.created_at, t.coach_id, t.contact_email, " +
                     "t.years_of_existence, t.field_address, t.games_played, t.coach_reference, " +
                     "t.coach_id_no, t.coach_experience_years, u.fullName AS coachName " +
-                    "FROM Teams t LEFT JOIN Users u ON t.coach_id = u.userID WHERE t.coach_id = ?",
-            arrayOf(coachId.toString())
+                    "FROM Teams t LEFT JOIN Users u ON t.coach_id = u.userID " +
+                    "WHERE t.coach_id = ? AND t.team_id = ?",
+            arrayOf(coachId.toString(), teamId.toString())
         )
         try {
             if (cursor.moveToFirst()) {
@@ -1109,6 +1112,121 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME
         return db.delete("Events", "event_id = ?", arrayOf(eventId.toString()))
     }
 
+    fun getTeamsByCoachId(coachId: Int): List<Team> {
+        val teams = mutableListOf<Team>()
+        val db = readableDatabase
+        val cursor = db.rawQuery(
+            "SELECT t.team_id, t.team_name, t.created_at, t.coach_id, t.contact_email, " +
+                    "t.years_of_existence, t.field_address, t.games_played, t.coach_reference, " +
+                    "t.coach_id_no, t.coach_experience_years, u.fullName AS coachName " +
+                    "FROM Teams t LEFT JOIN Users u ON t.coach_id = u.userID WHERE t.coach_id = ?",
+            arrayOf(coachId.toString())
+        )
+        try {
+            if (cursor.moveToFirst()) {
+                do {
+                    teams.add(
+                        Team(
+                            teamId = cursor.getInt(cursor.getColumnIndexOrThrow("team_id")),
+                            teamName = cursor.getString(cursor.getColumnIndexOrThrow("team_name")),
+                            coachId = if (cursor.isNull(cursor.getColumnIndexOrThrow("coach_id"))) null
+                            else cursor.getInt(cursor.getColumnIndexOrThrow("coach_id")),
+                            contactEmail = cursor.getString(cursor.getColumnIndexOrThrow("contact_email")),
+                            yearsOfExistence = if (cursor.isNull(cursor.getColumnIndexOrThrow("years_of_existence"))) null
+                            else cursor.getInt(cursor.getColumnIndexOrThrow("years_of_existence")),
+                            fieldAddress = cursor.getString(cursor.getColumnIndexOrThrow("field_address")),
+                            gamesPlayed = if (cursor.isNull(cursor.getColumnIndexOrThrow("games_played"))) null
+                            else cursor.getInt(cursor.getColumnIndexOrThrow("games_played")),
+                            coachReference = cursor.getString(cursor.getColumnIndexOrThrow("coach_reference")),
+                            coachIdNo = cursor.getString(cursor.getColumnIndexOrThrow("coach_id_no")),
+                            coachExperienceYears = if (cursor.isNull(cursor.getColumnIndexOrThrow("coach_experience_years"))) null
+                            else cursor.getInt(cursor.getColumnIndexOrThrow("coach_experience_years")),
+                            coachName = cursor.getString(cursor.getColumnIndexOrThrow("coachName")),
+                            createdAt = cursor.getString(cursor.getColumnIndexOrThrow("created_at"))?.let {
+                                LocalDateTime.parse(it, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"))
+                            }
+                        )
+                    )
+                } while (cursor.moveToNext())
+            }
+        } finally {
+            cursor.close()
+        }
+        return teams
+    }
+
+    fun getAllTeamRegistrationsAndTeams(): List<TeamRegistration> {
+        val registrations = mutableListOf<TeamRegistration>()
+        val db = readableDatabase
+        val cursor = db.rawQuery(
+            """
+        SELECT 
+            registrationID, 
+            team_name, 
+            coachName, 
+            contact_email, 
+            created_at, 
+            status, 
+            coach_userID, 
+            years_of_existence, 
+            field_address, 
+            games_played, 
+            coach_reference, 
+            coach_id_no, 
+            coach_experience_years 
+        FROM TeamRegistrations
+        UNION
+        SELECT 
+            t.team_id AS registrationID, 
+            t.team_name, 
+            u.fullName AS coachName, 
+            t.contact_email, 
+            t.created_at, 
+            'Approved' AS status, 
+            t.coach_id AS coach_userID, 
+            t.years_of_existence, 
+            t.field_address, 
+            t.games_played, 
+            t.coach_reference, 
+            t.coach_id_no, 
+            t.coach_experience_years 
+        FROM Teams t
+        LEFT JOIN Users u ON t.coach_id = u.userID
+        """,
+            null
+        )
+        try {
+            if (cursor.moveToFirst()) {
+                do {
+                    registrations.add(
+                        TeamRegistration(
+                            registrationID = cursor.getInt(cursor.getColumnIndexOrThrow("registrationID")),
+                            teamName = cursor.getString(cursor.getColumnIndexOrThrow("team_name")),
+                            coachName = cursor.getString(cursor.getColumnIndexOrThrow("coachName")),
+                            contactEmail = cursor.getString(cursor.getColumnIndexOrThrow("contact_email")),
+                            createdAt = cursor.getString(cursor.getColumnIndexOrThrow("created_at")),
+                            status = cursor.getString(cursor.getColumnIndexOrThrow("status")),
+                            coachUserID = if (cursor.isNull(cursor.getColumnIndexOrThrow("coach_userID"))) null
+                            else cursor.getInt(cursor.getColumnIndexOrThrow("coach_userID")),
+                            yearsOfExistence = if (cursor.isNull(cursor.getColumnIndexOrThrow("years_of_existence"))) null
+                            else cursor.getInt(cursor.getColumnIndexOrThrow("years_of_existence")),
+                            fieldAddress = cursor.getString(cursor.getColumnIndexOrThrow("field_address")),
+                            gamesPlayed = if (cursor.isNull(cursor.getColumnIndexOrThrow("games_played"))) null
+                            else cursor.getInt(cursor.getColumnIndexOrThrow("games_played")),
+                            coachReference = cursor.getString(cursor.getColumnIndexOrThrow("coach_reference")),
+                            coachIdNo = cursor.getString(cursor.getColumnIndexOrThrow("coach_id_no")),
+                            coachExperienceYears = if (cursor.isNull(cursor.getColumnIndexOrThrow("coach_experience_years"))) null
+                            else cursor.getInt(cursor.getColumnIndexOrThrow("coach_experience_years"))
+                        )
+                    )
+                } while (cursor.moveToNext())
+            }
+        } finally {
+            cursor.close()
+        }
+        return registrations
+    }
+
     fun updateEvent(event: Event): Boolean {
         if (event.eventName.isBlank()) throw IllegalArgumentException("Event name cannot be empty")
         if (event.eventDateTime.isBlank()) throw IllegalArgumentException("Event date and time cannot be empty")
@@ -1301,6 +1419,34 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME
         }
     }
 
+    fun getLoggedInUserId(context: Context): Int {
+        // Retrieve the logged-in user's email from SharedPreferences
+        val sharedPreferences = context.getSharedPreferences("HockeyAppPrefs", Context.MODE_PRIVATE)
+        val email = sharedPreferences.getString("logged_in_email", null)
+
+        // If no email is found, return -1 to indicate no logged-in user
+        if (email == null) {
+            return -1
+        }
+
+        // Query the Users table to get the userID for the email
+        val db = readableDatabase
+        val cursor = db.rawQuery(
+            "SELECT userID FROM Users WHERE email = ?",
+            arrayOf(email)
+        )
+        try {
+            if (cursor.moveToFirst()) {
+                return cursor.getInt(cursor.getColumnIndexOrThrow("userID"))
+            }
+        } finally {
+            cursor.close()
+        }
+
+        // Return -1 if no user is found with the email
+        return -1
+    }
+
     fun getAllPlayers(): List<Player> {
         val players = mutableListOf<Player>()
         val db = readableDatabase
@@ -1382,28 +1528,80 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME
         return players
     }
 
+    // Method to authenticate a user by email and password
+    fun authenticateUser(email: String, password: String): User? {
+        val db = readableDatabase
+        val cursor = db.rawQuery(
+            "SELECT * FROM Users WHERE email = ? AND userPassword = ?",
+            arrayOf(email, password)
+        )
+        try {
+            if (cursor.moveToFirst()) {
+                return User(
+                    userID = cursor.getInt(cursor.getColumnIndexOrThrow("userID")),
+                    fullName = cursor.getString(cursor.getColumnIndexOrThrow("fullName")),
+                    email = cursor.getString(cursor.getColumnIndexOrThrow("email")),
+                    userPassword = cursor.getString(cursor.getColumnIndexOrThrow("userPassword")),
+                    createdAt = cursor.getString(cursor.getColumnIndexOrThrow("created_at")),
+                    lastLogin = cursor.getString(cursor.getColumnIndexOrThrow("last_login")),
+                    userType = cursor.getString(cursor.getColumnIndexOrThrow("user_type")),
+                    isVerified = cursor.getInt(cursor.getColumnIndexOrThrow("isVerified")) == 1,
+                    contactNumber = if (cursor.isNull(cursor.getColumnIndexOrThrow("contact_number"))) 0L
+                    else cursor.getInt(cursor.getColumnIndexOrThrow("contact_number")).toLong()
+                )
+            }
+        } finally {
+            cursor.close()
+        }
+        return null
+    }
+
+    // Method to update the last login timestamp for a user
+    fun updateLastLogin(userId: Int): Boolean {
+        val db = writableDatabase
+        val values = ContentValues().apply {
+            put("last_login", LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")))
+        }
+        val rowsAffected = db.update("Users", values, "userID = ?", arrayOf(userId.toString()))
+        return rowsAffected > 0
+    }
+
     fun updatePlayerName(userId: Int, newName: String): Boolean {
         if (newName.isBlank()) throw IllegalArgumentException("New name cannot be empty")
 
         val db = writableDatabase
         db.beginTransaction()
         try {
+            // Check if the user exists
+            val userCursor = db.rawQuery(
+                "SELECT COUNT(*) FROM Users WHERE userID = ?",
+                arrayOf(userId.toString())
+            )
+            val userExists = userCursor.use { c ->
+                c.moveToFirst() && c.getInt(0) > 0
+            }
+            if (!userExists) throw IllegalArgumentException("User with ID $userId does not exist")
+
+            // Generate new email based on the new name
             val newEmail = "${newName.replace(" ", "").lowercase()}@hockeyapp.com"
-            val cursor = db.rawQuery(
+
+            // Check if the new email is already in use by another user
+            val emailCursor = db.rawQuery(
                 "SELECT COUNT(*) FROM Users WHERE email = ? AND userID != ?",
                 arrayOf(newEmail, userId.toString())
             )
-            val exists = cursor.use { c ->
+            val emailExists = emailCursor.use { c ->
                 c.moveToFirst() && c.getInt(0) > 0
             }
-            if (exists) throw IllegalArgumentException("Player with this name already exists")
+            if (emailExists) throw IllegalArgumentException("Email generated from new name is already in use")
 
+            // Update the user's fullName and email
             val values = ContentValues().apply {
                 put("fullName", newName)
                 put("email", newEmail)
             }
             val rowsAffected = db.update("Users", values, "userID = ?", arrayOf(userId.toString()))
-            if (rowsAffected == 0) throw IllegalArgumentException("Failed to update player name for user ID $userId")
+            if (rowsAffected == 0) throw IllegalArgumentException("Failed to update user with ID $userId")
 
             db.setTransactionSuccessful()
             return true
@@ -1412,11 +1610,38 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME
         }
     }
 
+    fun updatePlayerDetails(player: Player): Boolean {
+        if (player.jerseyNumber != null && player.jerseyNumber!! <= 0) throw IllegalArgumentException("Jersey number must be positive")
+        if (player.position?.isBlank() != false) throw IllegalArgumentException("Position cannot be empty")
+        if (player.age != null && player.age!! <= 0) throw IllegalArgumentException("Age must be positive")
+        if (player.height != null && player.height!! <= 0) throw IllegalArgumentException("Height must be positive")
+        if (player.emergencyContact?.isBlank() != false) throw IllegalArgumentException("Emergency contact cannot be empty")
+        if (player.dateOfBirth?.isBlank() != false) throw IllegalArgumentException("Date of birth cannot be empty")
+        if (player.joinDate?.isBlank() != false) throw IllegalArgumentException("Join date cannot be empty")
+
+        val db = writableDatabase
+        val values = ContentValues().apply {
+            put("jersey_number", player.jerseyNumber)
+            put("position", player.position)
+            put("age", player.age)
+            put("height", player.height)
+            put("emergency_contact", player.emergencyContact)
+            put("date_of_birth", player.dateOfBirth)
+            put("join_date", player.joinDate)
+        }
+        val rowsAffected = db.update(
+            "Players",
+            values,
+            "player_id = ?",
+            arrayOf(player.playerId.toString())
+        )
+        return rowsAffected > 0
+    }
+
     fun deletePlayer(playerId: Int): Int {
         val db = writableDatabase
         return db.delete("Players", "player_id = ?", arrayOf(playerId.toString()))
     }
-
     fun updatePlayer(
         playerId: Int,
         fullName: String,
@@ -1487,8 +1712,63 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME
         }
     }
 
-    override fun close() {
-        super.close()
-        writableDatabase.close()
+
+    fun deleteUser(userId: Int): Boolean {
+        val db = writableDatabase
+        db.beginTransaction()
+        try {
+            // Check if the user exists
+            val userCursor = db.rawQuery(
+                "SELECT user_type FROM Users WHERE userID = ?",
+                arrayOf(userId.toString())
+            )
+            val userExists = userCursor.use { c ->
+                if (c.moveToFirst()) {
+                    val userType = c.getString(c.getColumnIndexOrThrow("user_type"))
+                    userType to true
+                } else {
+                    null to false
+                }
+            }
+            if (!userExists.second) throw IllegalArgumentException("User with ID $userId does not exist")
+
+            val userType = userExists.first
+            if (userType == "Admin") {
+                val adminCountCursor = db.rawQuery(
+                    "SELECT COUNT(*) FROM Users WHERE user_type = 'Admin'",
+                    null
+                )
+                val adminCount = adminCountCursor.use { c ->
+                    c.moveToFirst()
+                    c.getInt(0)
+                }
+                if (adminCount <= 1) throw IllegalStateException("Cannot delete the last admin user")
+            }
+
+            // Delete the user (cascading deletes will handle related records)
+            val rowsAffected = db.delete("Users", "userID = ?", arrayOf(userId.toString()))
+            if (rowsAffected == 0) throw IllegalArgumentException("Failed to delete user with ID $userId")
+
+            db.setTransactionSuccessful()
+            return true
+        } finally {
+            db.endTransaction()
+        }
+    }
+
+    // Method to reset the database by dropping all tables and recreating them
+    @RequiresApi(Build.VERSION_CODES.O)
+    fun resetDatabase() {
+        val db = writableDatabase
+        db.execSQL("DROP TABLE IF EXISTS Users")
+        db.execSQL("DROP TABLE IF EXISTS TeamRegistrations")
+        db.execSQL("DROP TABLE IF EXISTS Teams")
+        db.execSQL("DROP TABLE IF EXISTS Players")
+        db.execSQL("DROP TABLE IF EXISTS Events")
+        db.execSQL("DROP TABLE IF EXISTS Posts")
+        db.execSQL("DROP TABLE IF EXISTS Subscriptions")
+        db.execSQL("DROP TABLE IF EXISTS Notifications")
+        db.execSQL("DROP TABLE IF EXISTS Games")
+        onCreate(db)
     }
 }

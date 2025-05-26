@@ -229,6 +229,21 @@ fun OnboardingScreen(navController: NavController, context: Context) {
                             )
                         )
 
+
+                        NavigationBarItem(
+                            icon = { Icon(imageVector = Icons.Default.Event, contentDescription = "Manage Team", tint = HockeyAppTheme.White.copy(alpha = 0.7f)) },
+                            label = { Text("Manage Team", color = HockeyAppTheme.White.copy(alpha = 0.7f)) },
+                            selected = false,
+                            onClick = { navController.navigate("manage_team_players?teamName={teamName}") },
+                            colors = NavigationBarItemDefaults.colors(
+                                selectedIconColor = HockeyAppTheme.White,
+                                selectedTextColor = HockeyAppTheme.White,
+                                indicatorColor = HockeyAppTheme.AccentBlue,
+                                unselectedIconColor = HockeyAppTheme.White.copy(alpha = 0.7f),
+                                unselectedTextColor = HockeyAppTheme.White.copy(alpha = 0.7f)
+                            )
+                        )
+
                         NavigationBarItem(
                             icon = { Icon(imageVector = Icons.Default.AccountCircle, contentDescription = "Profile", tint = HockeyAppTheme.White.copy(alpha = 0.7f)) },
                             label = { Text("Profile", color = HockeyAppTheme.White.copy(alpha = 0.7f)) },

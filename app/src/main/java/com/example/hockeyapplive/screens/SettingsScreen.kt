@@ -40,7 +40,10 @@ fun SettingsScreen(navController: NavController) {
     var isLoading by remember { mutableStateOf(true) }
     var errorMessage by remember { mutableStateOf<String?>(null) }
 
-    val loggedInUserId = 1
+    // Dynamically retrieve logged-in user ID
+    val loggedInUserId by remember {
+        mutableStateOf(dbHelper.getLoggedInUserId(context) ?: -1)
+    }
 
     val coroutineScope = rememberCoroutineScope()
 
@@ -49,11 +52,15 @@ fun SettingsScreen(navController: NavController) {
             isLoading = true
             errorMessage = null
             try {
-                coach = dbHelper.getUserById(loggedInUserId)
-                coach?.let { user ->
-                    team = dbHelper.getTeamByCoachId(user.userID)
+                if (loggedInUserId != -1) {
+                    coach = dbHelper.getUserById(loggedInUserId)
+                    coach?.let { user ->
+                        team = dbHelper.getTeamByCoachId(user.userID, team?.teamId ?: -1)
+                    } ?: run { errorMessage = "No coach found for user ID $loggedInUserId" }
+                } else {
+                    errorMessage = "No logged-in user found"
                 }
-            } catch (e: Exception) {
+            } catch (e: Exception) { // Fixed typo: "Exceptioan" to "Exception"
                 errorMessage = "Failed to load profile: ${e.message}"
             } finally {
                 isLoading = false
@@ -63,6 +70,13 @@ fun SettingsScreen(navController: NavController) {
 
     LaunchedEffect(Unit) {
         loadCoachAndTeam()
+    }
+
+    // Cleanup database helper when composable is disposed
+    DisposableEffect(Unit) {
+        onDispose {
+            dbHelper.close()
+        }
     }
 
     var showEditProfileDialog by remember { mutableStateOf(false) }
@@ -78,6 +92,9 @@ fun SettingsScreen(navController: NavController) {
                     )
                 }
             )
+        },
+        bottomBar = {
+            SettingsBottomBar(navController)
         }
     ) { paddingValues ->
         if (isLoading) {
@@ -160,7 +177,7 @@ fun SettingsScreen(navController: NavController) {
                                     modifier = Modifier.padding(top = 4.dp)
                                 )
                                 Text(
-                                    text = "Phone: ${coach?.contactNumber ?: "N/A"}",
+                                    text = "Phone: ${coach?.contactNumber?.toString() ?: "N/A"}",
                                     style = MaterialTheme.typography.bodySmall,
                                     color = MaterialTheme.colorScheme.onSurfaceVariant,
                                     modifier = Modifier.padding(top = 2.dp)
@@ -172,6 +189,25 @@ fun SettingsScreen(navController: NavController) {
                                         color = MaterialTheme.colorScheme.onSurfaceVariant,
                                         modifier = Modifier.padding(top = 2.dp)
                                     )
+                                    Button(
+                                        onClick = {
+                                            team?.teamId?.let { teamId ->
+                                                navController.navigate("manage_team_players?teamId=$teamId")
+                                            } ?: run {
+                                                errorMessage = "No team ID available"
+                                                loadCoachAndTeam()
+                                            }
+                                        },
+                                        modifier = Modifier
+                                            .fillMaxWidth()
+                                            .padding(top = 8.dp),
+                                        colors = ButtonDefaults.buttonColors(
+                                            containerColor = MaterialTheme.colorScheme.primaryContainer,
+                                            contentColor = MaterialTheme.colorScheme.onPrimaryContainer
+                                        )
+                                    ) {
+                                        Text("Manage Team Players")
+                                    }
                                 }
                             }
                         }
@@ -207,7 +243,7 @@ fun SettingsScreen(navController: NavController) {
         }
     }
 
-    if (showEditProfileDialog) {
+    if (showEditProfileDialog && coach != null) {
         val (name, setName) = remember { mutableStateOf(coach?.fullName ?: "Unknown Coach") }
         val (email, setEmail) = remember { mutableStateOf(coach?.email ?: "N/A") }
         val (phone, setPhone) = remember { mutableStateOf(coach?.contactNumber?.toString() ?: "N/A") }
@@ -223,7 +259,8 @@ fun SettingsScreen(navController: NavController) {
                         label = { Text("Name") },
                         modifier = Modifier
                             .fillMaxWidth()
-                            .padding(bottom = 8.dp)
+                            .padding(bottom = 8.dp),
+                        isError = name.isBlank()
                     )
                     OutlinedTextField(
                         value = email,
@@ -232,7 +269,8 @@ fun SettingsScreen(navController: NavController) {
                         modifier = Modifier
                             .fillMaxWidth()
                             .padding(bottom = 8.dp),
-                        keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email)
+                        keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email),
+                        isError = email.isBlank() || !email.contains("@")
                     )
                     OutlinedTextField(
                         value = phone,
@@ -241,30 +279,38 @@ fun SettingsScreen(navController: NavController) {
                         modifier = Modifier
                             .fillMaxWidth()
                             .padding(bottom = 8.dp),
-                        keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Phone)
+                        keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Phone),
+                        isError = phone.isBlank() || phone.toLongOrNull() == null
                     )
                 }
             },
             confirmButton = {
                 Button(
                     onClick = {
-                        coach = coach?.copy(
-                            fullName = name,
-                            email = email,
-                            contactNumber = phone.toLongOrNull() ?: 0L
-                        )
-                        coach?.let { updatedCoach ->
+                        if (name.isNotBlank() && email.isNotBlank() && email.contains("@") && phone.isNotBlank() && phone.toLongOrNull() != null) {
+                            val updatedCoach = coach!!.copy(
+                                fullName = name,
+                                email = email,
+                                contactNumber = phone.toLong()
+                            )
                             coroutineScope.launch {
-                                dbHelper.updateUser(
-                                    updatedCoach.userID,
-                                    updatedCoach.fullName,
-                                    updatedCoach.email,
-                                    updatedCoach.contactNumber?.toInt() ?: 0
-                                )
+                                try {
+                                    dbHelper.updateUser(
+                                        updatedCoach.userID,
+                                        updatedCoach.fullName,
+                                        updatedCoach.email,
+                                        updatedCoach.contactNumber.toInt()
+                                    )
+                                    coach = updatedCoach
+                                    loadCoachAndTeam() // Refresh data after update
+                                } catch (e: Exception) {
+                                    errorMessage = "Failed to update profile: ${e.message}"
+                                }
                             }
+                            showEditProfileDialog = false
                         }
-                        showEditProfileDialog = false
-                    }
+                    },
+                    enabled = name.isNotBlank() && email.isNotBlank() && email.contains("@") && phone.isNotBlank() && phone.toLongOrNull() != null
                 ) {
                     Text("Save")
                 }
@@ -277,94 +323,94 @@ fun SettingsScreen(navController: NavController) {
         )
     }
 }
+
 // Bottom navigation bar composable
 @Composable
 fun SettingsBottomBar(navController: NavController) {
     NavigationBar(
-        containerColor = HockeyAppTheme.LightNavyBlue,
-        contentColor = HockeyAppTheme.White
+        containerColor = MaterialTheme.colorScheme.primary,
+        contentColor = MaterialTheme.colorScheme.onPrimary
     ) {
         NavigationBarItem(
-            icon = { Icon(imageVector = Icons.Default.Home, contentDescription = "Home", tint = HockeyAppTheme.White) },
-            label = { Text("Home", color = HockeyAppTheme.White) },
-            selected = true,
+            icon = { Icon(imageVector = Icons.Default.Home, contentDescription = "Home", tint = MaterialTheme.colorScheme.onPrimary) },
+            label = { Text("Home", color = MaterialTheme.colorScheme.onPrimary) },
+            selected = false, // Updated: Not selected on Settings screen
             onClick = { navController.navigate("onboarding") },
             colors = NavigationBarItemDefaults.colors(
-                selectedIconColor = HockeyAppTheme.White,
-                selectedTextColor = HockeyAppTheme.White,
-                indicatorColor = HockeyAppTheme.AccentBlue,
-                unselectedIconColor = HockeyAppTheme.White.copy(alpha = 0.7f),
-                unselectedTextColor = HockeyAppTheme.White.copy(alpha = 0.7f)
+                selectedIconColor = MaterialTheme.colorScheme.onPrimary,
+                selectedTextColor = MaterialTheme.colorScheme.onPrimary,
+                indicatorColor = MaterialTheme.colorScheme.secondary,
+                unselectedIconColor = MaterialTheme.colorScheme.onPrimary.copy(alpha = 0.7f),
+                unselectedTextColor = MaterialTheme.colorScheme.onPrimary.copy(alpha = 0.7f)
             )
         )
         NavigationBarItem(
-            icon = { Icon(imageVector = Icons.Default.Group, contentDescription = "Teams", tint = HockeyAppTheme.White.copy(alpha = 0.7f)) },
-            label = { Text("Teams", color = HockeyAppTheme.White.copy(alpha = 0.7f)) },
+            icon = { Icon(imageVector = Icons.Default.Group, contentDescription = "Teams", tint = MaterialTheme.colorScheme.onPrimary.copy(alpha = 0.7f)) },
+            label = { Text("Teams", color = MaterialTheme.colorScheme.onPrimary.copy(alpha = 0.7f)) },
             selected = false,
             onClick = { navController.navigate("team_registration") },
             colors = NavigationBarItemDefaults.colors(
-                selectedIconColor = HockeyAppTheme.White,
-                selectedTextColor = HockeyAppTheme.White,
-                indicatorColor = HockeyAppTheme.AccentBlue,
-                unselectedIconColor = HockeyAppTheme.White.copy(alpha = 0.7f),
-                unselectedTextColor = HockeyAppTheme.White.copy(alpha = 0.7f)
+                selectedIconColor = MaterialTheme.colorScheme.onPrimary,
+                selectedTextColor = MaterialTheme.colorScheme.onPrimary,
+                indicatorColor = MaterialTheme.colorScheme.secondary,
+                unselectedIconColor = MaterialTheme.colorScheme.onPrimary.copy(alpha = 0.7f),
+                unselectedTextColor = MaterialTheme.colorScheme.onPrimary.copy(alpha = 0.7f)
             )
         )
         NavigationBarItem(
-            icon = { Icon(imageVector = Icons.Default.Person, contentDescription = "Players", tint = HockeyAppTheme.White.copy(alpha = 0.7f)) },
-            label = { Text("Players", color = HockeyAppTheme.White.copy(alpha = 0.7f)) },
+            icon = { Icon(imageVector = Icons.Default.Person, contentDescription = "Players", tint = MaterialTheme.colorScheme.onPrimary.copy(alpha = 0.7f)) },
+            label = { Text("Players", color = MaterialTheme.colorScheme.onPrimary.copy(alpha = 0.7f)) },
             selected = false,
             onClick = { navController.navigate("manage_players") },
             colors = NavigationBarItemDefaults.colors(
-                selectedIconColor = HockeyAppTheme.White,
-                selectedTextColor = HockeyAppTheme.White,
-                indicatorColor = HockeyAppTheme.AccentBlue,
-                unselectedIconColor = HockeyAppTheme.White.copy(alpha = 0.7f),
-                unselectedTextColor = HockeyAppTheme.White.copy(alpha = 0.7f)
+                selectedIconColor = MaterialTheme.colorScheme.onPrimary,
+                selectedTextColor = MaterialTheme.colorScheme.onPrimary,
+                indicatorColor = MaterialTheme.colorScheme.secondary,
+                unselectedIconColor = MaterialTheme.colorScheme.onPrimary.copy(alpha = 0.7f),
+                unselectedTextColor = MaterialTheme.colorScheme.onPrimary.copy(alpha = 0.7f)
             )
         )
         NavigationBarItem(
-            icon = { Icon(imageVector = Icons.Default.Event, contentDescription = "Events", tint = HockeyAppTheme.White.copy(alpha = 0.7f)) },
-            label = { Text("Events", color = HockeyAppTheme.White.copy(alpha = 0.7f)) },
+            icon = { Icon(imageVector = Icons.Default.Event, contentDescription = "Events", tint = MaterialTheme.colorScheme.onPrimary.copy(alpha = 0.7f)) },
+            label = { Text("Events", color = MaterialTheme.colorScheme.onPrimary.copy(alpha = 0.7f)) },
             selected = false,
             onClick = { navController.navigate("events") },
             colors = NavigationBarItemDefaults.colors(
-                selectedIconColor = HockeyAppTheme.White,
-                selectedTextColor = HockeyAppTheme.White,
-                indicatorColor = HockeyAppTheme.AccentBlue,
-                unselectedIconColor = HockeyAppTheme.White.copy(alpha = 0.7f),
-                unselectedTextColor = HockeyAppTheme.White.copy(alpha = 0.7f)
+                selectedIconColor = MaterialTheme.colorScheme.onPrimary,
+                selectedTextColor = MaterialTheme.colorScheme.onPrimary,
+                indicatorColor = MaterialTheme.colorScheme.secondary,
+                unselectedIconColor = MaterialTheme.colorScheme.onPrimary.copy(alpha = 0.7f),
+                unselectedTextColor = MaterialTheme.colorScheme.onPrimary.copy(alpha = 0.7f)
             )
         )
         NavigationBarItem(
-            icon = { Icon(imageVector = Icons.Default.Feedback, contentDescription = "Feedback", tint = HockeyAppTheme.White.copy(alpha = 0.7f)) },
-            label = { Text("Feedback", color = HockeyAppTheme.White.copy(alpha = 0.7f)) },
+            icon = { Icon(imageVector = Icons.Default.Feedback, contentDescription = "Feedback", tint = MaterialTheme.colorScheme.onPrimary.copy(alpha = 0.7f)) },
+            label = { Text("Feedback", color = MaterialTheme.colorScheme.onPrimary.copy(alpha = 0.7f)) },
             selected = false,
             onClick = { navController.navigate("manage_feedback") },
             colors = NavigationBarItemDefaults.colors(
-                selectedIconColor = HockeyAppTheme.White,
-                selectedTextColor = HockeyAppTheme.White,
-                indicatorColor = HockeyAppTheme.AccentBlue,
-                unselectedIconColor = HockeyAppTheme.White.copy(alpha = 0.7f),
-                unselectedTextColor = HockeyAppTheme.White.copy(alpha = 0.7f)
+                selectedIconColor = MaterialTheme.colorScheme.onPrimary,
+                selectedTextColor = MaterialTheme.colorScheme.onPrimary,
+                indicatorColor = MaterialTheme.colorScheme.secondary,
+                unselectedIconColor = MaterialTheme.colorScheme.onPrimary.copy(alpha = 0.7f),
+                unselectedTextColor = MaterialTheme.colorScheme.onPrimary.copy(alpha = 0.7f)
             )
         )
         NavigationBarItem(
-            icon = { Icon(imageVector = Icons.Default.AccountCircle, contentDescription = "Profile", tint = HockeyAppTheme.White.copy(alpha = 0.7f)) },
-            label = { Text("Profile", color = HockeyAppTheme.White.copy(alpha = 0.7f)) },
-            selected = false,
+            icon = { Icon(imageVector = Icons.Default.AccountCircle, contentDescription = "Profile", tint = MaterialTheme.colorScheme.onPrimary) },
+            label = { Text("Profile", color = MaterialTheme.colorScheme.onPrimary) },
+            selected = true, // Updated: Selected on Settings screen
             onClick = { navController.navigate("settings") },
             colors = NavigationBarItemDefaults.colors(
-                selectedIconColor = HockeyAppTheme.White,
-                selectedTextColor = HockeyAppTheme.White,
-                indicatorColor = HockeyAppTheme.AccentBlue,
-                unselectedIconColor = HockeyAppTheme.White.copy(alpha = 0.7f),
-                unselectedTextColor = HockeyAppTheme.White.copy(alpha = 0.7f)
+                selectedIconColor = MaterialTheme.colorScheme.onPrimary,
+                selectedTextColor = MaterialTheme.colorScheme.onPrimary,
+                indicatorColor = MaterialTheme.colorScheme.secondary,
+                unselectedIconColor = MaterialTheme.colorScheme.onPrimary.copy(alpha = 0.7f),
+                unselectedTextColor = MaterialTheme.colorScheme.onPrimary.copy(alpha = 0.7f)
             )
         )
     }
 }
-
 
 data class SettingsOption(val title: String, val icon: ImageVector, val onClick: () -> Unit)
 
