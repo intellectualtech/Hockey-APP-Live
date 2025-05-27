@@ -34,6 +34,7 @@ import com.example.hockeyapplive.screens.admin.ManageEventsScreen
 import com.example.hockeyapplive.screens.admin.ManageFeedbackScreen
 import com.example.hockeyapplive.screens.admin.ManagePlayersScreen
 import com.example.hockeyapplive.screens.admin.ManageTeamsScreen
+import com.example.hockeyapplive.screens.LogoutScreen
 import com.example.hockeyapplive.ui.theme.HockeyAPPLiveTheme
 
 class MainActivity : ComponentActivity() {
@@ -67,6 +68,7 @@ class MainActivity : ComponentActivity() {
             composable("chat") { ChatScreen(navController) }
             composable("search_filter") { SearchFilterScreen(navController) }
             composable("events") { EventsScreen(navController) }
+            composable("logout") { LogoutScreen(navController) }
             composable("team_registration") { TeamRegistrationScreen(navController) }
             composable(
                 "playerRegistration/{teamName}",

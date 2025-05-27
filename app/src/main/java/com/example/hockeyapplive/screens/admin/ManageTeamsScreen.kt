@@ -34,6 +34,8 @@ import com.example.hockeyapplive.data.model.CoachTeamDetails
 import com.example.hockeyapplive.data.model.Game
 import com.example.hockeyapplive.data.model.Team
 import com.example.hockeyapplive.data.db.DatabaseHelper
+
+import com.example.hockeyapplive.MainActivity
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 import java.time.OffsetDateTime
@@ -213,7 +215,7 @@ fun ManageTeamsScreen(navController: NavController, context: Context) {
                         Triple("Teams", Icons.Filled.Groups, "manage_teams"),
                         Triple("Players", Icons.Filled.SportsHockey, "manage_players"),
                         Triple("Events", Icons.Filled.EventNote, "manage_events"),
-                        Triple("Profile", Icons.Filled.AccountCircle, "admin_profile")
+                        Triple("Profile", Icons.Filled.AccountCircle, "admin_profile ")
                     )
 
                     navItems.forEach { (label, icon, route) ->

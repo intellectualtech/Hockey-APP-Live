@@ -344,24 +344,12 @@ fun SettingsBottomBar(navController: NavController) {
                 unselectedTextColor = MaterialTheme.colorScheme.onPrimary.copy(alpha = 0.7f)
             )
         )
-        NavigationBarItem(
-            icon = { Icon(imageVector = Icons.Default.Group, contentDescription = "Teams", tint = MaterialTheme.colorScheme.onPrimary.copy(alpha = 0.7f)) },
-            label = { Text("Teams", color = MaterialTheme.colorScheme.onPrimary.copy(alpha = 0.7f)) },
-            selected = false,
-            onClick = { navController.navigate("team_registration") },
-            colors = NavigationBarItemDefaults.colors(
-                selectedIconColor = MaterialTheme.colorScheme.onPrimary,
-                selectedTextColor = MaterialTheme.colorScheme.onPrimary,
-                indicatorColor = MaterialTheme.colorScheme.secondary,
-                unselectedIconColor = MaterialTheme.colorScheme.onPrimary.copy(alpha = 0.7f),
-                unselectedTextColor = MaterialTheme.colorScheme.onPrimary.copy(alpha = 0.7f)
-            )
-        )
+
         NavigationBarItem(
             icon = { Icon(imageVector = Icons.Default.Person, contentDescription = "Players", tint = MaterialTheme.colorScheme.onPrimary.copy(alpha = 0.7f)) },
             label = { Text("Players", color = MaterialTheme.colorScheme.onPrimary.copy(alpha = 0.7f)) },
             selected = false,
-            onClick = { navController.navigate("manage_players") },
+            onClick = { navController.navigate("manage_team_players?teamId={teamId}") },
             colors = NavigationBarItemDefaults.colors(
                 selectedIconColor = MaterialTheme.colorScheme.onPrimary,
                 selectedTextColor = MaterialTheme.colorScheme.onPrimary,
@@ -383,19 +371,7 @@ fun SettingsBottomBar(navController: NavController) {
                 unselectedTextColor = MaterialTheme.colorScheme.onPrimary.copy(alpha = 0.7f)
             )
         )
-        NavigationBarItem(
-            icon = { Icon(imageVector = Icons.Default.Feedback, contentDescription = "Feedback", tint = MaterialTheme.colorScheme.onPrimary.copy(alpha = 0.7f)) },
-            label = { Text("Feedback", color = MaterialTheme.colorScheme.onPrimary.copy(alpha = 0.7f)) },
-            selected = false,
-            onClick = { navController.navigate("manage_feedback") },
-            colors = NavigationBarItemDefaults.colors(
-                selectedIconColor = MaterialTheme.colorScheme.onPrimary,
-                selectedTextColor = MaterialTheme.colorScheme.onPrimary,
-                indicatorColor = MaterialTheme.colorScheme.secondary,
-                unselectedIconColor = MaterialTheme.colorScheme.onPrimary.copy(alpha = 0.7f),
-                unselectedTextColor = MaterialTheme.colorScheme.onPrimary.copy(alpha = 0.7f)
-            )
-        )
+
         NavigationBarItem(
             icon = { Icon(imageVector = Icons.Default.AccountCircle, contentDescription = "Profile", tint = MaterialTheme.colorScheme.onPrimary) },
             label = { Text("Profile", color = MaterialTheme.colorScheme.onPrimary) },

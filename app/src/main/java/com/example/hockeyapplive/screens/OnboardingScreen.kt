@@ -157,6 +157,25 @@ fun OnboardingScreen(navController: NavController, context: Context) {
                             )
                         )
 
+                        // Add Logout button
+                        NavigationDrawerItem(
+                            label = { Text("Logout") },
+                            selected = false,
+                            onClick = {
+                                scope.launch { drawerState.close() }
+                                navController.navigate("logout")
+                            },
+                            icon = { Icon(Icons.Filled.ExitToApp, contentDescription = "Logout") },
+                            colors = NavigationDrawerItemDefaults.colors(
+                                selectedContainerColor = HockeyAppTheme.LighterNavyBlue,
+                                unselectedContainerColor = HockeyAppTheme.White,
+                                selectedIconColor = HockeyAppTheme.TextColor,
+                                unselectedIconColor = HockeyAppTheme.TextColor.copy(alpha = 0.7f)
+                            )
+                        )
+
+
+
                         Spacer(modifier = Modifier.weight(1f))
 
                         // Footer in drawer

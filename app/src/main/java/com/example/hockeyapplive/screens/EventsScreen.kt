@@ -254,7 +254,7 @@ private fun FooterNavigation(navController: NavController) {
                 )
             },
             selected = false,
-            onClick = { navController.navigate("home") },
+            onClick = { navController.navigate("onbonmbarding") },
             colors = NavigationBarItemDefaults.colors(
                 selectedIconColor = Color.White,
                 unselectedIconColor = Color.White.copy(alpha = 0.7f),
@@ -306,7 +306,7 @@ private fun FooterNavigation(navController: NavController) {
                 )
             },
             selected = false,
-            onClick = { navController.navigate("teams") },
+            onClick = { navController.navigate("manage_team_players?teamId={teamId}") },
             colors = NavigationBarItemDefaults.colors(
                 selectedIconColor = Color.White,
                 unselectedIconColor = Color.White.copy(alpha = 0.7f),

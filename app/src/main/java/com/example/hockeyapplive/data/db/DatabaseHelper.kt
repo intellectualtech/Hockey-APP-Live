@@ -1712,6 +1712,26 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME
         }
     }
 
+    fun clearUserSession(context: Context): Boolean {
+        val sharedPreferences = context.getSharedPreferences("HockeyAppPrefs", Context.MODE_PRIVATE)
+        val editor = sharedPreferences.edit()
+        editor.remove("logged_in_email")
+        val isCleared = editor.commit()
+
+        if (isCleared) {
+            val db = writableDatabase
+            val values = ContentValues().apply {
+                putNull("last_login")
+            }
+            val email = sharedPreferences.getString("logged_in_email", null)
+            if (email != null) {
+                db.update("Users", values, "email = ?", arrayOf(email))
+            }
+        }
+
+        return isCleared
+    }
+
 
     fun deleteUser(userId: Int): Boolean {
         val db = writableDatabase

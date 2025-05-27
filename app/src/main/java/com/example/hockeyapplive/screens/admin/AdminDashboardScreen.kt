@@ -3,7 +3,6 @@ package com.example.hockeyapplive.screens.admin
 import android.content.Context
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.*
 import androidx.compose.material3.*
@@ -97,7 +96,8 @@ fun AdminDashboardScreen(navController: NavController, context: Context) {
         Triple("Teams", android.R.drawable.ic_menu_preferences, "manage_teams"),
         Triple("Players", android.R.drawable.ic_menu_myplaces, "players"),
         Triple("Events", android.R.drawable.ic_menu_agenda, "manage_events"),
-        Triple("Admin Settings", android.R.drawable.ic_menu_manage, "admin_settings_screen")
+        Triple("Admin Settings", android.R.drawable.ic_menu_manage, "admin_settings_screen"),
+        Triple("Logout", android.R.drawable.ic_menu_manage, "logout") // Added Logout option
     )
 
     // Popup Dialog for Submitted Details
