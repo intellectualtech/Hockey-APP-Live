@@ -7,7 +7,6 @@ Hockey-APP-Live is a mobile application developed in Java and Kotlin, designed t
 ## Table of Contents
 
 - [Features](#features)
-- [Screenshots](#screenshots)
 - [Getting Started](#getting-started)
 - [Installation](#installation)
 - [Usage](#usage)
@@ -27,14 +26,6 @@ Hockey-APP-Live is a mobile application developed in Java and Kotlin, designed t
 - Multi-language support (if implemented)
 - Dark mode (if implemented)
 
-## Screenshots
-
-<!-- Add screenshots of your app here -->
-<p align="center">
-  <img src="screenshots/screen1.png" width="250" alt="Home Screen"/>
-  <img src="screenshots/screen2.png" width="250" alt="Live Scores"/>
-  <img src="screenshots/screen3.png" width="250" alt="Match Details"/>
-</p>
 
 ## Getting Started
 
@@ -82,20 +73,9 @@ Follow these instructions to set up and run the project on your local machine fo
 - **APIs:** [Add details if you use any hockey data APIs]
 - **Other:** [Add other tools or libraries if relevant: Retrofit, Glide, Room, etc.]
 
-## Contributing
-
-Contributions are welcome! If you'd like to improve the app, please follow these steps:
-
-1. Fork this repository.
-2. Create a new branch (`git checkout -b feature-xyz`).
-3. Make your changes and commit them (`git commit -m 'Add some feature'`).
-4. Push to your branch (`git push origin feature-xyz`).
-5. Open a pull request with a detailed description.
-
-Please refer to the [CONTRIBUTING.md](CONTRIBUTING.md) file for more details.
 
 ## License
 
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more information.
+This project is licensed under the Intellectualtechnology License. See the [LICENSE](LICENSE) file for more information.
 
 ---
