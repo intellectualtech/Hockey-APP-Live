@@ -2,7 +2,7 @@
 
 # Hockey-APP-Live
 
-Hockey-APP-Live is a mobile application developed in Java and Kotlin, designed to offer real-time hockey match updates, comprehensive statistics, and a smooth user experience for hockey fans. Whether you want the latest scores, player details, or match schedules,this mobile application is developed for the namibian hockey union.
+Hockey-APP-Live is a mobile application developed in Kotlin with the Jtepack compose framework for the User interface which makes it posible to create UI elements using composable functions in kotlin. The application is designed to offer real-time hockey match updates, comprehensive statistics, and a smooth user experience for hockey for the Namibian Hockey Union. It shows the latest event updates, player details, or match schedules.
 
 ## Table of Contents
 
@@ -17,14 +17,12 @@ Hockey-APP-Live is a mobile application developed in Java and Kotlin, designed t
 
 ## Features
 
-- Live hockey match scores and updates
-- Detailed match statistics (goals, assists, penalties, etc.)
+- Live hockey event updates
+- There are two users (The coach user and admin user)
+- Detailed team details (Team name,players, player positions, coach details etc.)
 - Team and player profiles
 - Upcoming match schedules and historical results
-- Push notifications for important events
-- Intuitive and modern user interface
-- Multi-language support (if implemented)
-- Dark mode (if implemented)
+- Intuitive user interface
 
 
 ## Getting Started
