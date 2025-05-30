@@ -68,8 +68,6 @@ Follow these instructions to set up and run the project on your local machine fo
 - **Languages:** Java (83.7%), Kotlin (16.3%)
 - **Frameworks:** Android SDK, Jetpack libraries
 - **Tools:** Android Studio, Gradle
-- **APIs:** [Add details if you use any hockey data APIs]
-- **Other:** [Add other tools or libraries if relevant: Retrofit, Glide, Room, etc.]
 - **Backend:**
   **SQLite -** 
   The application uses SQLite for the backend whereby the the users and teams details are stored in a database locally on the device being used, this is done using raw       SQLite via SQLiteOpenHelper in DatabaseHelper.
